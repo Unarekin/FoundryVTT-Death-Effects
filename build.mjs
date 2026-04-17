@@ -128,7 +128,7 @@ const buildResults = await build({
     path.join(STYLE_PATH, "module.scss"),
   ],
   outdir: OUT_PATH,
-  sourcemap: __DEV__,
+  sourcemap: true,
   bundle: true,
   platform: "browser",
   minify: !__DEV__,
@@ -158,7 +158,12 @@ const buildResults = await build({
     sassPlugin(),
     ...copyPlugins,
     ...jsonMergers,
-    externalizeAllPackagesExcept(["semver", "handlebars-group-by", "lunr"]),
+    externalizeAllPackagesExcept([
+      "semver",
+      "handlebars-group-by",
+      "lunr",
+      "timeliner",
+    ]),
     // externalizeAllPackagesExcept(["rxjs", "mini-rx-store", "tslib", "mime", "@pixi/gif"])
   ],
 });

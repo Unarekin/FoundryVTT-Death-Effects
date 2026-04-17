@@ -25,6 +25,7 @@
   "devDependencies": {
     "@eslint/js": "^9.11.0",
     "@foundryvtt/foundryvtt-cli": "^1.1.0",
+    "animation-timeline-js": "^2.3.5",
     "deepmerge-ts": "^7.1.5",
     "esbuild": "^0.25.5",
     "esbuild-copy-static-files": "^0.1.0",

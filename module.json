@@ -22,7 +22,7 @@
     "requires": []
   },
   "esmodules": ["module.js"],
-  "scripts": [],
+  "scripts": ["vendor/animation-timeline.min.js"],
   "styles": ["styles/module.css"],
   "languages": [
     {

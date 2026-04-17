@@ -19,18 +19,42 @@ export type DeepPartial<T> = T extends unknown
 export type AnyArray = readonly unknown[];
 export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
-export const EffectTypes = [] as const;
+export type Constructor<t> = new (...args: any[]) => t;
+
+export const EffectTypes = ["tint", "fade"] as const;
 export type EffectType = typeof EffectTypes[number];
+
+export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
+export type ConfigSource = typeof ConfigSources[number];
+
+interface BaseDeathEffect {
+  version: string;
+  id: string;
+  type: EffectType;
+  start: number;
+}
+
+export interface DurationDeathEffect {
+  duration: number;
+}
+
+type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
+  type: "fade";
+})
+
+interface TintDeathEffect extends BaseDeathEffect {
+  type: "tint";
+  tint: PIXI.ColorSource;
+}
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | TintDeathEffect;
 
 interface BaseDeathEffectsConfig {
   version: string;
   enabled: boolean;
-  flash: boolean;
-  tint: string;
-  shake: boolean;
   autoHide: boolean;
   autoTransparent: boolean;
-  type: EffectType;
+  effects: DeathEffect[];
 }
 
 export type DeathEffectsConfig = BaseDeathEffectsConfig;
