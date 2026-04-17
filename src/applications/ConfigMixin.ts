@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { Constructor, DeepPartial, DeathEffectsConfig as FlagConfig } from "types";
+import { ConfigSource, Constructor, DeathEffect, DeepPartial, DeathEffectsConfig as FlagConfig } from "types";
 import { PlaceableConfigContext } from "./types"
 import { DefaultDeathEffectsConfig } from "settings";
 import { templatePath } from "functions";
@@ -15,6 +15,8 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
   const DEFAULT_OPTIONS = ((base as Record<string, unknown>).DEFAULT_OPTIONS as foundry.applications.api.DocumentSheetV2.Configuration<TokenDocument>);
 
   abstract class DeathEffectsConfig extends base {
+
+    protected deathEffects: DeathEffect[] = [];
 
 
     static TABS: Record<string, TabsConfiguration> = {
@@ -52,25 +54,18 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       try {
         // await (new TimelineEditor()).render({ force: true });
         const timeline = await new TimelineEditor().Edit([]);
-        console.log("Timeline:", timeline);
+        if (timeline)
+          this.deathEffects = foundry.utils.deepClone(timeline);
       } catch (err) {
         console.error(err);
         if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
       }
     }
 
-    _processFormData(event: SubmitEvent, html: HTMLFormElement, data: foundry.applications.ux.FormDataExtended) {
-      const parsed = super._processFormData(event, html, data);
+    protected overrideDeathEffectConfigSource: ConfigSource | undefined = undefined;
 
-
-
-      return parsed;
-    }
-
-    protected async _processSubmitData(event: SubmitEvent, form: HTMLFormElement, formData: foundry.applications.ux.FormDataExtended, options?: unknown) {
-      await super._processSubmitData(event, form, formData, options);
-      console.log("Processing submit data:", formData);
-    }
+    protected abstract getDeathEffectFlags(source?: ConfigSource): FlagConfig | undefined;
+    protected abstract getDeathEffectSource(): ConfigSource;
 
     protected toggleDeathEffectForm(enabled: boolean) {
       const elems = this.element.querySelectorAll(`[data-toggle-death-effects]`);
@@ -87,15 +82,18 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       }
     }
 
+
+
     async _onRender(context: PlaceableConfigContext<foundry.abstract.Document.Any>, options: RenderOptions) {
       await super._onRender(context, options);
 
       const sourceSelect = this.element.querySelector(`[name="deathEffects.source"]`);
-      console.log(sourceSelect);
       if (sourceSelect instanceof HTMLSelectElement) {
         this.toggleDeathEffectForm(sourceSelect.value === "token" || sourceSelect.value === "actor");
         sourceSelect.addEventListener("change", () => {
-          this.toggleDeathEffectForm(sourceSelect.value === "token" || sourceSelect.value === "actor");
+          // this.toggleDeathEffectForm(sourceSelect.value === "token" || sourceSelect.value === "actor");
+          this.overrideDeathEffectConfigSource = sourceSelect.value as ConfigSource;
+          this.render().catch(console.error);
         })
       }
     }
@@ -104,12 +102,14 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
     async _prepareContext(options: RenderOptions): Promise<PlaceableConfigContext<foundry.abstract.Document.Any>> {
       const context = await super._prepareContext(options) as PlaceableConfigContext<foundry.abstract.Document.Any>;
 
-      const config = ((this.document.flags as Record<string, unknown>)[__MODULE_ID__] as FlagConfig);
+      // const config = ((this.document.flags as Record<string, unknown>)[__MODULE_ID__] as FlagConfig);
+      const config = this.getDeathEffectFlags(this.overrideDeathEffectConfigSource);
 
       context.deathEffects = {
+        source: this.overrideDeathEffectConfigSource ?? this.getDeathEffectSource(),
         config: foundry.utils.mergeObject(
           foundry.utils.deepClone(DefaultDeathEffectsConfig),
-          config
+          config ?? {}
         ),
         configSourceSelect: {
           global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"

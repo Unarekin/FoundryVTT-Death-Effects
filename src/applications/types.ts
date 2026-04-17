@@ -9,6 +9,7 @@ export interface TimelineContext extends foundry.applications.api.ApplicationV2.
 export interface PlaceableConfigContext<t extends foundry.abstract.Document.Any> extends foundry.applications.api.DocumentSheetV2.RenderContext<t> {
   deathEffects: {
     config: DeathEffectsConfig,
+    source: ConfigSource;
     configSourceSelect: Partial<Record<ConfigSource, string>>;
   };
 }
