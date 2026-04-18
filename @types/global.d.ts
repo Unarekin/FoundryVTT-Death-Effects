@@ -1,4 +1,5 @@
 import { ConfigSource, DeathEffectsConfig } from "types";
+import { BaseDeathEffect } from "effects"
 import * as timelineModuleType from "animation-timeline-js"
 
 declare module '*.scss';
@@ -25,7 +26,8 @@ declare global {
 
   interface Game {
     DeathEffects: {
-      effects: Record<string, unknown>;
+      abstract: Record<string, unknown>;
+      effects: Record<string, BaseDeathEffect>;
     }
   }
 }

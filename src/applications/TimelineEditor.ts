@@ -2,6 +2,7 @@
 import { templatePath } from "functions";
 import { TimelineContext } from "./types";
 import { DeathEffect, DeepPartial, DurationDeathEffect } from "types";
+import { BaseDeathEffect } from "effects";
 
 type Options = foundry.applications.api.ApplicationV2.RenderOptions;
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
@@ -109,6 +110,30 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
         }
       })
     });
+
+
+
+    new foundry.applications.ux.ContextMenu<false>(this.element, `[data-role="addEffectButton"]`,
+      Object.values(game.DeathEffects?.effects ?? {}).map((item: typeof BaseDeathEffect) => ({
+        name: item.Name,
+        callback: () => {/* empty */ }
+      }))
+      , {
+        jQuery: false,
+        eventName: "click"
+      })
+  }
+
+  protected async addEffect(effectClass: typeof BaseDeathEffect) {
+    try {
+      const effect = await effectClass.appClass.Edit() as DeathEffect | undefined
+      if (!effect) return;
+      this.effects.push(effect);
+      await this.render();
+    } catch (err) {
+      console.error(err);
+      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+    }
   }
 
   constructor(protected effects: DeathEffect[] = [], options?: Configuration) {
