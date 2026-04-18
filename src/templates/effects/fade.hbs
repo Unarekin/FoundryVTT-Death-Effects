@@ -14,6 +14,22 @@
     </div>
 
     <div class="form-group">
+      <label for="{{@root.rootId}}-start">{{localize
+          "DEATH-EFFECTS.EFFECTS.COMMON.START.LABEL"
+        }}</label>
+      <input
+        type="number"
+        min="0"
+        step="1"
+        id="{{@root.rootId}}-start"
+        name="start"
+        placeholder="0"
+        value="{{start}}"
+      />
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.COMMON.START.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
       <label for="{{@root.rootId}}-duration">{{localize
           "DEATH-EFFECTS.EFFECTS.COMMON.DURATION.LABEL"
         }}</label>

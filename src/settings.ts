@@ -11,6 +11,7 @@ export const DefaultDeathEffectsConfig: DeathEffectsConfig = Object.freeze({
 export const DefaultFadeEffect: FadeDeathEffect = Object.freeze({
   id: "",
   version: __MODULE_VERSION__,
+  label: "",
   type: "fade",
   start: 0,
   duration: 500

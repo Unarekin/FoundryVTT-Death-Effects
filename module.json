@@ -22,7 +22,11 @@
     "requires": []
   },
   "esmodules": ["module.js"],
-  "scripts": ["vendor/animation-timeline.min.js"],
+  "scripts": [
+    "greensock/dist/gsap.min.js",
+    "greensock/dist/PixiPlugin.min.js",
+    "vendor/animation-timeline.min.js"
+  ],
   "styles": ["styles/module.css"],
   "languages": [
     {

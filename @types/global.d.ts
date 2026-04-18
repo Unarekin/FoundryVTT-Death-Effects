@@ -1,5 +1,6 @@
-import { ConfigSource, DeathEffectsConfig } from "types";
+import { ConfigSource, DeathEffectsConfig, EffectType } from "types";
 import { BaseDeathEffect, BaseEffectApplication } from "effects"
+import * as gsapType from "gsap";
 import * as timelineModuleType from "animation-timeline-js"
 
 declare module '*.scss';
@@ -21,12 +22,12 @@ declare global {
   declare const __MODULE_TITLE__: string;
   declare const __MODULE_VERSION__: string;
 
-
+  declare const gsap: gsapType;
   const timelineModule = timelineModuleType;
 
   interface CONFIG {
     DeathEffects: {
-      effects: Record<string, {
+      effects: Record<EffectType, {
         app: typeof BaseEffectApplication,
         cls: typeof BaseDeathEffect
       }>;

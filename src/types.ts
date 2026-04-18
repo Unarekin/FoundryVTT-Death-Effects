@@ -32,6 +32,7 @@ interface BaseDeathEffect {
   id: string;
   type: EffectType;
   start: number;
+  label: string;
 }
 
 export interface DurationDeathEffect {

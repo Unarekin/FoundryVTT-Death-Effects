@@ -1,8 +1,12 @@
 import { ConfigSource, DeathEffect, DeathEffectsConfig } from "types";
 
+type DeathEffectContext = DeathEffect & ({
+  actualLabel: string;
+})
+
 export interface TimelineContext extends foundry.applications.api.ApplicationV2.RenderContext {
   rootId: string;
-  effects: DeathEffect[];
+  effects: DeathEffectContext[];
   buttons: foundry.applications.api.ApplicationV2.FormFooterButton[];
 }
 

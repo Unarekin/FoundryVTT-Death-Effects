@@ -1,6 +1,7 @@
 import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication } from "effects";
 import "./hooks";
 import "./settings";
+import "./helpers";
 
 CONFIG.DeathEffects = {
   effects: {

@@ -3,12 +3,41 @@
     <div class="timeline-editor__outline">
       <div class="timeline-editor__outline-header"></div>
       <div class="timeline-editor__outline-items">
-        {{#each effects as |effect|}}
-          <div class="timeline-editor__outline-item">
-            {{effect.type}}
-            {{#if effect.duration}}
-              ({{effect.duration}}ms)
-            {{/if}}
+        {{#each effects as |effect i|}}
+          <div class="timeline-editor__outline-item{{#if (isOdd i)}} timeline-editor__outline-item--alt{{/if}}">
+            <div class="timeline-editor__outline-item-label">
+              <a
+                data-action="editEffect"
+                data-effect="{{effect.id}}"
+                data-tooltip="{{localize
+                  'DEATH-EFFECTS.CONFIG.TOOLTIPS.EDITEFFECT'
+                }}"
+              >
+                {{localize
+                effect.actualLabel
+              }}
+              </a>
+            </div>
+            <div class="timeline-editor__outline-item-controls">
+              <a
+                data-action="editEffect"
+                data-effect="{{effect.id}}"
+                data-tooltip="{{localize
+                  'DEATH-EFFECTS.CONFIG.TOOLTIPS.EDITEFFECT'
+                }}"
+              >
+                <i class="fa-solid fa-cogs"></i>
+              </a>
+              <a
+                data-action="removeEffect"
+                data-effect="{{effect.id}}"
+                data-tooltip="{{localize
+                  'DEATH-EFFECTS.CONFIG.TOOLTIPS.REMOVEEFFECT'
+                }}"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </div>
           </div>
         {{/each}}
       </div>

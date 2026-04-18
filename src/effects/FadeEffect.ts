@@ -1,3 +1,4 @@
+import { DefaultFadeEffect } from "settings";
 import { BaseDeathEffect } from "./BaseEffect";
 import { FadeDeathEffect } from "types";
 
@@ -11,8 +12,13 @@ export class FadeEffect extends BaseDeathEffect<FadeDeathEffect> {
   public static readonly Icon = "de-icon fade";
   public readonly Icon = FadeEffect.Icon;
 
-  public execute(): Promise<void> {
-    throw new Error("Method not implemented.");
+  public async execute(placeable: foundry.canvas.placeables.PlaceableObject): Promise<void> {
+    const config = foundry.utils.mergeObject(
+      foundry.utils.deepClone(DefaultFadeEffect),
+      this.config
+    );
+
+    await gsap.to(placeable, { alpha: 0, duration: config.duration / 1000, ease: "none" })
   }
 
 }

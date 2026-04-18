@@ -16,6 +16,7 @@
     width: 150px;
     display: flex;
     flex-direction: column;
+    padding-right: 1em;
   }
 
   .timeline-editor__outline-header {
@@ -27,5 +28,30 @@
   .timeline-editor__outline-items {
     overflow: auto;
     flex-grow: 1;
+  }
+
+  .timeline-editor__outline-item {
+    display: flex;
+    flex-direction: row;
+
+    &--alt {
+      background-color: var(--table-row-color-even);
+    }
+
+    &--disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  .timeline-editor__outline-item-label {
+    flex-grow: 1;
+  }
+
+  .timeline-editor__outline-item-controls {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    gap: 4px;
   }
 }

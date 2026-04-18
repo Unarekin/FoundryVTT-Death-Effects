@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { templatePath } from "functions";
 import { TimelineContext } from "./types";
-import { DeathEffect, DeepPartial, DurationDeathEffect } from "types";
+import { DeathEffect, DeepPartial, DurationDeathEffect, EffectType } from "types";
 import { simpleSelect } from "./SimpleSelect";
+import { Timeline } from "animation-timeline-js";
 
 type Options = foundry.applications.api.ApplicationV2.RenderOptions;
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
@@ -23,7 +24,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     actions: {
       submit: TimelineEditor.Submit,
       cancel: TimelineEditor.Cancel,
-      addEffect: TimelineEditor.AddEffect
+      addEffect: TimelineEditor.AddEffect,
+      editEffect: TimelineEditor.EditEffect
     }
   }
 
@@ -50,6 +52,28 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     await this.close();
   }
 
+  static async EditEffect(this: TimelineEditor, e: Event, elem: HTMLElement) {
+    try {
+      const id = elem.dataset.effect;
+      if (!id) return console.warn("No effect ID");
+      const effect = this.effects.find(elem => elem.id === id);
+      if (!effect) return console.warn("Effect not found in array");
+
+      const def = CONFIG.DeathEffects.effects[effect.type];
+      if (!def) throw new Error(`Unknown effect type: ${effect.type}`);
+
+      const edited = await def.app.Edit(foundry.utils.deepClone(effect));
+      if (!edited) return;
+
+      const index = this.effects.findIndex(effect => effect.id === id);
+      if (index !== -1) this.effects.splice(index, 1, edited);
+      await this.render();
+    } catch (err) {
+      console.error(err);
+      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+    }
+  }
+
   static async AddEffect(this: TimelineEditor) {
     try {
       const selectOptions = Object.entries(CONFIG.DeathEffects.effects).map(([key, val]) => ({
@@ -58,7 +82,7 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
         tooltip: val.cls.Description,
         icon: val.cls.Icon
       }))
-      const key = await simpleSelect(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");
+      const key = await simpleSelect<EffectType>(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");
 
       if (!key) return;
 
@@ -67,7 +91,9 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
       const effect = await def.app.Edit();
       if (!effect) return;
-      console.log("Adding effect:", effect);
+
+      this.effects.push(effect);
+      await this.render();
 
     } catch (err) {
       console.error(err);
@@ -93,6 +119,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     if (this.#resolve) this.#resolve();
     this.#resolve = undefined;
     this.#editPromise = undefined;
+    if (this.timeline) this.timeline.dispose();
+    this.timeline = undefined;
   }
 
 
@@ -102,7 +130,14 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
     context.rootId = foundry.utils.randomID();
 
-    context.effects = foundry.utils.deepClone(this.effects ?? []);
+    context.effects = foundry.utils.deepClone(this.effects ?? []).map(effect => {
+      const def = CONFIG.DeathEffects.effects[effect.type];
+      if (!def) throw new Error(`Unknown effect type: ${effect.type}`);
+      return {
+        ...effect,
+        actualLabel: effect.label ? `${effect.label} (${game.i18n?.localize(def.cls.Name) ?? def.cls.Name})` : def.cls.Name,
+      }
+    });
 
     context.buttons = [
       { type: "button", action: "cancel", icon: "fa-solid fa-times", label: "Cancel" },
@@ -111,6 +146,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
     return context;
   }
+
+  protected timeline: Timeline | undefined = undefined;
 
   async _onRender(context: TimelineContext, options: Options) {
     await super._onRender(context, options);
@@ -124,11 +161,15 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     });
 
 
+    if (this.timeline)
+      this.timeline.dispose();
+    this.timeline = timeline;
+
     timeline.setModel({
       rows: context.effects.map(effect => {
         const durationEffect = effect as DurationDeathEffect;
         return {
-          title: effect.type,
+          id: effect.id,
           keyframes: [
             { val: effect.start },
             ...(typeof durationEffect.duration === "number" ? [{ val: effect.start + durationEffect.duration }] : [])
@@ -136,6 +177,25 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
         }
       })
     });
+
+
+    timeline.onDragFinished((event) => {
+      event.elements?.forEach(elem => {
+        if (!elem.row) return console.warn(`No row for dragged element`);
+        if (elem.row.keyframes?.length !== 2) return console.warn(`Unexpected number of keyframes: ${elem.row.keyframes?.length}`);
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        const effect = this.effects.find(effect => effect.id === (elem.row as any)?.id);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (!effect) return console.warn(`No effect found with id ${(elem.row as any)?.id}`);
+
+        effect.start = elem.row.keyframes[0].val;
+        const durationEff = effect as DurationDeathEffect;
+        if (typeof durationEff.duration === "number")
+          durationEff.duration = Math.max(elem.row.keyframes[1].val - effect.start, 0);
+      });
+      this.render().catch(console.error);
+    })
 
   }
 

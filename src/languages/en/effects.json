@@ -3,21 +3,25 @@
     "EFFECTS": {
       "COMMON": {
         "ADD": {
-          "TITLE": "Add Effect",
-          "TEXT": "Select an effect type below."
-        },
-        "LABEL": {
-          "LABEL": "Label",
-          "HINT": "A friendly name by which to list this effect"
+          "TEXT": "Select an effect type below.",
+          "TITLE": "Add Effect"
         },
         "DURATION": {
-          "LABEL": "Duration",
-          "HINT": "How long this effect should last, in milliseconds"
+          "HINT": "How long this effect should last, in milliseconds",
+          "LABEL": "Duration"
+        },
+        "LABEL": {
+          "HINT": "A friendly name by which to list this effect",
+          "LABEL": "Label"
+        },
+        "START": {
+          "HINT": "At which point during this animation should this effect start",
+          "LABEL": "Start"
         }
       },
       "FADE": {
-        "NAME": "Fade",
-        "DESCRIPTION": "A simple fade-out effect"
+        "DESCRIPTION": "A simple fade-out effect",
+        "NAME": "Fade"
       }
     }
   }
