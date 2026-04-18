@@ -1,0 +1,29 @@
+.timeline-editor {
+  .timeline-editor__container {
+    display: flex;
+    flex-direction: row;
+  }
+  .timeline-editor__timeline {
+    position: relative;
+    min-height: 150px;
+    height: 300px;
+    flex-grow: 1;
+  }
+
+  .timeline-editor__outline {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline-editor__outline-header {
+    height: 45px;
+    max-height: 45px;
+    min-height: 45px;
+  }
+
+  .timeline-editor__outline-items {
+    overflow: auto;
+    flex-grow: 1;
+  }
+}

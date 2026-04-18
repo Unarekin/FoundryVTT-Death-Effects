@@ -1,0 +1,36 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-tab="deathEffects" data-group="sheet">
+  {{#with deathEffects}}
+    <div class="form-group">
+      <label for="{{@root.rootId}}-configSource">{{localize "DEATH-EFFECTS.CONFIG.SOURCE.LABEL"}}</label>
+      <select id="{{@root.rootId}}-configSource" name="deathEffects.source">
+        {{selectOptions configSourceSelect localize=true selected=source}}
+      </select>
+
+      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.SOURCE.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-enabled">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-enabled" name="deathEffects.config.enabled" {{checked config.enabled}} data-toggle-death-effects>
+      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-autoHide">{{localize "DEATH-EFFECTS.CONFIG.AUTOHIDE.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-autoHide" name="deathEffects.config.autoHide" {{checked config.autoHide}} data-toggle-death-effects>
+      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.AUTOHIDE.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-autoTransparent">{{localize "DEATH-EFFECTS.CONFIG.AUTOTRANSPARENT.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-autoTransparent" name="deathEffects.config.autoTransparent" {{checked config.autoTransparent}} data-toggle-death-effects>
+      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.AUTOTRANSPARENT.HINT"}}</p>
+    </div>
+    
+    <button data-action="editTimeline" type="button" data-toggle-death-effects>
+      <i class="fa-solid fa-bars-staggered"></i>
+      {{localize "DEATH-EFFECTS.CONFIG.EDITTIMELINE.LABEL"}}
+    </button>
+    <p class="hint">{{{localize "DEATH-EFFECTS.CONFIG.EDITTIMELINE.HINT"}}}</p>
+  {{/with}}
+</div>

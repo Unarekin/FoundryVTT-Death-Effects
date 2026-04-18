@@ -1,0 +1,30 @@
+{
+  "DEATH-EFFECTS": {
+    "CONFIG": {
+      "AUTOHIDE": {
+        "HINT": "Automatically hide the token after the death effects finish.",
+        "LABEL": "Auto-Hide"
+      },
+      "AUTOTRANSPARENT": {
+        "HINT": "Automatically set the token's opacityt o 0 after the death effects finish.",
+        "LABEL": "Auto-Transparent"
+      },
+      "EDITTIMELINE": {
+        "HINT": "Edit the death effect animation timeline.<br>See the <a href='https://github.com/Unarekin/FoundryVTT-Death-Effects/wiki/Timeline-Editor'>wiki</a> for more information.",
+        "LABEL": "Edit Timeline"
+      },
+      "ENABLE": {
+        "HINT": "Toggle on to automatically run death effects when actor is taken out.",
+        "LABEL": "Enable Death Effects"
+      },
+      "SOURCE": {
+        "ACTOR": "Actor",
+        "GLOBAL": "Global",
+        "HINT": "Select where to store the effect configuration for this token",
+        "LABEL": "Configuration Source",
+        "TOKEN": "Token",
+        "TYPE": "Actor Type ({type})"
+      }
+    }
+  }
+}

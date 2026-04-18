@@ -1,0 +1,11 @@
+{
+  "DEATH-EFFECTS": {
+    "TIMELINE": {
+      "TITLE": "Timeline Editor",
+      "ADDEFFECT": {
+        "LABEL": "Add Effect",
+        "TOOLTIP": "Add an effect to the timeline"
+      }
+    }
+  }
+}
