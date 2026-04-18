@@ -16,40 +16,27 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
       }
     }
 
-
-
-    _processFormData(event: SubmitEvent, html: HTMLFormElement, data: foundry.applications.ux.FormDataExtended) {
-      const parsed = super._processFormData(event, html, data) as Record<string, unknown>;
-      const realFormData = foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(html)).object) as Record<string, unknown>;
-
-      const deathEffects = realFormData.deathEffects as { source: ConfigSource, config: Partial<DeathEffectsConfig> };
-
-      const flags: { source: ConfigSource, config?: DeathEffectsConfig } = { source: deathEffects.source };
-
-      const config = foundry.utils.mergeObject(
-        foundry.utils.deepClone(DefaultDeathEffectsConfig),
-        foundry.utils.deepClone(deathEffects.config),
-      ) as DeathEffectsConfig;
-
-      foundry.utils.mergeObject(config, { effects: foundry.utils.deepClone(this.deathEffects) });
-
-      if (flags.source === "token")
-        flags.config = config;
-
-      parsed.flags = { [__MODULE_ID__]: flags };
-
-      return parsed;
-    }
-
     protected async _processSubmitData(event: SubmitEvent, form: HTMLFormElement, formData: foundry.applications.ux.FormDataExtended, options?: unknown) {
 
       const actualData = foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(form)).object);
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const { config, source } = ((actualData as any).deathEffects as { config: DeathEffectsConfig, source: ConfigSource });
-      if (source === "actor" && this.document.actor)
-        await this.document.actor.setFlag(__MODULE_ID__, "config", config);
+      const { config, source } = ((actualData as Record<string, unknown>).deathEffects) as { config: DeathEffectsConfig, source: ConfigSource };
+      if (this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
+      console.log("Processing submit data:", config, source);
 
+      if (source === "actor" && this.document.actor) {
+        await this.document.actor.setFlag(__MODULE_ID__, "config", config);
+        await this.document.setFlag(__MODULE_ID__, "source", source);
+      } else if (source === "token") {
+        await this.document.update({
+          flags: {
+            [__MODULE_ID__]: {
+              source,
+              config
+            }
+          }
+        });
+      }
       await super._processSubmitData(event, form, formData, options);
 
     }

@@ -60,7 +60,6 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
-      console.log("Context:", context);
       return context;
     }
 
