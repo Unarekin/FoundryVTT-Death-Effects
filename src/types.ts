@@ -32,17 +32,18 @@ interface BaseDeathEffect {
   id: string;
   type: EffectType;
   start: number;
+  label: string;
 }
 
 export interface DurationDeathEffect {
   duration: number;
 }
 
-type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
+export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
   type: "fade";
 })
 
-interface TintDeathEffect extends BaseDeathEffect {
+export interface TintDeathEffect extends BaseDeathEffect {
   type: "tint";
   tint: PIXI.ColorSource;
 }

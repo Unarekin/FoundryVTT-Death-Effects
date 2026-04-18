@@ -1,12 +1,21 @@
-import { DeathEffectsConfig } from "./types";
+import { DeathEffectsConfig, FadeDeathEffect } from "./types";
 
-export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
+export const DefaultDeathEffectsConfig: DeathEffectsConfig = Object.freeze({
   version: __MODULE_VERSION__,
   enabled: true,
   autoHide: true,
   autoTransparent: false,
   effects: []
-}
+});
+
+export const DefaultFadeEffect: FadeDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "fade",
+  start: 0,
+  duration: 500
+});
 
 export const SETTINGS = Object.freeze({
   globalConfig: "globalConfig",

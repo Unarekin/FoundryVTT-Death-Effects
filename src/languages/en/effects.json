@@ -1,0 +1,28 @@
+{
+  "DEATH-EFFECTS": {
+    "EFFECTS": {
+      "COMMON": {
+        "ADD": {
+          "TEXT": "Select an effect type below.",
+          "TITLE": "Add Effect"
+        },
+        "DURATION": {
+          "HINT": "How long this effect should last, in milliseconds",
+          "LABEL": "Duration"
+        },
+        "LABEL": {
+          "HINT": "A friendly name by which to list this effect",
+          "LABEL": "Label"
+        },
+        "START": {
+          "HINT": "At which point during this animation should this effect start",
+          "LABEL": "Start"
+        }
+      },
+      "FADE": {
+        "DESCRIPTION": "A simple fade-out effect",
+        "NAME": "Fade"
+      }
+    }
+  }
+}
