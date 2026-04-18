@@ -9,7 +9,6 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
 
 
   class DeathPrototypeTokenConfig extends ConfigMixin(base) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected getDeathEffectFlags(source?: ConfigSource): DeathEffectsConfig | undefined {
       const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
 

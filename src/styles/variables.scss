@@ -1,0 +1,10 @@
+@use "sass:string";
+
+$icomoon-font-family: "icons" !default;
+$icomoon-font-path: "../assets/fonts" !default;
+
+$de-fade: string.unquote('"\\e900"');
+$de-fire: string.unquote('"\\e901"');
+$de-flash: string.unquote('"\\e902"');
+$de-melt: string.unquote('"\\e903"');
+$de-sound: string.unquote('"\\e904"');

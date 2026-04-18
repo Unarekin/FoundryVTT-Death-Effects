@@ -2,7 +2,7 @@
 import { templatePath } from "functions";
 import { TimelineContext } from "./types";
 import { DeathEffect, DeepPartial, DurationDeathEffect } from "types";
-import { BaseDeathEffect } from "effects";
+import { simpleSelect } from "./SimpleSelect";
 
 type Options = foundry.applications.api.ApplicationV2.RenderOptions;
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
@@ -22,7 +22,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     },
     actions: {
       submit: TimelineEditor.Submit,
-      cancel: TimelineEditor.Cancel
+      cancel: TimelineEditor.Cancel,
+      addEffect: TimelineEditor.AddEffect
     }
   }
 
@@ -47,6 +48,31 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
   static async Cancel(this: TimelineEditor) {
     await this.close();
+  }
+
+  static async AddEffect(this: TimelineEditor) {
+    try {
+      const selectOptions = Object.entries(CONFIG.DeathEffects.effects).map(([key, val]) => ({
+        key,
+        label: val.cls.Name,
+        tooltip: val.cls.Description,
+        icon: val.cls.Icon
+      }))
+      const key = await simpleSelect(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");
+
+      if (!key) return;
+
+      const def = CONFIG.DeathEffects.effects[key];
+      if (!def) return;
+
+      const effect = await def.app.Edit();
+      if (!effect) return;
+      console.log("Adding effect:", effect);
+
+    } catch (err) {
+      console.error(err);
+      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+    }
   }
 
   #editPromise: Promise<DeathEffect[] | undefined> | undefined = undefined;
@@ -111,22 +137,11 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       })
     });
 
-
-
-    new foundry.applications.ux.ContextMenu<false>(this.element, `[data-role="addEffectButton"]`,
-      Object.values(game.DeathEffects?.effects ?? {}).map((item: typeof BaseDeathEffect) => ({
-        name: item.Name,
-        callback: () => {/* empty */ }
-      }))
-      , {
-        jQuery: false,
-        eventName: "click"
-      })
   }
 
-  protected async addEffect(effectClass: typeof BaseDeathEffect) {
+  protected async addEffect(key: keyof typeof CONFIG.DeathEffects.effects) {
     try {
-      const effect = await effectClass.appClass.Edit() as DeathEffect | undefined
+      const effect = await CONFIG.DeathEffects.effects[key].app.Edit()
       if (!effect) return;
       this.effects.push(effect);
       await this.render();
