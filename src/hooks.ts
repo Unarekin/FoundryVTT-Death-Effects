@@ -1,5 +1,5 @@
 import { TokenMixin } from "./placeables";
-import { TokenConfigMixin } from "./applications";
+import { PrototypeTokenConfigMixin, TokenConfigMixin } from "./applications";
 
 Hooks.on("canvasConfig", () => {
   const DeathToken = TokenMixin(CONFIG.Token.objectClass);
@@ -18,4 +18,5 @@ function applyMixin(collection: Record<string, any>, mixin: Function) {
 
 Hooks.once("ready", () => {
   applyMixin(CONFIG.Token.sheetClasses.base, TokenConfigMixin);
+  CONFIG.Token.prototypeSheetClass = PrototypeTokenConfigMixin(CONFIG.Token.prototypeSheetClass);
 })

@@ -55,7 +55,7 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
     }
 
     protected getDeathEffectSource(): ConfigSource {
-      return this.document.getFlag(__MODULE_ID__, "source") ?? "actor";
+      return this.document.getFlag(__MODULE_ID__, "source") ?? "actorType";
     }
 
     protected getDeathEffectFlags(source?: ConfigSource): DeathEffectsConfig | undefined {
