@@ -1,4 +1,9 @@
 {
+  "DEATH-EFFECTS": {
+    "HUD": {
+      "PLAY": "Play death effects"
+    }
+  },
   "TOKEN": {
     "TABS": {
       "deathEffects": "Death Effects"

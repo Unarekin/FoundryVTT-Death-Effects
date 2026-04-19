@@ -3,6 +3,7 @@ import "./hooks";
 import "./settings";
 import "./sockets";
 import "./helpers";
+import "./tokenHUD";
 
 CONFIG.DeathEffects = {
   effects: {
