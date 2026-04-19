@@ -1,4 +1,4 @@
-import { DeathEffect } from "types";
+import { DeathEffect, DeathPlaceable } from "types";
 
 export abstract class BaseDeathEffect<t extends DeathEffect> {
   public static get Name(): string { throw new Error("Not implemented"); }
@@ -10,7 +10,7 @@ export abstract class BaseDeathEffect<t extends DeathEffect> {
   public abstract get Icon(): string;
 
 
-  public abstract execute(placeable: foundry.canvas.placeables.PlaceableObject): Promise<void>;
+  public abstract execute(placeable: DeathPlaceable): Promise<void>;
 
 
 

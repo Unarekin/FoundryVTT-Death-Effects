@@ -20,6 +20,7 @@ export class FadeEffect extends BaseDeathEffect<FadeDeathEffect> {
 
     const mesh = placeable.getDeathSpriteObject();
     if (!mesh) throw new Error(`No display object found for ${config.id}`);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     await gsap.to(mesh, { alpha: 0, duration: config.duration / 1000, ease: "none" })
   }
 
