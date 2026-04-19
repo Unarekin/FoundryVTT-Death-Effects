@@ -5,6 +5,10 @@
         "REMOVEEFFECT": "Remove Effect",
         "EDITEFFECT": "Edit Effect"
       },
+      "REMOVEEFFECT": {
+        "TITLE": "Remove Effect",
+        "MESSAGE": "Are you sure you wish to remove this effect?"
+      },
       "AUTOHIDE": {
         "HINT": "Automatically hide the token after the death effects finish.",
         "LABEL": "Auto-Hide"

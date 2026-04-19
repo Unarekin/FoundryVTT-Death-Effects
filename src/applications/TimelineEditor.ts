@@ -25,7 +25,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       submit: TimelineEditor.Submit,
       cancel: TimelineEditor.Cancel,
       addEffect: TimelineEditor.AddEffect,
-      editEffect: TimelineEditor.EditEffect
+      editEffect: TimelineEditor.EditEffect,
+      removeEffect: TimelineEditor.RemoveEffect
     }
   }
 
@@ -50,6 +51,27 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
   static async Cancel(this: TimelineEditor) {
     await this.close();
+  }
+
+  static async RemoveEffect(this: TimelineEditor, e: Event, elem: HTMLElement) {
+    try {
+      const id = elem.dataset.effect;
+      if (!id) return console.warn("No effect ID");
+      const effect = this.effects.find(elem => elem.id === id);
+      if (!effect) return console.warn("Effect not found in array");
+
+      const confirmed = await foundry.applications.api.DialogV2.confirm({
+        window: { title: "DEATH-EFFECTS.CONFIG.REMOVEEFFECT.TITLE" },
+        content: `<p>${game.i18n?.localize("DEATH-EFFECTS.CONFIG.REMOVEEFFECT.MESSAGE")}</p>`
+      }) as boolean;
+      if (!confirmed) return;
+      const index = this.effects.findIndex(effect => effect.id === id);
+      if (index !== -1) this.effects.splice(index, 1);
+      await this.render();
+    } catch (err) {
+      console.error(err);
+      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+    }
   }
 
   static async EditEffect(this: TimelineEditor, e: Event, elem: HTMLElement) {
