@@ -15,6 +15,7 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
 
     public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
     public abstract checkAutoTriggerStatus(status: string): void;
+    public abstract checkAutoTriggerActiveEffect(effect: ActiveEffect): void;
 
     async playDeathEffects(config?: DeathEffectsConfig, localOnly = false): Promise<void> {
       if (!localOnly) {

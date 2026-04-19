@@ -36,4 +36,25 @@ Hooks.on("applyTokenStatusEffect", (token: foundry.canvas.placeables.Token, stat
       (token.object as unknown as DeathPlaceable).checkAutoTriggerStatus(status);
     })
   }
+});
+
+Hooks.on("updateActiveEffect", (effect: ActiveEffect, delta: DeepPartial<ActiveEffect>) => {
+  if (delta.disabled === false) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if ((effect.target as any)?.token instanceof TokenDocument) {
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (((effect.target as any).token as TokenDocument).object as unknown as DeathPlaceable).checkAutoTriggerActiveEffect(effect);
+    }
+  }
+});
+
+Hooks.on("createActiveEffect", (effect: ActiveEffect) => {
+  if (!effect.disabled) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if ((effect.target as any)?.token instanceof TokenDocument) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (((effect.target as any).token as TokenDocument).object as unknown as DeathPlaceable).checkAutoTriggerActiveEffect(effect);
+    }
+  }
 })

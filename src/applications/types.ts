@@ -18,6 +18,7 @@ export interface PlaceableConfigContext<t extends foundry.abstract.Document.Any>
     hasTriggerConditions: boolean;
     triggerConditionSelect?: { value: AutoTriggerCondition, label: string, disabled: boolean }[];
     statusEffects?: Record<string, string>;
+    activeEffects: string[];
     trackableAttributes?: string[];
   };
 }

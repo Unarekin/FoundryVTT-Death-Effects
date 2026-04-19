@@ -76,6 +76,11 @@ export function TokenMixin(base: Constructor) {
       }
     }
 
+    checkAutoTriggerActiveEffect(effect: ActiveEffect) {
+      const config = this.deathEffectsConfig;
+      if (config.enabled && config.autoTriggerCondition === "activeEffect" && config.activeEffect === effect.name)
+        this.playDeathEffects().catch(console.error);
+    }
 
   }
   return tokenClass as unknown as typeof foundry.canvas.placeables.Token;

@@ -90,6 +90,8 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
         context.deathEffects.trackableAttributes = [];
       }
 
+      context.deathEffects.activeEffects = this.document.actor?.effects.map(effect => effect.name) ?? [];
+
       context.deathEffects.triggerConditionSelect = [
         { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: false /* !context.deathEffects.trackableAttributes?.length*/ },
         { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },

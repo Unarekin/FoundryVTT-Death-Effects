@@ -137,7 +137,8 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
         configSourceSelect: {
           global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
         },
-        hasTriggerConditions: false
+        hasTriggerConditions: false,
+        activeEffects: []
       }
 
       if (this.deathEffects)

@@ -46,7 +46,12 @@
 
     <div class="form-group" data-trigger-condition="activeEffect" {{#unless (eq config.autoTriggerCondition "activeEffect")}}style="display:none"{{/unless}}>
       <label for="{{@root.rootId}}-activeEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL"}}</label>
-      <input type="text" id="{{@root.rootId}}-activeEffect" name="deathEffects.config.activeEffect" value="{{config.activeEffect}}" data-toggle-death-effects>
+      <input type="text" id="{{@root.rootId}}-activeEffect" name="deathEffects.config.activeEffect" value="{{config.activeEffect}}" list="{{@root.rootId}}-activeEffects" data-toggle-death-effects>
+      <datalist id="{{@root.rootId}}-activeEffects">
+        {{#each activeEffects}}
+          <option value="{{this}}"></option>
+        {{/each}}
+      </datalist>
       <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.HINT"}}</p>
     </div>
 
