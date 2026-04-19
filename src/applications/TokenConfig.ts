@@ -91,7 +91,7 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
       }
 
       context.deathEffects.triggerConditionSelect = [
-        { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: !context.deathEffects.trackableAttributes?.length },
+        { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: false /* !context.deathEffects.trackableAttributes?.length*/ },
         { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
         { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
       ]

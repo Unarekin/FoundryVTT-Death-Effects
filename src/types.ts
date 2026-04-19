@@ -78,6 +78,9 @@ export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObjec
   getDeathSpriteObject(): PIXI.DisplayObject | undefined;
   deathEffectsConfig: DeathEffectsConfig;
   playDeathEffects(config?: DeathEffectsConfig, localOnly?: boolean): Promise<void>;
+  checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
+  // checkAutoTriggerStatus
+  // checkAutoTriggerActiveEffect
 }
 
 

@@ -8,11 +8,12 @@ type Constructor = new (...args: any[]) => foundry.canvas.placeables.Token;
 export function TokenMixin(base: Constructor) {
   const tokenClass = class DeathToken extends PlaceableMixin<Constructor>(base) {
 
+
     getDeathSpriteObject() { return this.mesh; }
 
     public get deathEffectsConfig(): DeathEffectsConfig {
 
-      const configSource = this.document.getFlag(__MODULE_ID__, "source") ?? "actor";
+      const configSource = (this.document.getFlag(__MODULE_ID__, "source") ?? "actor");
       const globalConfig = game.settings?.settings?.get(`${__MODULE_ID__}.globalConfig`) ? game.settings.get(__MODULE_ID__, "globalConfig") : undefined;
       const actorTypeConfigs = game.settings?.settings?.get(`${__MODULE_ID__}.actorTypeConfigs`) ? game.settings.get(__MODULE_ID__, "actorTypeConfigs") : undefined;
 
@@ -39,6 +40,36 @@ export function TokenMixin(base: Constructor) {
       if (flags) foundry.utils.mergeObject(actualConfig, flags);
       return actualConfig;
     }
+
+    checkAutoTriggerResource<Actor>(actor: Actor, delta: DeepPartial<Actor>) {
+      if (!game?.user?.isActiveGM) return;
+
+      //public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
+      const config = this.deathEffectsConfig;
+      if (config.autoTriggerCondition === "resource" && config.resource) {
+        let actualPath = "";
+        if (this.actor) {
+          if (CONFIG.Actor.trackableAttributes[this.actor.type]?.bar.includes(config.resource))
+            actualPath = `system.${config.resource}.value`;
+          else if (CONFIG.Actor.trackableAttributes[this.actor.type]?.value.includes(config.resource))
+            actualPath = `system.${config.resource}`;
+        } else if (config.resource.startsWith("system.")) {
+          actualPath = config.resource;
+        } else {
+          actualPath = `system.${config.resource}`;
+        }
+
+        if (actualPath) {
+          // const actualPath = config.resource.startsWith("system.") ? config.resource : `system.${config.resource}.value`;
+          const val = foundry.utils.getProperty(delta as Record<string, unknown>, actualPath);
+          if (val === 0)
+            this.playDeathEffects().catch(console.error);
+
+        }
+
+      }
+    }
+
 
   }
   return tokenClass as unknown as typeof foundry.canvas.placeables.Token;

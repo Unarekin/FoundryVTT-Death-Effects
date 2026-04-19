@@ -18,7 +18,7 @@
 
     <div class="form-group">
       <label for="{{@root.rootId}}-autoTriggerCondition">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.LABEL"}}</label>
-      <select id="{{@root.rootId}}-autoTriggerCondition" name="deathEffects.config.autoTriggerCondition">
+      <select id="{{@root.rootId}}-autoTriggerCondition" name="deathEffects.config.autoTriggerCondition" data-toggle-death-effects>
         {{selectOptions triggerConditionSelect localize=true selected=config.autoTriggerCondition}}
       </select>
       <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.HINT"}}</p>
@@ -26,7 +26,7 @@
 
     <div class="form-group" data-trigger-condition="status" {{#unless (eq config.autoTriggerCondition "status")}}style="display:none"{{/unless}}>
       <label for="{{@root.rootId}}-statusEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL"}}</label>
-      <select id="{{@root.rootId}}-statusEffect" name="deathEffects.config.statusEffect">
+      <select id="{{@root.rootId}}-statusEffect" name="deathEffects.config.statusEffect" data-toggle-death-effects>
         <option></option>
         {{selectOptions statusEffects localize=true selected=config.statusEffect}}
       </select>
@@ -35,7 +35,7 @@
 
     <div class="form-group" data-trigger-condition="resource" {{#unless (eq config.autoTriggerCondition "resource")}}style="display:none"{{/unless}}>
       <label for="{{@root.rootId}}-resource">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL"}}</label>
-      <input type="text" id="{{@root.rootId}}-resource" name="deathEffects.config.resource" value="{{config.resource}}" list="{{@root.rootId}}-resources">
+      <input type="text" id="{{@root.rootId}}-resource" name="deathEffects.config.resource" value="{{config.resource}}" list="{{@root.rootId}}-resources" data-toggle-death-effects>
       <datalist id="{{@root.rootId}}-resources">
         {{#each trackableAttributes}}
           <option value="{{this}}"></option>
@@ -46,7 +46,7 @@
 
     <div class="form-group" data-trigger-condition="activeEffect" {{#unless (eq config.autoTriggerCondition "activeEffect")}}style="display:none"{{/unless}}>
       <label for="{{@root.rootId}}-activeEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL"}}</label>
-      <input type="text" id="{{@root.rootId}}-activeEffect" name="deathEffects.config.activeEffect" value="{{config.activeEffect}}">
+      <input type="text" id="{{@root.rootId}}-activeEffect" name="deathEffects.config.activeEffect" value="{{config.activeEffect}}" data-toggle-death-effects>
       <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.HINT"}}</p>
     </div>
 
