@@ -22,7 +22,6 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
 
       const { config, source } = ((actualData as Record<string, unknown>).deathEffects) as { config: DeathEffectsConfig, source: ConfigSource };
       if (this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
-      console.log("Processing submit data:", config, source);
 
       if (source === "actor" && this.document.actor) {
         await this.document.actor.setFlag(__MODULE_ID__, "config", config);
