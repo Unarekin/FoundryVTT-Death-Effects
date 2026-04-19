@@ -26,5 +26,14 @@ Hooks.on("updateActor", (actor: Actor, delta: DeepPartial<Actor>) => {
   canvas?.scene?.tokens.contents.forEach(token => {
     if (!token.object) return;
     (token.object as unknown as DeathPlaceable).checkAutoTriggerResource(actor, delta);
-  })
+  });
+});
+
+Hooks.on("applyTokenStatusEffect", (token: foundry.canvas.placeables.Token, status: string, active: boolean) => {
+  if (active) {
+    canvas?.scene?.tokens.contents.forEach(token => {
+      if (!token.object) return;
+      (token.object as unknown as DeathPlaceable).checkAutoTriggerStatus(status);
+    })
+  }
 })

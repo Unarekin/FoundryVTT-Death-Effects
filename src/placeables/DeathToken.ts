@@ -41,12 +41,18 @@ export function TokenMixin(base: Constructor) {
       return actualConfig;
     }
 
+    checkAutoTriggerStatus(status: string) {
+      const config = this.deathEffectsConfig;
+      if (config.enabled && config.autoTriggerCondition === "status" && config.statusEffect === status)
+        this.playDeathEffects().catch(console.error);
+    }
+
     checkAutoTriggerResource<Actor>(actor: Actor, delta: DeepPartial<Actor>) {
       if (!game?.user?.isActiveGM) return;
 
       //public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
       const config = this.deathEffectsConfig;
-      if (config.autoTriggerCondition === "resource" && config.resource) {
+      if (config.enabled && config.autoTriggerCondition === "resource" && config.resource) {
         let actualPath = "";
         if (this.actor) {
           if (CONFIG.Actor.trackableAttributes[this.actor.type]?.bar.includes(config.resource))

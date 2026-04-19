@@ -14,7 +14,7 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
     abstract getDeathSpriteObject(): PIXI.DisplayObject | undefined;
 
     public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
-
+    public abstract checkAutoTriggerStatus(status: string): void;
 
     async playDeathEffects(config?: DeathEffectsConfig, localOnly = false): Promise<void> {
       if (!localOnly) {
