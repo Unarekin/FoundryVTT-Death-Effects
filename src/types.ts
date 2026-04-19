@@ -21,7 +21,7 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
-export const EffectTypes = ["tint", "fade"] as const;
+export const EffectTypes = ["fade"] as const;
 export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
@@ -43,14 +43,9 @@ export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
   type: "fade";
 })
 
-export interface TintDeathEffect extends BaseDeathEffect {
-  type: "tint";
-  tint: PIXI.ColorSource;
-}
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect;
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | TintDeathEffect;
-
-interface BaseDeathEffectsConfig {
+export interface DeathEffectsConfig {
   version: string;
   enabled: boolean;
   autoHide: boolean;
@@ -58,10 +53,33 @@ interface BaseDeathEffectsConfig {
   effects: DeathEffect[];
 }
 
-export type DeathEffectsConfig = BaseDeathEffectsConfig;
-
-export interface DeathPlaceable {
+export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObject {
   getDeathSpriteObject(): PIXI.DisplayObject | undefined;
   deathEffectsConfig: DeathEffectsConfig;
-  playDeathEffects(config?: DeathEffectsConfig): Promise<void>;
+  playDeathEffects(config?: DeathEffectsConfig, localOnly?: boolean): Promise<void>;
 }
+
+
+/*************************************************
+ * Socket Types
+ *************************************************/
+
+export const MESSAGE_TYPES = ["play"] as const;
+export type SocketMessageType = typeof MESSAGE_TYPES[number];
+
+
+interface BaseSocketMessage {
+  id: string;
+  type: SocketMessageType;
+  timestamp: number;
+  sender: string;
+  users: string[];
+}
+
+interface PlaySocketMessage extends BaseSocketMessage {
+  type: "play";
+  config: DeathEffectsConfig;
+  target: string;
+}
+
+export type SocketMessage = BaseSocketMessage | PlaySocketMessage;

@@ -2,6 +2,7 @@ import { DefaultDeathEffectsConfig } from "settings";
 import { DeathEffect, DeathEffectsConfig, DeathPlaceable as DeathPlaceableInterface } from "../types";
 import { BaseDeathEffect } from "effects";
 import { wait } from "functions";
+import { SendSocketMessage } from "sockets";
 
 type Constructor<t> = new (...args: any[]) => t;
 
@@ -11,7 +12,16 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
 
     abstract getDeathSpriteObject(): PIXI.DisplayObject | undefined;
 
-    async playDeathEffects(config?: DeathEffectsConfig): Promise<void> {
+    async playDeathEffects(config?: DeathEffectsConfig, localOnly = false): Promise<void> {
+      if (!localOnly) {
+        SendSocketMessage({
+          type: "play",
+          config: config ?? this.deathEffectsConfig,
+          target: this.document.id ?? "",
+          users: game.users?.filter(user => user.active).map(user => user.id) ?? []
+        });
+      }
+
       const actualConfig = foundry.utils.mergeObject(
         foundry.utils.deepClone(DefaultDeathEffectsConfig),
         config ?? this.deathEffectsConfig
@@ -36,10 +46,12 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
         })
       )
 
-      if (actualConfig.autoHide) {
-        await this.document.update({ hidden: true }, { animate: false });
-      } else if (actualConfig.autoTransparent) {
-        await this.document.update({ alpha: 0 }, { animate: false });
+      if (!localOnly && game?.user?.isActiveGM) {
+        if (actualConfig.autoHide) {
+          await this.document.update({ hidden: true }, { animate: false });
+        } else if (actualConfig.autoTransparent) {
+          await this.document.update({ alpha: 0 }, { animate: false });
+        }
       }
     }
   }
