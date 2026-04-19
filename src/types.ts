@@ -45,13 +45,34 @@ export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect;
 
-export interface DeathEffectsConfig {
+export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
+export type AutoTriggerCondition = typeof AutoTriggerConditions[number];
+
+interface BaseDeathEffectsConfig {
   version: string;
   enabled: boolean;
   autoHide: boolean;
   autoTransparent: boolean;
   effects: DeathEffect[];
+  autoTriggerCondition: AutoTriggerCondition;
 }
+
+interface StatusTriggerConfig extends BaseDeathEffectsConfig {
+  autoTriggerCondition: "status";
+  statusEffect: string;
+}
+
+interface ResourceTriggerConfig extends BaseDeathEffectsConfig {
+  autoTriggerCondition: "resource";
+  resource: string;
+}
+
+interface ActiveEffectTriggerConfig extends BaseDeathEffectsConfig {
+  autoTriggerCondition: "activeEffect";
+  activeEffect: string;
+}
+
+export type DeathEffectsConfig = StatusTriggerConfig | ResourceTriggerConfig | ActiveEffectTriggerConfig;
 
 export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObject {
   getDeathSpriteObject(): PIXI.DisplayObject | undefined;

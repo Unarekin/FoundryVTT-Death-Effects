@@ -76,6 +76,25 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
 
       const actorType = (game.i18n && this.document.actor && CONFIG.Actor.typeLabels[this.document.actor.type]) ? game.i18n.localize(CONFIG.Actor.typeLabels[this.document.actor.type]) : "UNKNOWN";
 
+      context.deathEffects.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+
+      context.deathEffects.hasTriggerConditions = true;
+
+      if (this.document.actor && CONFIG.Actor.trackableAttributes[this.document.actor.type]) {
+        const trackableAttributes = CONFIG.Actor.trackableAttributes[this.document.actor.type];
+        context.deathEffects.trackableAttributes = [
+          ...(trackableAttributes.bar ?? []),
+          ...(trackableAttributes.value ?? [])
+        ];
+      } else {
+        context.deathEffects.trackableAttributes = [];
+      }
+
+      context.deathEffects.triggerConditionSelect = [
+        { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: !context.deathEffects.trackableAttributes?.length },
+        { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
+        { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
+      ]
 
       context.deathEffects.configSourceSelect = {
         token: "DEATH-EFFECTS.CONFIG.SOURCE.TOKEN",

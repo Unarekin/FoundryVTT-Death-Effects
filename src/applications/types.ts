@@ -1,4 +1,4 @@
-import { ConfigSource, DeathEffect, DeathEffectsConfig } from "types";
+import { AutoTriggerCondition, ConfigSource, DeathEffect, DeathEffectsConfig } from "types";
 
 type DeathEffectContext = DeathEffect & ({
   actualLabel: string;
@@ -15,5 +15,9 @@ export interface PlaceableConfigContext<t extends foundry.abstract.Document.Any>
     config: DeathEffectsConfig,
     source: ConfigSource;
     configSourceSelect: Partial<Record<ConfigSource, string>>;
+    hasTriggerConditions: boolean;
+    triggerConditionSelect?: { value: AutoTriggerCondition, label: string, disabled: boolean }[];
+    statusEffects?: Record<string, string>;
+    trackableAttributes?: string[];
   };
 }

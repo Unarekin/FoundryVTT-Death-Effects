@@ -1,4 +1,4 @@
-import { ConfigSource, Constructor, DeathEffectsConfig } from "types";
+import { AutoTriggerCondition, ConfigSource, Constructor, DeathEffectsConfig } from "types";
 import { ConfigMixin } from "./ConfigMixin";
 import { DefaultDeathEffectsConfig } from "settings";
 
@@ -60,6 +60,20 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
+      context.deathEffects.hasTriggerConditions = true;
+      context.deathEffects.triggerConditionSelect = {
+        status: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL",
+        activeEffect: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL"
+      } as Record<AutoTriggerCondition, string>;
+
+      if (actor && CONFIG.Actor.trackableAttributes[actor.type]) {
+        const trackableAttributes = CONFIG.Actor.trackableAttributes[actor.type];
+        context.deathEffects.trackableAttributes = [
+          ...(trackableAttributes.bar ?? []),
+          ...(trackableAttributes.value ?? [])
+        ];
+      }
+
       return context;
     }
 
@@ -72,8 +86,6 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
 
       const { config, source } = ((formData as Record<string, unknown>).deathEffects) as { config: DeathEffectsConfig, source: ConfigSource };
       if (this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
-
-      console.log("Form submitted:", config);
 
       const update = {
         prototypeToken: {
