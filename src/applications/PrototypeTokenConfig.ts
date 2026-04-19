@@ -1,4 +1,4 @@
-import { AutoTriggerCondition, ConfigSource, Constructor, DeathEffectsConfig } from "types";
+import { ConfigSource, Constructor, DeathEffectsConfig } from "types";
 import { ConfigMixin } from "./ConfigMixin";
 import { DefaultDeathEffectsConfig } from "settings";
 
@@ -60,11 +60,25 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
+      context.deathEffects.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+
       context.deathEffects.hasTriggerConditions = true;
-      context.deathEffects.triggerConditionSelect = {
-        status: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL",
-        activeEffect: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL"
-      } as Record<AutoTriggerCondition, string>;
+
+      if (actor && CONFIG.Actor.trackableAttributes[actor.type]) {
+        const trackableAttributes = CONFIG.Actor.trackableAttributes[actor.type];
+        context.deathEffects.trackableAttributes = [
+          ...(trackableAttributes.bar ?? []),
+          ...(trackableAttributes.value ?? [])
+        ];
+      } else {
+        context.deathEffects.trackableAttributes = [];
+      }
+
+      context.deathEffects.triggerConditionSelect = [
+        { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: !context.deathEffects.trackableAttributes?.length },
+        { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
+        { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
+      ]
 
       if (actor && CONFIG.Actor.trackableAttributes[actor.type]) {
         const trackableAttributes = CONFIG.Actor.trackableAttributes[actor.type];
