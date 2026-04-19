@@ -1,14 +1,6 @@
 {
   "DEATH-EFFECTS": {
     "CONFIG": {
-      "TOOLTIPS": {
-        "REMOVEEFFECT": "Remove Effect",
-        "EDITEFFECT": "Edit Effect"
-      },
-      "REMOVEEFFECT": {
-        "TITLE": "Remove Effect",
-        "MESSAGE": "Are you sure you wish to remove this effect?"
-      },
       "AUTOHIDE": {
         "HINT": "Automatically hide the token after the death effects finish.",
         "LABEL": "Auto-Hide"
@@ -25,6 +17,10 @@
         "HINT": "Toggle on to automatically run death effects when actor is taken out.",
         "LABEL": "Enable Death Effects"
       },
+      "REMOVEEFFECT": {
+        "MESSAGE": "Are you sure you wish to remove this effect?",
+        "TITLE": "Remove Effect"
+      },
       "SOURCE": {
         "ACTOR": "Actor",
         "GLOBAL": "Global",
@@ -32,6 +28,26 @@
         "LABEL": "Configuration Source",
         "TOKEN": "Token",
         "TYPE": "Actor Type ({type})"
+      },
+      "TOOLTIPS": {
+        "EDITEFFECT": "Edit Effect",
+        "REMOVEEFFECT": "Remove Effect"
+      },
+      "TRIGGERCONDITION": {
+        "ACTIVEEFFECT": {
+          "HINT": "Trigger condition when gaining a particular ActiveEffect",
+          "LABEL": "Active Effect"
+        },
+        "HINT": "The condition whereby to automatically trigger death effects",
+        "LABEL": "Trigger Condition",
+        "RESOURCE": {
+          "HINT": "Trigger when a given resource (such as health) is equal to or less than 0",
+          "LABEL": "Actor Resource"
+        },
+        "STATUS": {
+          "HINT": "Trigger the actor's death effects when gaining a given status effect",
+          "LABEL": "Status Effect"
+        }
       }
     }
   }

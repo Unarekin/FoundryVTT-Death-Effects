@@ -60,6 +60,34 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
+      context.deathEffects.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+
+      context.deathEffects.hasTriggerConditions = true;
+
+      if (actor && CONFIG.Actor.trackableAttributes[actor.type]) {
+        const trackableAttributes = CONFIG.Actor.trackableAttributes[actor.type];
+        context.deathEffects.trackableAttributes = [
+          ...(trackableAttributes.bar ?? []),
+          ...(trackableAttributes.value ?? [])
+        ];
+      } else {
+        context.deathEffects.trackableAttributes = [];
+      }
+
+      context.deathEffects.triggerConditionSelect = [
+        { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: false /* !context.deathEffects.trackableAttributes?.length*/ },
+        { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
+        { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
+      ]
+
+      if (actor && CONFIG.Actor.trackableAttributes[actor.type]) {
+        const trackableAttributes = CONFIG.Actor.trackableAttributes[actor.type];
+        context.deathEffects.trackableAttributes = [
+          ...(trackableAttributes.bar ?? []),
+          ...(trackableAttributes.value ?? [])
+        ];
+      }
+
       return context;
     }
 
@@ -72,8 +100,6 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
 
       const { config, source } = ((formData as Record<string, unknown>).deathEffects) as { config: DeathEffectsConfig, source: ConfigSource };
       if (this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
-
-      console.log("Form submitted:", config);
 
       const update = {
         prototypeToken: {

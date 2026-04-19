@@ -1,5 +1,6 @@
 import { TokenMixin } from "./placeables";
 import { PrototypeTokenConfigMixin, TokenConfigMixin } from "./applications";
+import { DeathPlaceable, DeepPartial } from "types";
 
 Hooks.on("canvasConfig", () => {
   const DeathToken = TokenMixin(CONFIG.Token.objectClass);
@@ -19,4 +20,41 @@ function applyMixin(collection: Record<string, any>, mixin: Function) {
 Hooks.once("ready", () => {
   applyMixin(CONFIG.Token.sheetClasses.base, TokenConfigMixin);
   CONFIG.Token.prototypeSheetClass = PrototypeTokenConfigMixin(CONFIG.Token.prototypeSheetClass);
+})
+
+Hooks.on("updateActor", (actor: Actor, delta: DeepPartial<Actor>) => {
+  canvas?.scene?.tokens.contents.forEach(token => {
+    if (!token.object) return;
+    (token.object as unknown as DeathPlaceable).checkAutoTriggerResource(actor, delta);
+  });
+});
+
+Hooks.on("applyTokenStatusEffect", (token: foundry.canvas.placeables.Token, status: string, active: boolean) => {
+  if (active) {
+    canvas?.scene?.tokens.contents.forEach(token => {
+      if (!token.object) return;
+      (token.object as unknown as DeathPlaceable).checkAutoTriggerStatus(status);
+    })
+  }
+});
+
+Hooks.on("updateActiveEffect", (effect: ActiveEffect, delta: DeepPartial<ActiveEffect>) => {
+  if (delta.disabled === false) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if ((effect.target as any)?.token instanceof TokenDocument) {
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (((effect.target as any).token as TokenDocument).object as unknown as DeathPlaceable).checkAutoTriggerActiveEffect(effect);
+    }
+  }
+});
+
+Hooks.on("createActiveEffect", (effect: ActiveEffect) => {
+  if (!effect.disabled) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if ((effect.target as any)?.token instanceof TokenDocument) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (((effect.target as any).token as TokenDocument).object as unknown as DeathPlaceable).checkAutoTriggerActiveEffect(effect);
+    }
+  }
 })

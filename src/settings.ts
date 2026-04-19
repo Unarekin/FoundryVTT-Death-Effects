@@ -5,6 +5,8 @@ export const DefaultDeathEffectsConfig: DeathEffectsConfig = Object.freeze({
   enabled: true,
   autoHide: true,
   autoTransparent: false,
+  autoTriggerCondition: "resource",
+  resource: "",
   effects: []
 });
 

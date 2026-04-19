@@ -1,5 +1,5 @@
 import { DefaultDeathEffectsConfig } from "settings";
-import { DeathEffect, DeathEffectsConfig, DeathPlaceable as DeathPlaceableInterface } from "../types";
+import { DeathEffect, DeathEffectsConfig, DeathPlaceable as DeathPlaceableInterface, DeepPartial } from "../types";
 import { BaseDeathEffect } from "effects";
 import { wait } from "functions";
 import { SendSocketMessage } from "sockets";
@@ -8,9 +8,14 @@ type Constructor<t> = new (...args: any[]) => t;
 
 export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.PlaceableObject>>(base: t) {
   abstract class DeathPlaceable extends base implements DeathPlaceableInterface {
+
     public abstract get deathEffectsConfig(): DeathEffectsConfig;
 
     abstract getDeathSpriteObject(): PIXI.DisplayObject | undefined;
+
+    public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
+    public abstract checkAutoTriggerStatus(status: string): void;
+    public abstract checkAutoTriggerActiveEffect(effect: ActiveEffect): void;
 
     async playDeathEffects(config?: DeathEffectsConfig, localOnly = false): Promise<void> {
       if (!localOnly) {
@@ -42,7 +47,7 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
           if (effect.config?.start)
             await wait(effect.config.start);
 
-          await effect.execute(this);
+          await effect.execute(this as unknown as DeathPlaceableInterface);
         })
       )
 

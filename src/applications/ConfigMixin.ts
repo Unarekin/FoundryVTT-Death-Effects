@@ -102,14 +102,31 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
           this.render().catch(console.error);
         })
       }
+
+      const triggerConditionSelect = this.element.querySelector(`[name="deathEffects.config.autoTriggerCondition"]`);
+      if (triggerConditionSelect instanceof HTMLSelectElement) {
+        triggerConditionSelect.addEventListener("change", () => {
+          const sourceType = triggerConditionSelect.value;
+          this.toggleElements(`[data-trigger-condition]:not([data-trigger-condition="${sourceType}"])`, false);
+          this.toggleElements(`[data-trigger-condition="${sourceType}"]`, true);
+        })
+      }
     }
 
+    protected toggleElements(selector: string, display: boolean) {
+      const elements: HTMLElement[] = Array.from(this.element.querySelectorAll(selector))
+      for (const element of elements) {
+        element.style.display = display ? "flex" : "none";
+      }
+    }
 
     async _prepareContext(options: RenderOptions): Promise<PlaceableConfigContext<foundry.abstract.Document.Any>> {
       const context = await super._prepareContext(options) as PlaceableConfigContext<foundry.abstract.Document.Any>;
 
       // const config = ((this.document.flags as Record<string, unknown>)[__MODULE_ID__] as FlagConfig);
       const config = this.getDeathEffectFlags(this.overrideDeathEffectConfigSource);
+
+
 
       context.deathEffects = {
         source: this.overrideDeathEffectConfigSource ?? this.getDeathEffectSource(),
@@ -119,7 +136,9 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
         ),
         configSourceSelect: {
           global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
-        }
+        },
+        hasTriggerConditions: false,
+        activeEffects: []
       }
 
       if (this.deathEffects)
