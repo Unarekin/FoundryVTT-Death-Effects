@@ -60,22 +60,22 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
-      console.log("Context:", context);
       return context;
     }
 
     async _onSubmitForm(formConfig: foundry.applications.api.ApplicationV2.FormConfiguration, e: Event | SubmitEvent) {
-      await super._onSubmitForm(formConfig, e);
       if (!(e.target instanceof HTMLFormElement)) return console.warn("No form element to submit");
       const formData = foundry.utils.expandObject(new foundry.applications.ux.FormDataExtended(e.target).object);
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const token = (this as any).token as foundry.data.PrototypeToken;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const source = (formData as any).deathEffects.source as ConfigSource;
 
+      const { config, source } = ((formData as Record<string, unknown>).deathEffects) as { config: DeathEffectsConfig, source: ConfigSource };
+      if (this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
 
-      const update: Record<string, unknown> = {
+      console.log("Form submitted:", config);
+
+      const update = {
         prototypeToken: {
           flags: {
             [__MODULE_ID__]: {
@@ -85,26 +85,22 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         }
       };
 
-      // const fullConfig = foundry.utils.deepClone()
-
       if (source === "token") {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (update.prototypeToken as any).flags[__MODULE_ID__].config = foundry.utils.mergeObject(
-          foundry.utils.deepClone(((formData as Record<string, unknown>).deathEffects as { config: DeathEffectsConfig }).config),
-          {
-            effects: foundry.utils.deepClone(this.deathEffects)
-          }
-        );
-
+        (update.prototypeToken.flags[__MODULE_ID__] as any).config = foundry.utils.deepClone(config);
       } else if (source === "actor") {
-        update.flags ??= {};
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (update as any).flags[__MODULE_ID__] = foundry.utils.deepClone((formData as any).deathEffects.config as DeathEffectsConfig);
+        (update as any).flags = {
+          [__MODULE_ID__]: {
+            config: foundry.utils.deepClone(config)
+          }
+        }
       }
 
-      console.log("Form submitted:", update);
-      await token.actor.update(update);
 
+
+      await super._onSubmitForm(formConfig, e);
+      await token.actor.update(update);
     }
   }
 

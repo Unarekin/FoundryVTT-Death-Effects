@@ -16,7 +16,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
 
   abstract class DeathEffectsConfig extends base {
 
-    protected deathEffects: DeathEffect[] = [];
+    protected deathEffects: DeathEffect[] | undefined = undefined;
 
 
     static TABS: Record<string, TabsConfiguration> = {
@@ -53,7 +53,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
     static async EditTimeline(this: DeathEffectsConfig) {
       try {
         // await (new TimelineEditor()).render({ force: true });
-        const timeline = await new TimelineEditor().Edit([]);
+        const timeline = await new TimelineEditor().Edit(this.deathEffects ? foundry.utils.deepClone(this.deathEffects) : []);
         if (timeline)
           this.deathEffects = foundry.utils.deepClone(timeline);
       } catch (err) {
@@ -83,6 +83,11 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
     }
 
 
+    _onClose(options: RenderOptions) {
+      super._onClose(options);
+      this.overrideDeathEffectConfigSource = undefined;
+      this.deathEffects = undefined;
+    }
 
     async _onRender(context: PlaceableConfigContext<foundry.abstract.Document.Any>, options: RenderOptions) {
       await super._onRender(context, options);
@@ -93,6 +98,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
         sourceSelect.addEventListener("change", () => {
           // this.toggleDeathEffectForm(sourceSelect.value === "token" || sourceSelect.value === "actor");
           this.overrideDeathEffectConfigSource = sourceSelect.value as ConfigSource;
+          this.deathEffects = undefined;
           this.render().catch(console.error);
         })
       }
@@ -116,6 +122,10 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
         }
       }
 
+      if (this.deathEffects)
+        context.deathEffects.config.effects = foundry.utils.deepClone(this.deathEffects);
+      else
+        this.deathEffects = foundry.utils.deepClone(context.deathEffects.config.effects);
 
       return context;
     }
