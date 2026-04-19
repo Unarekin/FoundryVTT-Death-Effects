@@ -7,6 +7,9 @@ type Constructor = new (...args: any[]) => foundry.canvas.placeables.Token;
 
 export function TokenMixin(base: Constructor) {
   const tokenClass = class DeathToken extends PlaceableMixin<Constructor>(base) {
+
+    getDeathSpriteObject() { return this.mesh; }
+
     public get deathEffectsConfig(): DeathEffectsConfig {
 
       const configSource = this.document.getFlag(__MODULE_ID__, "source") ?? "actor";

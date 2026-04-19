@@ -61,6 +61,7 @@ interface BaseDeathEffectsConfig {
 export type DeathEffectsConfig = BaseDeathEffectsConfig;
 
 export interface DeathPlaceable {
+  getDeathSpriteObject(): PIXI.DisplayObject | undefined;
   deathEffectsConfig: DeathEffectsConfig;
   playDeathEffects(config?: DeathEffectsConfig): Promise<void>;
 }
