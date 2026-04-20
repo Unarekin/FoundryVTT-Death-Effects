@@ -22,7 +22,8 @@ export const DefaultFadeEffect: FadeDeathEffect = Object.freeze({
 
 export const SETTINGS = Object.freeze({
   globalConfig: "globalConfig",
-  actorTypeConfigs: "actorTypeConfigs"
+  actorTypeConfigs: "actorTypeConfigs",
+  injectTokenConfig: "injectTokenConfig"
 })
 
 Hooks.once("ready", () => {
@@ -47,11 +48,21 @@ Hooks.once("ready", () => {
   });
 
   game.settings.registerMenu(__MODULE_ID__, "globalConfigMenu", {
-    name: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.LABEL",
-    label: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.LABEL",
-    hint: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.HINT",
+    name: "DEATH-EFFECTS.SETTINGS.MENUS.GLOBAL.LABEL",
+    label: "DEATH-EFFECTS.SETTINGS.MENUS.GLOBAL.LABEL",
+    hint: "DEATH-EFFECTS.SETTINGS.MENUS.GLOBAL.HINT",
     icon: "fa-solid fa-globe",
     restricted: true,
     type: GlobalConfig
   });
+
+  game.settings.register(__MODULE_ID__, SETTINGS.injectTokenConfig, {
+    name: "DEATH-EFFECTS.SETTINGS.INJECTTOKENCONFIG.LABEL",
+    hint: "DEATH-EFFECTS.SETTINGS.INJECTTOKENCONFIG.HINT",
+    config: true,
+    scope: "user",
+    requiresReload: true,
+    type: Boolean,
+    default: true
+  })
 })

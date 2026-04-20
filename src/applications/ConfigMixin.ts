@@ -259,6 +259,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
           // this.toggleDeathEffectForm(sourceSelect.value === "token" || sourceSelect.value === "actor");
           this.overrideDeathEffectConfigSource = sourceSelect.value as ConfigSource;
           this.deathEffects = undefined;
+          this.deathConfigOverrides = undefined;
           this.render().catch(console.error);
         })
       }

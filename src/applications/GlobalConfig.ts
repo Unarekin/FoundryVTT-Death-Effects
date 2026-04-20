@@ -4,7 +4,7 @@ import { DeathEffectsConfiguration } from "./StandaloneConfig";
 export class GlobalConfig extends DeathEffectsConfiguration {
   static DEFAULT_OPTIONS: DeepPartial<foundry.applications.api.ApplicationV2.Configuration> = {
     window: {
-      title: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.LABEL",
+      title: "DEATH-EFFECTS.SETTINGS.MENUS.GLOBAL.LABEL",
     }
 
   }

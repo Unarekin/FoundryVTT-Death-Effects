@@ -1,6 +1,7 @@
 import { TokenMixin } from "./placeables";
-import { PrototypeTokenConfigMixin, TokenConfigMixin } from "./applications";
+import { PrototypeTokenConfigMixin, StandaloneTokenConfig, TokenConfigMixin } from "./applications";
 import { DeathPlaceable, DeepPartial } from "types";
+import { SETTINGS } from "settings";
 
 Hooks.on("canvasConfig", () => {
   const DeathToken = TokenMixin(CONFIG.Token.objectClass);
@@ -18,8 +19,10 @@ function applyMixin(collection: Record<string, any>, mixin: Function) {
 }
 
 Hooks.once("ready", () => {
-  applyMixin(CONFIG.Token.sheetClasses.base, TokenConfigMixin);
-  CONFIG.Token.prototypeSheetClass = PrototypeTokenConfigMixin(CONFIG.Token.prototypeSheetClass);
+  if (game.settings?.get(__MODULE_ID__, SETTINGS.injectTokenConfig)) {
+    applyMixin(CONFIG.Token.sheetClasses.base, TokenConfigMixin);
+    CONFIG.Token.prototypeSheetClass = PrototypeTokenConfigMixin(CONFIG.Token.prototypeSheetClass);
+  }
 })
 
 Hooks.on("updateActor", (actor: Actor, delta: DeepPartial<Actor>) => {
@@ -57,4 +60,14 @@ Hooks.on("createActiveEffect", (effect: ActiveEffect) => {
       (((effect.target as any).token as TokenDocument).object as unknown as DeathPlaceable).checkAutoTriggerActiveEffect(effect);
     }
   }
+})
+
+Hooks.on("getHeaderControlsTokenConfig", (app: foundry.applications.sheets.TokenConfig, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
+  controls.push({
+    icon: 'fa-solid fa-skull',
+    label: "DEATH-EFFECTS.CONFIG.TITLE",
+    onClick: () => {
+      new StandaloneTokenConfig(app.document).render({ force: true }).catch(console.error);
+    }
+  })
 })

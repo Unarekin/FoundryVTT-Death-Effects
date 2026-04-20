@@ -40,6 +40,7 @@ declare module "fvtt-types/configuration" {
   interface SettingConfig {
     "death-effects.globalConfig": DeathEffectsConfig;
     "death-effects.actorTypeConfigs": Record<string, DeathEffectsConfig>;
+    "death-effects.injectTokenConfig": boolean;
   }
 
   interface FlagConfig {
