@@ -1,4 +1,4 @@
-import { GlobalConfig } from "applications";
+import { ActorTypeSelector, GlobalConfig } from "applications";
 import { DeathEffectsConfig, FadeDeathEffect } from "./types";
 import { SystemIntegrations } from "./systemIntegrations"
 
@@ -66,6 +66,15 @@ Hooks.once("ready", () => {
     type: GlobalConfig
   });
 
+  game.settings.registerMenu(__MODULE_ID__, "actorTypeConfigMenu", {
+    name: "DEATH-EFFECTS.SETTINGS.MENUS.ACTORTYPE.LABEL",
+    label: "DEATH-EFFECTS.SETTINGS.MENUS.ACTORTYPE.LABEL",
+    hint: "DEATH-EFFECTS.SETTINGS.MENUS.ACTORTYPE.HINT",
+    icon: "fa-solid fa-user",
+    restricted: true,
+    type: ActorTypeSelector
+  })
+
   game.settings.register(__MODULE_ID__, SETTINGS.injectTokenConfig, {
     name: "DEATH-EFFECTS.SETTINGS.INJECTTOKENCONFIG.LABEL",
     hint: "DEATH-EFFECTS.SETTINGS.INJECTTOKENCONFIG.HINT",
@@ -74,5 +83,5 @@ Hooks.once("ready", () => {
     requiresReload: true,
     type: Boolean,
     default: true
-  })
+  });
 })

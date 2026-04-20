@@ -30,3 +30,7 @@ export interface StandaloneConfigContext extends DeathEffectsConfigContext {
 export interface PlaceableConfigContext<t extends foundry.abstract.Document.Any> extends foundry.applications.api.DocumentSheetV2.RenderContext<t> {
   deathEffects: DeathEffectsConfigContext;
 }
+export interface ActorTypeSelectionContext extends foundry.applications.api.ApplicationV2.RenderContext {
+  types: { value: string, label: string }[];
+  buttons: foundry.applications.api.ApplicationV2.FormFooterButton[];
+}

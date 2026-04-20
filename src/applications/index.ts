@@ -1,3 +1,5 @@
+export * from './ActorTypeConfig';
+export * from './ActorTypeSelector';
 export * from './ConfigMixin';
 export * from './GlobalConfig';
 export * from './PrototypeTokenConfig';

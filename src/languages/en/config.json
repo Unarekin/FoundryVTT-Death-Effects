@@ -1,6 +1,10 @@
 {
   "DEATH-EFFECTS": {
     "CONFIG": {
+      "ACTORTYPE": {
+        "TITLE": "Actor Type",
+        "DESCRIPTION": "Configure death effect settings for type:"
+      },
       "TITLE": "Death Effects",
       "AUTOHIDE": {
         "HINT": "Automatically hide the token after the death effects finish.",
