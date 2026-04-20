@@ -2,7 +2,7 @@
 import { ConfigSource, Constructor, DeathEffect, DeepPartial, DeathEffectsConfig as FlagConfig } from "types";
 import { PlaceableConfigContext } from "./types"
 import { DefaultDeathEffectsConfig } from "settings";
-import { templatePath } from "functions";
+import { downloadJSON, templatePath, uploadJSON } from "functions";
 import { TimelineEditor } from "./TimelineEditor";
 
 
@@ -17,6 +17,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
   abstract class DeathEffectsConfig extends base {
 
     protected deathEffects: DeathEffect[] | undefined = undefined;
+    protected deathConfigOverrides: Partial<FlagConfig> | undefined = undefined;
 
 
     static TABS: Record<string, TabsConfiguration> = {
@@ -82,15 +83,173 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       }
     }
 
+    _onChangeForm(formConfig: foundry.applications.api.ApplicationV2.FormConfiguration, e: Event) {
+      super._onChangeForm(formConfig, e);
+      const data = foundry.utils.expandObject(new foundry.applications.ux.FormDataExtended(this.element as HTMLFormElement).object) as { deathEffects: Partial<FlagConfig> };
+      this.deathConfigOverrides = foundry.utils.deepClone(data.deathEffects);
+    }
 
     _onClose(options: RenderOptions) {
       super._onClose(options);
       this.overrideDeathEffectConfigSource = undefined;
       this.deathEffects = undefined;
+      this.deathConfigOverrides = undefined;
     }
+
+    // #region Import/Export
+
+
+    protected async _importEffectFromClipboard(): Promise<FlagConfig | undefined> {
+      if ((await navigator.permissions.query({ name: "clipboard-read" })).state === "granted") {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          const data = JSON.parse(text) as DeathEffectsConfig;
+          ui.notifications?.info("DEATH-EFFECTS.CONFIG.IMPORT.PASTED", { localize: true });
+          return data;
+        }
+      } else {
+        const content = await foundry.applications.handlebars.renderTemplate(templatePath(`pasteJSON`), {});
+        const { json } = await foundry.applications.api.DialogV2.input({
+          window: { title: "DEATH-EFFECTS.CONFIG.IMPORT.LABEL" },
+          position: { width: 600 },
+          content
+        });
+
+        if (typeof json === "string") {
+          const data = JSON.parse(json) as DeathEffectsConfig;
+          if (data) return data;
+        }
+      }
+    }
+
+    protected async _importEffectFromUpload(): Promise<FlagConfig | undefined> {
+      const data = await uploadJSON<DeathEffectsConfig>();
+      if (!data) return;
+      return data;
+    }
+
+    protected async _importEffectFromBrowse(): Promise<FlagConfig | undefined> {
+      return new Promise((resolve, reject) => {
+        void new foundry.applications.apps.FilePicker.implementation({
+          extensions: [".json"],
+          callback(path) {
+            if (path) {
+              try {
+                foundry.utils.fetchJsonWithTimeout(path, undefined, { onTimeout: reject })
+                  .then(data => { resolve(data as FlagConfig) })
+                  .catch(reject);
+              } catch (err) {
+                reject(err as Error);
+              }
+            }
+          }
+        }).browse()
+      })
+    }
+
+    protected async _handleEffectImport(func: (() => Promise<FlagConfig | undefined>)) {
+      try {
+        const data = await func();
+        if (!data) return;
+
+        if (data.effects?.length)
+          this.deathEffects = foundry.utils.deepClone(data.effects);
+        this.deathConfigOverrides = foundry.utils.deepClone(data);
+        this.deathEffects = foundry.utils.deepClone(data.effects ?? []);
+        await this.render();
+      } catch (err) {
+        console.error(err);
+        if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+      }
+    }
+
+    protected async _exportEffectToClipboard() {
+      try {
+        const stringConfig = JSON.stringify({
+          ...this.deathConfigOverrides,
+          effects: this.deathEffects
+        })
+        if ((await navigator.permissions.query({ name: "clipboard-write" })).state === "granted") {
+          await navigator.clipboard.writeText(stringConfig);
+          ui.notifications?.info("DEATH-EFFECTS.CONFIG.EXPORT.COPIED", { localize: true });
+        } else {
+          const content = await foundry.applications.handlebars.renderTemplate(templatePath(`copyJSON`), {
+            config: stringConfig
+          });
+          await foundry.applications.api.DialogV2.input({
+            window: { title: "DEATH-EFFECTS.CONFIG.EXPORT.LABEL" },
+            position: { width: 600 },
+            content
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+      }
+    }
+
+    protected async _exportEffectToBrowse() {
+      const path = (await new Promise(resolve => { void new foundry.applications.apps.FilePicker.implementation({ type: "folder", callback: resolve }).browse() }));
+      if (typeof path !== "string") return;
+      const file = new File([JSON.stringify({
+        ...this.deathConfigOverrides,
+        effects: this.deathEffects
+      })], `${this.document.name}.json`, { type: "application/json" });
+      await foundry.applications.apps.FilePicker.implementation.upload("data", path, file);
+    }
+
+    // #endregion
+
+    protected _getDeathEffectImportContextItems(): foundry.applications.ux.ContextMenu.Entry<HTMLElement>[] {
+      // TODO: Swap from name to label when dropping v13 support
+      // TODO: Swap from callback to onClick when dropping v13 support
+      return [
+        {
+          name: "DEATH-EFFECTS.CONFIG.IMPORT.CLIPBOARD",
+          icon: `<i class="fa-solid fa-paste"></i>`,
+          callback: () => { void this._handleEffectImport(this._importEffectFromClipboard); }
+        },
+        {
+          name: "DEATH-EFFECTS.CONFIG.IMPORT.UPLOAD",
+          icon: `<i class="fa-solid fa-upload"></i>`,
+          callback: () => { void this._handleEffectImport(this._importEffectFromUpload); }
+        },
+        {
+          name: "DEATH-EFFECTS.CONFIG.IMPORT.BROWSE",
+          icon: `<i class="fa-solid fa-folder-tree"></i>`,
+          callback: () => { void this._handleEffectImport(this._importEffectFromBrowse); }
+        }
+      ]
+    }
+
+    protected _getDeathEffectExportContextItems(): foundry.applications.ux.ContextMenu.Entry<HTMLElement>[] {
+      // TODO: Swap from name to label when dropping v13 support
+      // TODO: Swap from callback to onClick when dropping v13 support
+      return [
+        {
+          name: "DEATH-EFFECTS.CONFIG.EXPORT.CLIPBOARD",
+          icon: `<i class="fa-solid fa-copy"></i>`,
+          callback: () => { this._exportEffectToClipboard().catch(console.error); }
+        },
+        {
+          name: "DEATH-EFFECTS.CONFIG.EXPORT.DOWNLOAD",
+          icon: `<i class="fa-solid fa-download"></i>`,
+          callback: () => { downloadJSON({ ...this.deathConfigOverrides, effects: this.deathEffects }, `${this.document.name}.json`) }
+        },
+        {
+          name: "DEATH-EFFECTS.CONFIG.EXPORT.BROWSE",
+          icon: `<i class="fa-solid fa-save"></i>`,
+          callback: () => { this._exportEffectToBrowse().catch(console.error); }
+        }
+      ]
+    }
+
 
     async _onRender(context: PlaceableConfigContext<foundry.abstract.Document.Any>, options: RenderOptions) {
       await super._onRender(context, options);
+
+      new foundry.applications.ux.ContextMenu<false>(this.element, `[data-role="import-death-effects"]`, this._getDeathEffectImportContextItems(), { jQuery: false, eventName: 'click', fixed: true });
+      new foundry.applications.ux.ContextMenu<false>(this.element, `[data-role="export-death-effects"]`, this._getDeathEffectExportContextItems(), { jQuery: false, eventName: 'click', fixed: true });
 
       const sourceSelect = this.element.querySelector(`[name="deathEffects.source"]`);
       if (sourceSelect instanceof HTMLSelectElement) {
@@ -124,9 +283,8 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       const context = await super._prepareContext(options) as PlaceableConfigContext<foundry.abstract.Document.Any>;
 
       // const config = ((this.document.flags as Record<string, unknown>)[__MODULE_ID__] as FlagConfig);
-      const config = this.getDeathEffectFlags(this.overrideDeathEffectConfigSource);
 
-
+      const config = (this.deathConfigOverrides as FlagConfig) ?? this.getDeathEffectFlags(this.overrideDeathEffectConfigSource);
 
       context.deathEffects = {
         source: this.overrideDeathEffectConfigSource ?? this.getDeathEffectSource(),

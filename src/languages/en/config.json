@@ -5,6 +5,20 @@
         "HINT": "Automatically hide the token after the death effects finish.",
         "LABEL": "Auto-Hide"
       },
+      "IMPORT": {
+        "LABEL": "Import Effects",
+        "CLIPBOARD": "Paste From Clipboard",
+        "UPLOAD": "Upload JSON",
+        "BROWSE": "File Browser",
+        "PASTED": "Configuration read from clipboard"
+      },
+      "EXPORT": {
+        "LABEL": "Export Effects",
+        "CLIPBOARD": "Copy To Clipboard",
+        "DOWNLOAD": "Download JSON",
+        "BROWSE": "Save To Server",
+        "COPIED": "Configuration copied to clipboard"
+      },
       "AUTOTRANSPARENT": {
         "HINT": "Automatically set the token's opacityt o 0 after the death effects finish.",
         "LABEL": "Auto-Transparent"

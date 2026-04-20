@@ -11,6 +11,32 @@
     </div>
 
     <div class="form-group">
+      <div class="flexrow">
+        <div class="flex1">
+          <label for="{{@root.rootId}}-import">{{localize "DEATH-EFFECTS.CONFIG.IMPORT.LABEL"}}</label>
+        </div>
+        <div class="flex0">
+          <a data-action="" data-role="import-death-effects">
+            <i class="fa-solid fa-upload"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="flexrow">
+        <div class="flex1">
+          <label for="{{@root.rootId}}-export">{{localize "DEATH-EFFECTS.CONFIG.EXPORT.LABEL"}}</label>
+        </div>
+        <div class="flex0">
+          <a data-action="" data-role="export-death-effects">
+            <i class="fa-solid fa-download"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label for="{{@root.rootId}}-enabled">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.LABEL"}}</label>
       <input type="checkbox" id="{{@root.rootId}}-enabled" name="deathEffects.config.enabled" {{checked config.enabled}} data-toggle-death-effects>
       <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.HINT"}}</p>
