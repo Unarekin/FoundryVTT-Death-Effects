@@ -1,6 +1,17 @@
 {
   "DEATH-EFFECTS": {
     "CONFIG": {
+      "TITLE": "Death Effects",
+      "MENUS": {
+        "GLOBAL": {
+          "LABEL": "Global Configuration",
+          "HINT": "Configure global death effect animation"
+        },
+        "ACTORTYPE": {
+          "LABEL": "Actor Type Configuration",
+          "HINT": "Configure death effect configuration by actor type"
+        }
+      },
       "AUTOHIDE": {
         "HINT": "Automatically hide the token after the death effects finish.",
         "LABEL": "Auto-Hide"
@@ -20,7 +31,7 @@
         "COPIED": "Configuration copied to clipboard"
       },
       "AUTOTRANSPARENT": {
-        "HINT": "Automatically set the token's opacityt o 0 after the death effects finish.",
+        "HINT": "Automatically set the token's opacity to 0 after the death effects finish.",
         "LABEL": "Auto-Transparent"
       },
       "EDITTIMELINE": {

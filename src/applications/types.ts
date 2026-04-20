@@ -10,15 +10,23 @@ export interface TimelineContext extends foundry.applications.api.ApplicationV2.
   buttons: foundry.applications.api.ApplicationV2.FormFooterButton[];
 }
 
+export interface DeathEffectsConfigContext {
+  config: DeathEffectsConfig,
+  source: ConfigSource;
+  hasConfigSource: boolean;
+  configSourceSelect: Partial<Record<ConfigSource, string>>;
+  hasTriggerConditions: boolean;
+  triggerConditionSelect?: { value: AutoTriggerCondition, label: string, disabled: boolean }[];
+  statusEffects?: Record<string, string>;
+  activeEffects: string[];
+  trackableAttributes?: string[];
+}
+
+export interface StandaloneConfigContext extends DeathEffectsConfigContext {
+  rootId: string;
+  buttons: foundry.applications.api.ApplicationV2.FormFooterButton[];
+}
+
 export interface PlaceableConfigContext<t extends foundry.abstract.Document.Any> extends foundry.applications.api.DocumentSheetV2.RenderContext<t> {
-  deathEffects: {
-    config: DeathEffectsConfig,
-    source: ConfigSource;
-    configSourceSelect: Partial<Record<ConfigSource, string>>;
-    hasTriggerConditions: boolean;
-    triggerConditionSelect?: { value: AutoTriggerCondition, label: string, disabled: boolean }[];
-    statusEffects?: Record<string, string>;
-    activeEffects: string[];
-    trackableAttributes?: string[];
-  };
+  deathEffects: DeathEffectsConfigContext;
 }

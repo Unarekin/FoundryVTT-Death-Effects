@@ -1,6 +1,5 @@
-<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-tab="deathEffects" data-group="sheet">
-  {{#with deathEffects}}
-  {{log "Context" this}}
+<section class="standard-form">
+  {{#if hasConfigSource}}
     <div class="form-group">
       <label for="{{@root.rootId}}-configSource">{{localize "DEATH-EFFECTS.CONFIG.SOURCE.LABEL"}}</label>
       <select id="{{@root.rootId}}-configSource" name="deathEffects.source">
@@ -9,94 +8,94 @@
 
       <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.SOURCE.HINT"}}</p>
     </div>
+  {{/if}}
 
-    <div class="form-group">
-      <div class="flexrow">
-        <div class="flex1">
-          <label for="{{@root.rootId}}-import">{{localize "DEATH-EFFECTS.CONFIG.IMPORT.LABEL"}}</label>
-        </div>
-        <div class="flex0">
-          <a data-action="" data-role="import-death-effects">
-            <i class="fa-solid fa-upload"></i>
-          </a>
-        </div>
+  <div class="form-group">
+    <div class="flexrow">
+      <div class="flex1">
+        <label for="{{@root.rootId}}-import">{{localize "DEATH-EFFECTS.CONFIG.IMPORT.LABEL"}}</label>
+      </div>
+      <div class="flex0">
+        <a data-action="" data-role="import-death-effects">
+          <i class="fa-solid fa-upload"></i>
+        </a>
       </div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <div class="flexrow">
-        <div class="flex1">
-          <label for="{{@root.rootId}}-export">{{localize "DEATH-EFFECTS.CONFIG.EXPORT.LABEL"}}</label>
-        </div>
-        <div class="flex0">
-          <a data-action="" data-role="export-death-effects">
-            <i class="fa-solid fa-download"></i>
-          </a>
-        </div>
+  <div class="form-group">
+    <div class="flexrow">
+      <div class="flex1">
+        <label for="{{@root.rootId}}-export">{{localize "DEATH-EFFECTS.CONFIG.EXPORT.LABEL"}}</label>
+      </div>
+      <div class="flex0">
+        <a data-action="" data-role="export-death-effects">
+          <i class="fa-solid fa-download"></i>
+        </a>
       </div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="{{@root.rootId}}-enabled">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.LABEL"}}</label>
-      <input type="checkbox" id="{{@root.rootId}}-enabled" name="deathEffects.config.enabled" {{checked config.enabled}} data-toggle-death-effects>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.HINT"}}</p>
-    </div>
+  <div class="form-group">
+    <label for="{{@root.rootId}}-enabled">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.LABEL"}}</label>
+    <input type="checkbox" id="{{@root.rootId}}-enabled" name="deathEffects.config.enabled" {{checked config.enabled}} data-toggle-death-effects>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.ENABLE.HINT"}}</p>
+  </div>
 
-    <div class="form-group">
-      <label for="{{@root.rootId}}-autoTriggerCondition">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.LABEL"}}</label>
-      <select id="{{@root.rootId}}-autoTriggerCondition" name="deathEffects.config.autoTriggerCondition" data-toggle-death-effects>
-        {{selectOptions triggerConditionSelect localize=true selected=config.autoTriggerCondition}}
-      </select>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.HINT"}}</p>
-    </div>
+  <div class="form-group">
+    <label for="{{@root.rootId}}-autoTriggerCondition">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.LABEL"}}</label>
+    <select id="{{@root.rootId}}-autoTriggerCondition" name="deathEffects.config.autoTriggerCondition" data-toggle-death-effects>
+      {{selectOptions triggerConditionSelect localize=true selected=config.autoTriggerCondition}}
+    </select>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.HINT"}}</p>
+  </div>
 
-    <div class="form-group" data-trigger-condition="status" {{#unless (eq config.autoTriggerCondition "status")}}style="display:none"{{/unless}}>
-      <label for="{{@root.rootId}}-statusEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL"}}</label>
-      <select id="{{@root.rootId}}-statusEffect" name="deathEffects.config.statusEffect" data-toggle-death-effects>
-        <option></option>
-        {{selectOptions statusEffects localize=true selected=config.statusEffect}}
-      </select>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.HINT"}}</p>
-    </div>
+  <div class="form-group" data-trigger-condition="status" {{#unless (eq config.autoTriggerCondition "status")}}style="display:none"{{/unless}}>
+    <label for="{{@root.rootId}}-statusEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL"}}</label>
+    <select id="{{@root.rootId}}-statusEffect" name="deathEffects.config.statusEffect" data-toggle-death-effects>
+      <option></option>
+      {{selectOptions statusEffects localize=true selected=config.statusEffect}}
+    </select>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.HINT"}}</p>
+  </div>
 
-    <div class="form-group" data-trigger-condition="resource" {{#unless (eq config.autoTriggerCondition "resource")}}style="display:none"{{/unless}}>
-      <label for="{{@root.rootId}}-resource">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL"}}</label>
-      <input type="text" id="{{@root.rootId}}-resource" name="deathEffects.config.resource" value="{{config.resource}}" list="{{@root.rootId}}-resources" data-toggle-death-effects>
-      <datalist id="{{@root.rootId}}-resources">
-        {{#each trackableAttributes}}
-          <option value="{{this}}"></option>
-        {{/each}}
-      </datalist>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.HINT"}}</p>
-    </div>
+  <div class="form-group" data-trigger-condition="resource" {{#unless (eq config.autoTriggerCondition "resource")}}style="display:none"{{/unless}}>
+    <label for="{{@root.rootId}}-resource">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL"}}</label>
+    <input type="text" id="{{@root.rootId}}-resource" name="deathEffects.config.resource" value="{{config.resource}}" list="{{@root.rootId}}-resources" data-toggle-death-effects>
+    <datalist id="{{@root.rootId}}-resources">
+      {{#each trackableAttributes}}
+        <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.HINT"}}</p>
+  </div>
 
-    <div class="form-group" data-trigger-condition="activeEffect" {{#unless (eq config.autoTriggerCondition "activeEffect")}}style="display:none"{{/unless}}>
-      <label for="{{@root.rootId}}-activeEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL"}}</label>
-      <input type="text" id="{{@root.rootId}}-activeEffect" name="deathEffects.config.activeEffect" value="{{config.activeEffect}}" list="{{@root.rootId}}-activeEffects" data-toggle-death-effects>
-      <datalist id="{{@root.rootId}}-activeEffects">
-        {{#each activeEffects}}
-          <option value="{{this}}"></option>
-        {{/each}}
-      </datalist>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.HINT"}}</p>
-    </div>
+  <div class="form-group" data-trigger-condition="activeEffect" {{#unless (eq config.autoTriggerCondition "activeEffect")}}style="display:none"{{/unless}}>
+    <label for="{{@root.rootId}}-activeEffect">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL"}}</label>
+    <input type="text" id="{{@root.rootId}}-activeEffect" name="deathEffects.config.activeEffect" value="{{config.activeEffect}}" list="{{@root.rootId}}-activeEffects" data-toggle-death-effects>
+    <datalist id="{{@root.rootId}}-activeEffects">
+      {{#each activeEffects}}
+        <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.HINT"}}</p>
+  </div>
 
-    <div class="form-group">
-      <label for="{{@root.rootId}}-autoHide">{{localize "DEATH-EFFECTS.CONFIG.AUTOHIDE.LABEL"}}</label>
-      <input type="checkbox" id="{{@root.rootId}}-autoHide" name="deathEffects.config.autoHide" {{checked config.autoHide}} data-toggle-death-effects>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.AUTOHIDE.HINT"}}</p>
-    </div>
+  <div class="form-group">
+    <label for="{{@root.rootId}}-autoHide">{{localize "DEATH-EFFECTS.CONFIG.AUTOHIDE.LABEL"}}</label>
+    <input type="checkbox" id="{{@root.rootId}}-autoHide" name="deathEffects.config.autoHide" {{checked config.autoHide}} data-toggle-death-effects>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.AUTOHIDE.HINT"}}</p>
+  </div>
 
-    <div class="form-group">
-      <label for="{{@root.rootId}}-autoTransparent">{{localize "DEATH-EFFECTS.CONFIG.AUTOTRANSPARENT.LABEL"}}</label>
-      <input type="checkbox" id="{{@root.rootId}}-autoTransparent" name="deathEffects.config.autoTransparent" {{checked config.autoTransparent}} data-toggle-death-effects>
-      <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.AUTOTRANSPARENT.HINT"}}</p>
-    </div>
-    
-    <button data-action="editTimeline" type="button" data-toggle-death-effects>
-      <i class="fa-solid fa-bars-staggered"></i>
-      {{localize "DEATH-EFFECTS.CONFIG.EDITTIMELINE.LABEL"}}
-    </button>
-    <p class="hint">{{{localize "DEATH-EFFECTS.CONFIG.EDITTIMELINE.HINT"}}}</p>
-  {{/with}}
-</div>
+  <div class="form-group">
+    <label for="{{@root.rootId}}-autoTransparent">{{localize "DEATH-EFFECTS.CONFIG.AUTOTRANSPARENT.LABEL"}}</label>
+    <input type="checkbox" id="{{@root.rootId}}-autoTransparent" name="deathEffects.config.autoTransparent" {{checked config.autoTransparent}} data-toggle-death-effects>
+    <p class="hint">{{localize "DEATH-EFFECTS.CONFIG.AUTOTRANSPARENT.HINT"}}</p>
+  </div>
+
+  <button data-action="editTimeline" type="button" data-toggle-death-effects>
+    <i class="fa-solid fa-bars-staggered"></i>
+    {{localize "DEATH-EFFECTS.CONFIG.EDITTIMELINE.LABEL"}}
+  </button>
+  <p class="hint">{{{localize "DEATH-EFFECTS.CONFIG.EDITTIMELINE.HINT"}}}</p>
+</section>

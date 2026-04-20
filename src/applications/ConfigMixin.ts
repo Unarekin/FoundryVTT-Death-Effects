@@ -38,7 +38,8 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
     static PARTS: Record<string, foundry.applications.api.HandlebarsApplicationMixin.HandlebarsTemplatePart> = {
       ...PARTS,
       deathEffects: {
-        template: templatePath('config')
+        template: templatePath('configTab'),
+        templates: [templatePath('config')]
       },
     }
 
@@ -103,7 +104,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       if ((await navigator.permissions.query({ name: "clipboard-read" })).state === "granted") {
         const text = await navigator.clipboard.readText();
         if (text) {
-          const data = JSON.parse(text) as DeathEffectsConfig;
+          const data = JSON.parse(text) as FlagConfig;
           ui.notifications?.info("DEATH-EFFECTS.CONFIG.IMPORT.PASTED", { localize: true });
           return data;
         }
@@ -116,7 +117,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
         });
 
         if (typeof json === "string") {
-          const data = JSON.parse(json) as DeathEffectsConfig;
+          const data = JSON.parse(json) as FlagConfig;
           if (data) return data;
         }
       }
@@ -292,6 +293,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
           foundry.utils.deepClone(DefaultDeathEffectsConfig),
           config ?? {}
         ),
+        hasConfigSource: true,
         configSourceSelect: {
           global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
         },

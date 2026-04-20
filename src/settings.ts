@@ -1,3 +1,4 @@
+import { GlobalConfig } from "applications";
 import { DeathEffectsConfig, FadeDeathEffect } from "./types";
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = Object.freeze({
@@ -43,5 +44,14 @@ Hooks.once("ready", () => {
     requiresReload: false,
     type: Object,
     default: {}
+  });
+
+  game.settings.registerMenu(__MODULE_ID__, "globalConfigMenu", {
+    name: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.LABEL",
+    label: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.LABEL",
+    hint: "DEATH-EFFECTS.CONFIG.MENUS.GLOBAL.HINT",
+    icon: "fa-solid fa-globe",
+    restricted: true,
+    type: GlobalConfig
   });
 })
