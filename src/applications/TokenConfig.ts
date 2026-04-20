@@ -21,11 +21,11 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
       const actualData = foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(form)).object);
 
       const { config, source } = ((actualData as Record<string, unknown>).deathEffects) as { config: DeathEffectsConfig, source: ConfigSource };
-      if (this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
+      if (config && this.deathEffects) config.effects = foundry.utils.deepClone(this.deathEffects);
 
+      await this.document.setFlag(__MODULE_ID__, "source", source);
       if (source === "actor" && this.document.actor) {
         await this.document.actor.setFlag(__MODULE_ID__, "config", config);
-        await this.document.setFlag(__MODULE_ID__, "source", source);
       } else if (source === "token") {
         await this.document.update({
           flags: {

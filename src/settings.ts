@@ -1,15 +1,17 @@
 import { GlobalConfig } from "applications";
 import { DeathEffectsConfig, FadeDeathEffect } from "./types";
+import { SystemIntegrations } from "./systemIntegrations"
 
-export const DefaultDeathEffectsConfig: DeathEffectsConfig = Object.freeze({
+export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
   version: __MODULE_VERSION__,
-  enabled: true,
+  enabled: false,
   autoHide: true,
   autoTransparent: false,
-  autoTriggerCondition: "resource",
-  resource: "",
+  autoTriggerCondition: "status",
+  statusEffect: "dead",
   effects: []
-});
+};
+
 
 export const DefaultFadeEffect: FadeDeathEffect = Object.freeze({
   id: "",
@@ -25,6 +27,14 @@ export const SETTINGS = Object.freeze({
   actorTypeConfigs: "actorTypeConfigs",
   injectTokenConfig: "injectTokenConfig"
 })
+
+Hooks.once("init", () => {
+  if (game?.system?.id && SystemIntegrations[game?.system?.id]) {
+    console.log("Death Effects: Applying system integration for", game.system.title);
+    SystemIntegrations[game.system.id]();
+  }
+  Object.freeze(DefaultDeathEffectsConfig);
+});
 
 Hooks.once("ready", () => {
   if (!game.settings) return;
