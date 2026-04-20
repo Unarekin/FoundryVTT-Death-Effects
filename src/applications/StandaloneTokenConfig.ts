@@ -120,7 +120,6 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
     ]
     context.source = this.overrideConfigSource ?? this._getConfigSource() ?? "actorType";
 
-    console.log("Context:", context);
     return context;
   }
 

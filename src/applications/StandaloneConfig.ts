@@ -231,7 +231,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     const formData = foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(this.element as HTMLFormElement)).object) as { deathEffects: { config: DeathEffectsConfig } };
     const effects = this.configCache?.effects ?? [];
     this.configCache = formData.deathEffects.config;
-    this.configCache.effects = effects;
+    if (this.configCache) this.configCache.effects = effects;
   }
 
   async _onRender(context: StandaloneConfigContext, options: foundry.applications.api.ApplicationV2.RenderOptions) {
