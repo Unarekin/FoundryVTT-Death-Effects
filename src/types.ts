@@ -21,7 +21,7 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
-export const EffectTypes = ["fade", "tint"] as const;
+export const EffectTypes = ["fade", "tint", "shake"] as const;
 export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
@@ -39,6 +39,10 @@ export interface DurationDeathEffect {
   duration: number;
 }
 
+export interface EasingDeathEffect {
+  easing: gsap.EaseString;
+}
+
 export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
   type: "fade";
 })
@@ -48,6 +52,13 @@ export interface TintDeathEffect extends BaseDeathEffect {
   start: number;
   tint: PIXI.ColorSource;
 }
+
+export type ShakeDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  strength: number;
+  type: "shake",
+  horizontal: boolean;
+  vertical: boolean;
+})
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect;
 

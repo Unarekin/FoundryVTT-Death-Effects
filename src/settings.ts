@@ -1,5 +1,5 @@
 import { ActorTypeSelector, GlobalConfig } from "applications";
-import { DeathEffectsConfig, FadeDeathEffect, TintDeathEffect } from "./types";
+import { DeathEffectsConfig, FadeDeathEffect, ShakeDeathEffect, TintDeathEffect } from "./types";
 import { SystemIntegrations } from "./systemIntegrations"
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
@@ -30,6 +30,19 @@ export const DefaultTintEffect: TintDeathEffect = Object.freeze({
   start: 0,
   tint: 0xFFFFFF
 });
+
+export const DefaultShakeEffect: ShakeDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "shake",
+  start: 0,
+  duration: 500,
+  strength: 5,
+  easing: "none",
+  horizontal: true,
+  vertical: false
+})
 
 export const SETTINGS = Object.freeze({
   globalConfig: "globalConfig",

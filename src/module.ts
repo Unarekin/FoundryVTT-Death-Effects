@@ -1,4 +1,4 @@
-import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, TintEffect, TintEffectApplication } from "effects";
+import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, ShakeEffect, ShakeEffectApplication, TintEffect, TintEffectApplication } from "effects";
 import "./hooks";
 import "./settings";
 import "./sockets";
@@ -14,6 +14,10 @@ CONFIG.DeathEffects = {
     tint: {
       cls: TintEffect as typeof BaseDeathEffect,
       app: TintEffectApplication as typeof BaseEffectApplication
+    },
+    shake: {
+      cls: ShakeEffect as typeof BaseDeathEffect,
+      app: ShakeEffectApplication as typeof BaseEffectApplication
     }
   }
 }

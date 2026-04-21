@@ -19,17 +19,33 @@
           "LABEL": "Start"
         }
       },
-      "TINT": {
-        "NAME": "Tint",
-        "DESCRIPTION": "A simple efect to tint the placeable",
-        "TINT": {
-          "LABEL": "Tint",
-          "HINT": "The color to use to tint this placeable.  Use white to return it to its usual colors."
-        }
-      },
       "FADE": {
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"
+      },
+      "SHAKE": {
+        "DESCRIPTION": "What it says on the tin. Shake the placeable.",
+        "HORIZONTAL": {
+          "HINT": "Shake the placeable horizontally",
+          "LABEL": "Horizontal"
+        },
+        "NAME": "Shake",
+        "STRENGTH": {
+          "HINT": "How much to shake",
+          "LABEL": "Strength"
+        },
+        "VERTICAL": {
+          "HINT": "Shake the placeable vertically",
+          "LABEL": "Vertical"
+        }
+      },
+      "TINT": {
+        "DESCRIPTION": "A simple efect to tint the placeable",
+        "NAME": "Tint",
+        "TINT": {
+          "HINT": "The color to use to tint this placeable.  Use white to return it to its usual colors.",
+          "LABEL": "Tint"
+        }
       }
     }
   }

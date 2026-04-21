@@ -1,0 +1,97 @@
+<div>
+  {{#with effect}}
+    <div class="form-group">
+      <label for="{{@root.rootId}}-label">{{localize
+          "DEATH-EFFECTS.EFFECTS.COMMON.LABEL.LABEL"
+        }}</label>
+      <input
+        type="text"
+        id="{{@root.rootId}}-label"
+        name="label"
+        value="{{label}}"
+      />
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.COMMON.LABEL.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-start">{{localize
+          "DEATH-EFFECTS.EFFECTS.COMMON.START.LABEL"
+        }}</label>
+      <input
+        type="number"
+        min="0"
+        step="1"
+        id="{{@root.rootId}}-start"
+        name="start"
+        placeholder="0"
+        value="{{start}}"
+      />
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.COMMON.START.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-duration">{{localize
+          "DEATH-EFFECTS.EFFECTS.COMMON.DURATION.LABEL"
+        }}</label>
+      <input
+        type="number"
+        min="0"
+        step="1"
+        id="{{@root.rootId}}-duration"
+        name="duration"
+        placeholder="500"
+        value="{{duration}}"
+      />
+      <p class="hint">{{localize
+          "DEATH-EFFECTS.EFFECTS.COMMON.DURATION.HINT"
+        }}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-strength">{{localize
+          "DEATH-EFFECTS.EFFECTS.SHAKE.STRENGTH.LABEL"
+        }}</label>
+      <input
+        type="number"
+        id="{{@root.rootId}}-strength"
+        name="strength"
+        value="{{strength}}"
+        min="0"
+        step="any"
+      />
+      <p class="hint">{{localize
+          "DEATH-EFFECTS.EFFECTS.SHAKE.STRENGTH.HINT"
+        }}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-horizontal">{{localize
+          "DEATH-EFFECTS.EFFECTS.SHAKE.HORIZONTAL.LABEL"
+        }}</label>
+      <input
+        type="checkbox"
+        id="{{@root.rootId}}-horizontal"
+        name="horizontal"
+        {{checked horizontal}}
+      />
+      <p class="hint">{{localize
+          "DEATH-EFFECTS.EFFECTS.SHAKE.HORIZONTAL.HINT"
+        }}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-vertical">{{localize
+          "DEATH-EFFECTS.EFFECTS.SHAKE.VERTICAL.LABEL"
+        }}</label>
+      <input
+        type="checkbox"
+        id="{{@root.rootId}}-vertical"
+        name="vertical"
+        {{checked vertical}}
+      />
+      <p class="hint">{{localize
+          "DEATH-EFFECTS.EFFECTS.SHAKE.VERTICAL.HINT"
+        }}</p>
+    </div>
+  {{/with}}
+</div>
