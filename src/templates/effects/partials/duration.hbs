@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label for="{{@root.rootId}}-duration">{{localize
+      "DEATH-EFFECTS.EFFECTS.COMMON.DURATION.LABEL"
+    }}</label>
+  <input
+    type="number"
+    min="0"
+    step="1"
+    id="{{@root.rootId}}-duration"
+    name="duration"
+    placeholder="500"
+    value="{{duration}}"
+  />
+  <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.COMMON.DURATION.HINT"}}</p>
+</div>

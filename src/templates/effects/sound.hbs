@@ -1,0 +1,31 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-sound">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.SOUND.LABEL"}}</label>
+      <file-picker id="{{@root.rootId}}-sound" name="sound" value="{{sound}}" type="audio"></file-picker>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.SOUND.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-volume">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.VOLUME.LABEL"}}</label>
+      <range-picker id="{{@root.rootId}}" name="volume" min="0" max="100" step="1" value="{{volume}}"></range-picker>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.VOLUME.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-playAtLocation">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.POSITION.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-playAtPosition" name="playAtLocation" {{checked playAtLocation}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.POSITION.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-radius">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.RADIUS.LABEL"}}</label>
+      <input type="number" id="{{@root.rootId}}-radius" name="radius" min="1" step="1" value="{{radius}}">
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.RADIUS.HINT"}}</p>
+    </div>
+
+  {{/with}}
+</div>

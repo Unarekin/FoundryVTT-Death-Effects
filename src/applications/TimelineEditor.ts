@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { templatePath } from "functions";
-import { TimelineContext } from "./types";
+import { DeathEffectContext, TimelineContext } from "./types";
 import { DeathEffect, DeepPartial, DurationDeathEffect, EffectType } from "types";
 import { simpleSelect } from "./SimpleSelect";
 import { Timeline } from "animation-timeline-js";
@@ -152,14 +152,47 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
     context.rootId = foundry.utils.randomID();
 
-    context.effects = foundry.utils.deepClone(this.effects ?? []).map(effect => {
+    context.effects = [];
+    for (const effect of this.effects) {
       const def = CONFIG.DeathEffects.effects[effect.type];
-      if (!def) throw new Error(`Unknown effect type: ${effect.type}`);
-      return {
+      if (!def) {
+        ui.notifications?.error(`Unknown effect type: ${effect.type}`);
+        continue;
+      }
+
+      const effectContext: DeathEffectContext = {
         ...effect,
         actualLabel: effect.label ? `${effect.label} (${game.i18n?.localize(def.cls.Name) ?? def.cls.Name})` : def.cls.Name,
+        editableDuration: def.cls.canEditDuration(effect)
       }
-    });
+
+      // if (typeof (effect as { duration?: number }).duration === "number") {
+      const duration = def.cls.getDuration(effect);
+      if (duration instanceof Promise)
+        (effectContext as { duration: number }).duration = await duration;
+      else
+        (effectContext as { duration: number }).duration = duration;
+
+      // }
+
+      context.effects.push(effectContext);
+    }
+
+    // context.effects = foundry.utils.deepClone(this.effects ?? []).map(effect => {
+    //   const def = CONFIG.DeathEffects.effects[effect.type];
+    //   if (!def) {
+    //     // throw new Error(`Unknown effect type: ${effect.type}`);
+    //     ui.notifications?.error(`Unknown effect type: ${effect.type}`);
+    //     return undefined
+    //   } else {
+    //     return {
+    //       ...effect,
+    //       actualLabel: effect.label ? `${effect.label} (${game.i18n?.localize(def.cls.Name) ?? def.cls.Name})` : def.cls.Name,
+    //     }
+    //   }
+    // }).filter(item => !!item);
+
+
 
     context.buttons = [
       { type: "button", action: "cancel", icon: "fa-solid fa-times", label: "Cancel" },
@@ -199,6 +232,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
         }
       })
     });
+
+    timeline._formatUnitsText = (val) => { return `${val}ms`; }
 
 
     timeline.onDragFinished((event) => {

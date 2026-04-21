@@ -4,6 +4,8 @@ export * from './FadeEffect';
 export * from './FadeEffectApplication';
 export * from './ShakeEffect';
 export * from './ShakeEffectApplication';
+export * from './SoundEffect';
+export * from './SoundEffectApplication';
 export * from './TintEffect';
 export * from './TintEffectApplication';
 export * from './types';

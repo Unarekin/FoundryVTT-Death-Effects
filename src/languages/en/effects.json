@@ -39,6 +39,26 @@
           "LABEL": "Vertical"
         }
       },
+      "SOUND": {
+        "DESCRIPTION": "Play a sound",
+        "NAME": "Sound",
+        "POSITION": {
+          "HINT": "If enabled, will cause sound to be played at this placeable's location",
+          "LABEL": "Play at Placeable"
+        },
+        "RADIUS": {
+          "HINT": "The radius at which the sound can be heard when playing at this placeable's locaiton",
+          "LABEL": "Radius"
+        },
+        "SOUND": {
+          "HINT": "The sound file to play",
+          "LABEL": "Sound"
+        },
+        "VOLUME": {
+          "HINT": "The volume at which to play this sound",
+          "LABEL": "Volume"
+        }
+      },
       "TINT": {
         "DESCRIPTION": "A simple efect to tint the placeable",
         "NAME": "Tint",

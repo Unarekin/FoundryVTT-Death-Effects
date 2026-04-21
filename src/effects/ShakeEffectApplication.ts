@@ -14,7 +14,7 @@ export class ShakeEffectApplication extends BaseEffectApplication<ShakeDeathEffe
     ...(BaseEffectApplication.DEFAULT_OPTIONS ?? {}),
     window: {
       ...(BaseEffectApplication.DEFAULT_OPTIONS.window ?? {}),
-      title: "DEATH-EFFECTS.EFFECTS.TINT.NAME"
+      title: "DEATH-EFFECTS.EFFECTS.SHAKE.NAME"
     }
   }
 

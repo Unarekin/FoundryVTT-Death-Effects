@@ -1,7 +1,8 @@
 import { AutoTriggerCondition, ConfigSource, DeathEffect, DeathEffectsConfig } from "types";
 
-type DeathEffectContext = DeathEffect & ({
+export type DeathEffectContext = DeathEffect & ({
   actualLabel: string;
+  editableDuration: boolean;
 })
 
 export interface TimelineContext extends foundry.applications.api.ApplicationV2.RenderContext {
