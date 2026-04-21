@@ -20,7 +20,12 @@ export class ShakeEffectApplication extends BaseEffectApplication<ShakeDeathEffe
 
   static PARTS: Record<string, foundry.applications.api.HandlebarsApplicationMixin.HandlebarsTemplatePart> = {
     base: {
-      template: templatePath("effects/shake")
+      template: templatePath("effects/shake"),
+      templates: [
+        templatePath("effects/partials/label"),
+        templatePath("effects/partials/start"),
+        templatePath("effects/partials/duration")
+      ]
     },
     footer: {
       template: `templates/generic/form-footer.hbs`

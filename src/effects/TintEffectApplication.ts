@@ -20,7 +20,11 @@ export class TintEffectApplication extends BaseEffectApplication<TintDeathEffect
 
   static PARTS: Record<string, foundry.applications.api.HandlebarsApplicationMixin.HandlebarsTemplatePart> = {
     base: {
-      template: templatePath("effects/tint")
+      template: templatePath("effects/tint"),
+      templates: [
+        templatePath("effects/partials/label"),
+        templatePath("effects/partials/start")
+      ]
     },
     footer: {
       template: `templates/generic/form-footer.hbs`
