@@ -19,6 +19,14 @@
           "LABEL": "Start"
         }
       },
+      "TINT": {
+        "NAME": "Tint",
+        "DESCRIPTION": "A simple efect to tint the placeable",
+        "TINT": {
+          "LABEL": "Tint",
+          "HINT": "The color to use to tint this placeable.  Use white to return it to its usual colors."
+        }
+      },
       "FADE": {
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"

@@ -10,7 +10,7 @@ export abstract class BaseDeathEffect<t extends DeathEffect> {
   public abstract get Icon(): string;
 
 
-  public abstract execute(placeable: DeathPlaceable): Promise<void>;
+  public abstract execute(placeable: DeathPlaceable): Promise<void> | void;
 
 
 
