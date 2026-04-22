@@ -21,7 +21,7 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
-export const EffectTypes = ["fade", "tint", "shake", "sound", "stopPlaylist"] as const;
+export const EffectTypes = ["fade", "tint", "shake", "sound", "stopPlaylist", "startPlaylist"] as const;
 export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
@@ -69,6 +69,12 @@ export interface SoundDeathEffect extends BaseDeathEffect {
   volume: number;
   playAtLocation: boolean;
   radius: number;
+}
+
+export interface StartPlaylistDeathEffect extends BaseDeathEffect {
+  type: "startPlaylist";
+  playlist: string;
+  sound?: string;
 }
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect;

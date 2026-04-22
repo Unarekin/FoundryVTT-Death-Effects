@@ -13,6 +13,7 @@ function createButton(option: SimpleSelectOption): string {
       ${option.tooltip ? ` data-tooltip="${option.tooltip}"` : ``}
       data-action="selectItem"
       data-key="${option.key}"
+      style="width:100%"
       >
         ${option.icon ? `<i class="${option.icon}"></i>` : ``}
         ${game.i18n?.localize(option.label) ?? option.label}
@@ -25,10 +26,15 @@ export async function simpleSelect<t = string>(options: SimpleSelectOption[], ti
   let resolved = false;
   return new Promise<t | undefined>((resolve, reject) => {
     new foundry.applications.api.DialogV2({
-      window: { title },
+      window: {
+        title,
+        contentClasses: ["standard-form"]
+      },
       content: [
         ...(text ? [game.i18n?.localize(text) ?? text] : []),
+        `<div style="column-count:2">`,
         ...options.map(createButton),
+        `</div>`
       ].join("\n"),
       actions: {
         selectItem(e: Event, button: HTMLElement) {

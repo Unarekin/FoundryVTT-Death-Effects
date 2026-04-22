@@ -1,0 +1,25 @@
+<div>
+  {{log "Context" this}}
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-playlist">{{localize "DEATH-EFFECTS.EFFECTS.STARTPLAYLIST.PLAYLIST.LABEL"}}</label>
+      <select id="{{@root.rootId}}-playlist" name="playlist">
+        <option></option>
+        {{selectOptions ../playlistOptions selected=playlist}}
+      </select>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.STARTPLAYLIST.PLAYLIST.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-sound">{{localize "DEATH-EFFECTS.EFFECTS.STARTPLAYLIST.SOUND.LABEL"}}</label>
+      <select id="{{@root.rootId}}-sound" name="sound">
+        <option></option>
+        {{selectOptions ../playlistSounds selected=sound}}
+      </select>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.STARTPLAYLIST.SOUND.HINT"}}</p>
+    </div>
+  {{/with}}
+</div>

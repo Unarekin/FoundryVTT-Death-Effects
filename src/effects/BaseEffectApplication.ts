@@ -75,6 +75,11 @@ export abstract class BaseEffectApplication<t extends DeathEffect> extends found
     return this.editPromise;
   }
 
+  _onChangeForm(formConfig: foundry.applications.api.ApplicationV2.FormConfiguration, e: Event) {
+    super._onChangeForm(formConfig, e);
+    this.config = this.parseFormFields();
+  }
+
   async _prepareContext(options: foundry.applications.api.ApplicationV2.RenderOptions) {
     const context = await super._prepareContext(options) as EffectRenderContext<t>;
     context.effect = foundry.utils.deepClone(this.config);

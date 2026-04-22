@@ -1,4 +1,4 @@
-import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, ShakeEffect, ShakeEffectApplication, SoundEffect, SoundEffectApplication, StopPlaylistEffect, StopPlaylistEffectApplication, TintEffect, TintEffectApplication } from "effects";
+import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, ShakeEffect, ShakeEffectApplication, SoundEffect, SoundEffectApplication, StartPlaylistEffect, StartPlaylistEffectApplication, StopPlaylistEffect, StopPlaylistEffectApplication, TintEffect, TintEffectApplication } from "effects";
 import "./hooks";
 import "./settings";
 import "./sockets";
@@ -26,6 +26,10 @@ CONFIG.DeathEffects = {
     stopPlaylist: {
       cls: StopPlaylistEffect as typeof BaseDeathEffect,
       app: StopPlaylistEffectApplication as typeof BaseEffectApplication
+    },
+    startPlaylist: {
+      cls: StartPlaylistEffect as typeof BaseDeathEffect,
+      app: StartPlaylistEffectApplication as typeof BaseEffectApplication
     }
   }
 }

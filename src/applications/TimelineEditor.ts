@@ -103,7 +103,7 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
         label: val.cls.Name,
         tooltip: val.cls.Description,
         icon: val.cls.Icon
-      }))
+      })).sort((a, b) => a.label.localeCompare(b.label));
       const key = await simpleSelect<EffectType>(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");
 
       if (!key) return;

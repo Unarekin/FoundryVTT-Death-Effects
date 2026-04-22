@@ -9,7 +9,7 @@ export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.TINT.DESCRIPTION";
   public readonly Description = TintEffect.Description;
 
-  public static readonly Icon = "de-icon eye-brush";
+  public static readonly Icon = "fa-solid fa-brush";
   public readonly Icon = TintEffect.Icon;
 
   public execute(placeable: DeathPlaceable): void {

@@ -23,6 +23,18 @@
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"
       },
+      "STARTPLAYLIST": {
+        "NAME": "Start Playlist",
+        "DESCRIPTION": "Start a given playlist",
+        "PLAYLIST": {
+          "LABEL": "Playlist",
+          "HINT": "The playlist to start"
+        },
+        "SOUND": {
+          "LABEL": "Sound",
+          "HINT": "(Optional) Sound on the above playlist to play"
+        }
+      },
       "STOPPLAYLIST": {
         "NAME": "Stop Playlist",
         "DESCRIPTION": "Stop the current playlist"

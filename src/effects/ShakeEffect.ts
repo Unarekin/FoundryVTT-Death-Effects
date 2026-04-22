@@ -10,7 +10,7 @@ export class ShakeEffect extends BaseDeathEffect<ShakeDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.SHAKE.DESCRIPTION";
   public readonly Description = ShakeEffect.Description;
 
-  public static readonly Icon = "de-icon arrow-right-arrow-left";
+  public static readonly Icon = "fa-solid fa-arrow-right-arrow-left";
   public readonly Icon = ShakeEffect.Icon;
 
   public async execute(placeable: DeathPlaceable) {
