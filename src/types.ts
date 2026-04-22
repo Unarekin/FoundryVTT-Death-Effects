@@ -21,7 +21,7 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
-export const EffectTypes = ["fade", "tint", "shake", "sound"] as const;
+export const EffectTypes = ["fade", "tint", "shake", "sound", "stopPlaylist"] as const;
 export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
@@ -59,6 +59,8 @@ export type ShakeDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDea
   horizontal: boolean;
   vertical: boolean;
 })
+
+export type StopPlaylistDeathEffect = BaseDeathEffect;
 
 
 export interface SoundDeathEffect extends BaseDeathEffect {

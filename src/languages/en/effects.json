@@ -23,6 +23,10 @@
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"
       },
+      "STOPPLAYLIST": {
+        "NAME": "Stop Playlist",
+        "DESCRIPTION": "Stop the current playlist"
+      },
       "SHAKE": {
         "DESCRIPTION": "What it says on the tin. Shake the placeable.",
         "HORIZONTAL": {

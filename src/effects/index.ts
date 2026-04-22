@@ -6,6 +6,8 @@ export * from './ShakeEffect';
 export * from './ShakeEffectApplication';
 export * from './SoundEffect';
 export * from './SoundEffectApplication';
+export * from './StopPlaylistEffect';
+export * from './StopPlaylistEffectApplication';
 export * from './TintEffect';
 export * from './TintEffectApplication';
 export * from './types';
