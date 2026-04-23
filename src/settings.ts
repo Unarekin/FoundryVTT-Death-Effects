@@ -1,5 +1,5 @@
 import { ActorTypeSelector, GlobalConfig } from "applications";
-import { DeathEffectsConfig, FadeDeathEffect, ShakeDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect } from "./types";
+import { DeathEffectsConfig, FadeDeathEffect, ScreenFlashDeathEffect, ShakeDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect } from "./types";
 import { SystemIntegrations } from "./systemIntegrations"
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
@@ -73,6 +73,17 @@ export const DefaultStartPlaylistEffect: StartPlaylistDeathEffect = Object.freez
   playlist: "",
   sound: ""
 });
+
+export const DefaultScreenFlashEffect: ScreenFlashDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "screenFlash",
+  start: 0,
+  duration: 150,
+  color: "#FFFFFF",
+  backgroundOnly: false
+})
 
 export const SETTINGS = Object.freeze({
   globalConfig: "globalConfig",

@@ -4,6 +4,7 @@ export interface EffectRenderContext<t extends DeathEffect> extends foundry.appl
   rootId: string;
   buttons: foundry.applications.api.ApplicationV2.FormFooterButton[];
   effect: t;
+  fields?: Record<string, foundry.data.fields.DataField>;
 }
 
 export interface StartPlaylistRenderContext extends EffectRenderContext<StartPlaylistDeathEffect> {

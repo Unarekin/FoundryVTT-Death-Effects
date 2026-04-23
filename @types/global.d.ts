@@ -3,18 +3,6 @@ import { BaseDeathEffect, BaseEffectApplication } from "effects"
 import * as gsapType from "gsap";
 import * as timelineModuleType from "animation-timeline-js"
 
-declare module '*.scss';
-
-declare module '*.frag' {
-  const content: string;
-  export default content;
-}
-
-declare module '*.vert' {
-  const content: string;
-  export default content;
-}
-
 declare global {
 
   const __MODULE_ID__ = "death-effects";
@@ -24,6 +12,18 @@ declare global {
 
   declare const gsap: gsapType;
   const timelineModule = timelineModuleType;
+
+  declare module '*.scss';
+
+  declare module '*.frag' {
+    const content: string;
+    export default content;
+  }
+
+  declare module '*.vert' {
+    const content: string;
+    export default content;
+  }
 
   interface CONFIG {
     DeathEffects: {

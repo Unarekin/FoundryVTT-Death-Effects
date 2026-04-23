@@ -2,6 +2,8 @@ export * from './BaseEffect';
 export * from './BaseEffectApplication';
 export * from './FadeEffect';
 export * from './FadeEffectApplication';
+export * from './ScreenFlashEffect';
+export * from './ScreenFlashEffectApplication';
 export * from './ShakeEffect';
 export * from './ShakeEffectApplication';
 export * from './SoundEffect';

@@ -83,6 +83,7 @@ export abstract class BaseEffectApplication<t extends DeathEffect> extends found
   async _prepareContext(options: foundry.applications.api.ApplicationV2.RenderOptions) {
     const context = await super._prepareContext(options) as EffectRenderContext<t>;
     context.effect = foundry.utils.deepClone(this.config);
+    context.rootId = context.effect.id;
 
     context.buttons = [
       { type: "button", action: "cancel", label: "Cancel", icon: "fa-solid fa-times" },

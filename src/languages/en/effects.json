@@ -19,6 +19,18 @@
           "LABEL": "Start"
         }
       },
+      "SCREENFLASH": {
+        "NAME": "Screen Flash",
+        "DESCRIPTION": "Flash the screen a given color",
+        "BACKGROUNDONLY": {
+          "LABEL": "Background Only",
+          "HINT": "When enabled, will only flash the background behind tokens/tiles/etc"
+        },
+        "COLOR": {
+          "LABEL": "Color",
+          "HINT": "The color to flash the screen"
+        }
+      },
       "FADE": {
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"

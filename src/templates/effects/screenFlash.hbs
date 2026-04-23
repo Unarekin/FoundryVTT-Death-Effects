@@ -1,0 +1,10 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/duration.hbs" }}
+
+    {{formGroup ../fields.color value=color localize=true name="color"}}
+    {{formGroup ../fields.backgroundOnly value=backgroundOnly localize=true name="backgroundOnly"}}
+  {{/with}}
+</div>
