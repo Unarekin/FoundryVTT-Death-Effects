@@ -1,10 +1,11 @@
-import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, MacroEffect, MacroEffectApplication, ScreenFlashEffect, ScreenFlashEffectApplication, ShakeEffect, ShakeEffectApplication, SoundEffect, SoundEffectApplication, StartPlaylistEffect, StartPlaylistEffectApplication, StopPlaylistEffect, StopPlaylistEffectApplication, TintEffect, TintEffectApplication } from "effects";
 import "./hooks";
 import "./settings";
 import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect } from "effects";
 
 CONFIG.DeathEffects = {
   effects: {

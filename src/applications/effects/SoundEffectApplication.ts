@@ -2,7 +2,7 @@ import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, SoundDeathEffect } from "types";
 import { DefaultSoundEffect } from "settings";
 import { templatePath } from "functions";
-import { EffectRenderContext } from "./types";
+import { EffectRenderContext } from "../../effects/types";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
 type RenderContext = EffectRenderContext<SoundDeathEffect>;

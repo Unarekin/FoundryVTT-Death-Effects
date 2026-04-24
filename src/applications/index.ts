@@ -8,4 +8,5 @@ export * from './StandaloneConfig';
 export * from './StandaloneTokenConfig';
 export * from './TimelineEditor';
 export * from './TokenConfig';
+export * from './effects';
 export * from './types';
