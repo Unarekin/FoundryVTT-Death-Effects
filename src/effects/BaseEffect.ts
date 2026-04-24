@@ -21,7 +21,7 @@ export abstract class BaseDeathEffect<t extends DeathEffect> {
 
 
   public abstract execute(placeable: DeathPlaceable): Promise<void> | void;
-
+  public abstract teardown(placeable: DeathPlaceable): void | Promise<void>;
 
 
   constructor(public config?: t) { }

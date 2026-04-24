@@ -38,12 +38,15 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
         if (!def?.cls) throw new Error(`Unknown effect type: ${effect.type}`);
       }
 
+      const effects: BaseDeathEffect<DeathEffect>[] = [];
+
       // Run each effect in parallel
       await Promise.all(
         actualConfig.effects.map(async (effectConfig) => {
           const def = CONFIG.DeathEffects.effects[effectConfig.type];
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
           const effect = new (def as any).cls(effectConfig) as BaseDeathEffect<DeathEffect>;
+          effects.push(effect);
           if (effect.config?.start)
             await wait(effect.config.start);
 
@@ -58,6 +61,9 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
           await this.document.update({ alpha: 0 }, { animate: false });
         }
       }
+
+      for (const effect of effects)
+        await effect.teardown(this);
     }
   }
   return DeathPlaceable;
