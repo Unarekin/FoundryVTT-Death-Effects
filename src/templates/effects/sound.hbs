@@ -9,6 +9,8 @@
       <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.SOUND.HINT"}}</p>
     </div>
 
+    <audio controls src="{{sound}}" data-role="audio-preview" style="width:100%"></audio>
+
     <div class="form-group">
       <label for="{{@root.rootId}}-volume">{{localize "DEATH-EFFECTS.EFFECTS.SOUND.VOLUME.LABEL"}}</label>
       <range-picker id="{{@root.rootId}}" name="volume" min="0" max="100" step="1" value="{{volume}}"></range-picker>
