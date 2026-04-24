@@ -45,4 +45,9 @@ export class SoundEffect extends BaseDeathEffect<SoundDeathEffect> {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
+
 }

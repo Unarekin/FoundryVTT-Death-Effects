@@ -24,4 +24,9 @@ export class FadeEffect extends BaseDeathEffect<FadeDeathEffect> {
     await gsap.to(mesh, { alpha: 0, duration: config.duration / 1000, ease: "none" })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
+
 }

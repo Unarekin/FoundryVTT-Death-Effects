@@ -41,4 +41,9 @@ export class ShakeEffect extends BaseDeathEffect<ShakeDeathEffect> {
     tweens.forEach(tween => { tween.kill(); });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
+
 }

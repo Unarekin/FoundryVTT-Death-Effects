@@ -22,4 +22,9 @@ export class StopPlaylistEffect extends BaseDeathEffect<StopPlaylistDeathEffect>
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
+
 }

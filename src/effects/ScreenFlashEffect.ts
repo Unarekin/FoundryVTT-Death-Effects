@@ -58,4 +58,9 @@ export class ScreenFlashEffect extends BaseDeathEffect<ScreenFlashDeathEffect> {
     await wait(config.duration);
     sprite.destroy();
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
 }

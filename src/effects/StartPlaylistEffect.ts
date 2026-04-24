@@ -28,4 +28,9 @@ export class StartPlaylistEffect extends BaseDeathEffect<StopPlaylistDeathEffect
     else await playlist.playAll();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
+
 }

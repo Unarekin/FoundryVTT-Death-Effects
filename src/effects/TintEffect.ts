@@ -23,4 +23,9 @@ export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
     mesh.tint = new PIXI.Color(config.tint).toNumber();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public teardown(placeable: DeathPlaceable): void | Promise<void> {
+    // empty
+  }
+
 }
