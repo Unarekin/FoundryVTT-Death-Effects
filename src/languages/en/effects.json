@@ -19,37 +19,33 @@
           "LABEL": "Start"
         }
       },
-      "SCREENFLASH": {
-        "NAME": "Screen Flash",
-        "DESCRIPTION": "Flash the screen a given color",
-        "BACKGROUNDONLY": {
-          "LABEL": "Background Only",
-          "HINT": "When enabled, will only flash the background behind tokens/tiles/etc"
-        },
-        "COLOR": {
-          "LABEL": "Color",
-          "HINT": "The color to flash the screen"
-        }
-      },
       "FADE": {
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"
       },
-      "STARTPLAYLIST": {
-        "NAME": "Start Playlist",
-        "DESCRIPTION": "Start a given playlist",
-        "PLAYLIST": {
-          "LABEL": "Playlist",
-          "HINT": "The playlist to start"
+      "MACRO": {
+        "DESCRIPTION": "Execute a macro",
+        "GMONLY": {
+          "HINT": "If enabled, then only the GM will execute this macro.  Otherwise, ALL connected users will.",
+          "LABEL": "GM Only"
         },
-        "SOUND": {
-          "LABEL": "Sound",
-          "HINT": "(Optional) Sound on the above playlist to play"
-        }
+        "MACRO": {
+          "HINT": "The macro to execute",
+          "LABEL": "Macro"
+        },
+        "NAME": "Macro"
       },
-      "STOPPLAYLIST": {
-        "NAME": "Stop Playlist",
-        "DESCRIPTION": "Stop the current playlist"
+      "SCREENFLASH": {
+        "BACKGROUNDONLY": {
+          "HINT": "When enabled, will only flash the background behind tokens/tiles/etc",
+          "LABEL": "Background Only"
+        },
+        "COLOR": {
+          "HINT": "The color to flash the screen",
+          "LABEL": "Color"
+        },
+        "DESCRIPTION": "Flash the screen a given color",
+        "NAME": "Screen Flash"
       },
       "SHAKE": {
         "DESCRIPTION": "What it says on the tin. Shake the placeable.",
@@ -86,6 +82,22 @@
           "HINT": "The volume at which to play this sound",
           "LABEL": "Volume"
         }
+      },
+      "STARTPLAYLIST": {
+        "DESCRIPTION": "Start a given playlist",
+        "NAME": "Start Playlist",
+        "PLAYLIST": {
+          "HINT": "The playlist to start",
+          "LABEL": "Playlist"
+        },
+        "SOUND": {
+          "HINT": "(Optional) Sound on the above playlist to play",
+          "LABEL": "Sound"
+        }
+      },
+      "STOPPLAYLIST": {
+        "DESCRIPTION": "Stop the current playlist",
+        "NAME": "Stop Playlist"
       },
       "TINT": {
         "DESCRIPTION": "A simple efect to tint the placeable",

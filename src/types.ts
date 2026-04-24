@@ -21,7 +21,7 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
-export const EffectTypes = ["fade", "tint", "shake", "sound", "stopPlaylist", "startPlaylist", "screenFlash"] as const;
+export const EffectTypes = ["fade", "tint", "shake", "sound", "stopPlaylist", "startPlaylist", "screenFlash", "macro"] as const;
 export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
@@ -81,6 +81,12 @@ export type ScreenFlashDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
   color: string;
   backgroundOnly: boolean;
 });
+
+export interface MacroDeathEffect extends BaseDeathEffect {
+  type: "macro";
+  macro: `Macro.${string}`;
+  gmOnly: boolean;
+}
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect;
 

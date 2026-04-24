@@ -1,0 +1,18 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    
+    <div class="form-group">
+      <label for="{{@root.rootId}}-macro">{{localize "DEATH-EFFECTS.EFFECTS.MACRO.MACRO.LABEL"}}</label>
+      <document-picker type="macro" name="macro" id="{{@root.rootId}}-macro" value="{{macro}}" placeholder="{{localize "DEATH-EFFECTS.EFFECTS.MACRO.MACRO.LABEL"}}"></document-picker>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.MACRO.MACRO.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-gmOnly">{{localize "DEATH-EFFECTS.EFFECTS.MACRO.GMONLY.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-gmOnly" name="gmOnly" {{checked gmOnly}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.MACRO.GMONLY.HINT"}}</p>
+    </div>
+  {{/with}}
+</div>

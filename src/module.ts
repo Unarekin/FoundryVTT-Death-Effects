@@ -1,9 +1,10 @@
-import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, ScreenFlashEffect, ScreenFlashEffectApplication, ShakeEffect, ShakeEffectApplication, SoundEffect, SoundEffectApplication, StartPlaylistEffect, StartPlaylistEffectApplication, StopPlaylistEffect, StopPlaylistEffectApplication, TintEffect, TintEffectApplication } from "effects";
+import { BaseDeathEffect, BaseEffectApplication, FadeEffect, FadeEffectApplication, MacroEffect, MacroEffectApplication, ScreenFlashEffect, ScreenFlashEffectApplication, ShakeEffect, ShakeEffectApplication, SoundEffect, SoundEffectApplication, StartPlaylistEffect, StartPlaylistEffectApplication, StopPlaylistEffect, StopPlaylistEffectApplication, TintEffect, TintEffectApplication } from "effects";
 import "./hooks";
 import "./settings";
 import "./sockets";
 import "./helpers";
 import "./tokenHUD";
+import "./HTMLDocumentPickerElement";
 
 CONFIG.DeathEffects = {
   effects: {
@@ -34,6 +35,10 @@ CONFIG.DeathEffects = {
     screenFlash: {
       cls: ScreenFlashEffect as typeof BaseDeathEffect,
       app: ScreenFlashEffectApplication as typeof BaseEffectApplication
+    },
+    macro: {
+      cls: MacroEffect as typeof BaseDeathEffect,
+      app: MacroEffectApplication as typeof BaseEffectApplication
     }
   }
 }

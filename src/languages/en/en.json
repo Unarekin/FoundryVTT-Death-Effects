@@ -2,6 +2,11 @@
   "DEATH-EFFECTS": {
     "HUD": {
       "PLAY": "Play death effects"
+    },
+    "DOCUMENTPICKER": {
+      "PLACEHOLDER": "Document",
+      "TOOLTIP": "Select document",
+      "CLEARTOOLTIP": "Clear selection"
     }
   },
   "TOKEN": {
