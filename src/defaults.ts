@@ -1,4 +1,4 @@
-import { DeathEffectsConfig, FadeDeathEffect, MacroDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect } from "./types";
+import { DeathEffectsConfig, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect } from "./types";
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
   version: __MODULE_VERSION__,
@@ -104,3 +104,14 @@ export const DefaultScreenShakeEffect: ScreenShakeDeathEffect = Object.freeze({
   backgroundOnly: false,
   easing: "none"
 });
+
+export const DefaultFlashEffect: FlashDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "flash",
+  start: 0,
+  duration: 150,
+  color: "#FFFFFF",
+  replace: true
+})

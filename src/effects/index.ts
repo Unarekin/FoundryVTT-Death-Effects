@@ -1,5 +1,6 @@
 export * from './BaseEffect';
 export * from './FadeEffect';
+export * from './FlashEffect';
 export * from './MacroEffect';
 export * from './ScreenFlashEffect';
 export * from './ScreenShakeEffect';

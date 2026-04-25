@@ -26,9 +26,10 @@ export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
     mesh.tint = new PIXI.Color(config.tint).toNumber();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public teardown(placeable: DeathPlaceable): void | Promise<void> {
-    // empty
+    const mesh = placeable.getDeathSpriteObject();
+    if (!(mesh instanceof foundry.canvas.primary.PrimarySpriteMesh)) throw new Error(`No display object found`);
+    mesh.tint = new PIXI.Color("white").toNumber();
   }
 
 }

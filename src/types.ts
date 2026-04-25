@@ -21,7 +21,18 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
-export const EffectTypes = ["fade", "tint", "shake", "sound", "stopPlaylist", "startPlaylist", "screenFlash", "macro", "screenShake"] as const;
+export const EffectTypes = [
+  "fade",
+  "flash",
+  "macro",
+  "screenFlash",
+  "screenShake",
+  "shake",
+  "sound",
+  "startPlaylist",
+  "stopPlaylist",
+  "tint",
+] as const;
 export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
@@ -91,9 +102,14 @@ export interface MacroDeathEffect extends BaseDeathEffect {
 export type ScreenShakeDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
   strength: number;
   backgroundOnly: boolean;
+});
+
+export type FlashDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
+  color: PIXI.ColorSource;
+  replace: boolean;
 })
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect;
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];

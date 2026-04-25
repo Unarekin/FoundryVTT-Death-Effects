@@ -26,6 +26,17 @@ export abstract class BaseDeathEffect<t extends DeathEffect> {
   public abstract execute(placeable: DeathPlaceable): Promise<void> | void;
   public abstract teardown(placeable: DeathPlaceable): void | Promise<void>;
 
+  protected addFilter(mesh: PIXI.DisplayObject | foundry.canvas.primary.PrimarySpriteMesh, filter: PIXI.Filter) {
+    mesh.filters ??= [];
+    mesh.filters.push(filter);
+  }
+
+  protected removeFilter(mesh: PIXI.DisplayObject | foundry.canvas.primary.PrimarySpriteMesh, filter: PIXI.Filter) {
+    if (!Array.isArray(mesh.filters)) return;
+    const index = mesh.filters.indexOf(filter);
+    if (index !== -1) mesh.filters.splice(index, 1);
+    filter.destroy();
+  }
 
   constructor(public config?: t) { }
 }

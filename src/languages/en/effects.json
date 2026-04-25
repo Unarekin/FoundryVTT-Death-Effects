@@ -23,6 +23,18 @@
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"
       },
+      "FLASH": {
+        "COLOR": {
+          "HINT": "The color to flash the placeable",
+          "LABEL": "Color"
+        },
+        "DESCRIPTION": "Flashes the placeable a given color",
+        "NAME": "Flash",
+        "REPLACE": {
+          "HINT": "If enabled, will fully replace the colors of the placeable with this color",
+          "LABEL": "Replace Color"
+        }
+      },
       "MACRO": {
         "DESCRIPTION": "Execute a macro",
         "GMONLY": {
