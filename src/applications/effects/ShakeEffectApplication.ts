@@ -25,7 +25,7 @@ export class ShakeEffectApplication extends BaseEffectApplication<ShakeDeathEffe
         templatePath("effects/partials/label"),
         templatePath("effects/partials/start"),
         templatePath("effects/partials/duration"),
-        templatePath("effects/partials/duration")
+        templatePath("effects/partials/easing")
       ]
     },
     footer: {
