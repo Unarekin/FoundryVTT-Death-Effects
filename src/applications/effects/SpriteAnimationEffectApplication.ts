@@ -2,7 +2,6 @@ import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, SpriteAnimationDeathEffect } from "types";
 import { DefaultSpriteAnimationEffect } from "defaults";
 import { templatePath } from "functions";
-import { EffectRenderContext } from "./types";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
