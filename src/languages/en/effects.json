@@ -35,6 +35,14 @@
           "LABEL": "Start"
         }
       },
+      "DISSOLVE": {
+        "BLOCKSIZE": {
+          "HINT": "The size of blocks to dissolve",
+          "LABEL": "Block Size"
+        },
+        "DESCRIPTION": "Dissolve the placeable",
+        "NAME": "Dissolve"
+      },
       "FADE": {
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"

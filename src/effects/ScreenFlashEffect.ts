@@ -10,7 +10,7 @@ export class ScreenFlashEffect extends BaseDeathEffect<ScreenFlashDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.SCREENFLASH.DESCRIPTION";
   public readonly Description = ScreenFlashEffect.Description;
 
-  public static readonly Icon = "de-icon flash";
+  public static readonly Icon = "de-icon de-flash";
   public readonly Icon = ScreenFlashEffect.Icon;
 
   public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Screen Flash Preview.webm`;

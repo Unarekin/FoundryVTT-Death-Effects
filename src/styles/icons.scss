@@ -1,13 +1,13 @@
-@use "variables";
+@use "variables" as *;
 
 @font-face {
-  font-family: "#{variables.$icomoon-font-family}";
+  font-family: "#{$icomoon-font-family}";
   src:
-    url("#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.ttf?1jnt8b")
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?o0lgbc")
       format("truetype"),
-    url("#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.woff?1jnt8b")
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.woff?o0lgbc")
       format("woff"),
-    url("#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.svg?1jnt8b##{variables.$icomoon-font-family}")
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.svg?o0lgbc##{$icomoon-font-family}")
       format("svg");
   font-weight: normal;
   font-style: normal;
@@ -16,7 +16,7 @@
 
 .de-icon {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "#{variables.$icomoon-font-family}" !important;
+  font-family: "#{$icomoon-font-family}" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -27,35 +27,47 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  &.fade {
-    &:before {
-      content: variables.$de-fade;
-      color: #fff;
-    }
+.de-dust {
+  &:before {
+    content: $de-dust;
+    color: #fff;
   }
-  &.fire {
-    &:before {
-      content: variables.$de-fire;
-      color: #fff;
-    }
+}
+.de-dissolve {
+  &:before {
+    content: $de-dissolve;
+    color: #fff;
   }
-  &.flash {
-    &:before {
-      content: variables.$de-flash;
-      color: #fff;
-    }
+}
+.de-fade {
+  &:before {
+    content: $de-fade;
+    color: #fff;
   }
-  &.melt {
-    &:before {
-      content: variables.$de-melt;
-      color: #fff;
-    }
+}
+.de-fire {
+  &:before {
+    content: $de-fire;
+    color: #fff;
   }
-  &.sound {
-    &:before {
-      content: variables.$de-sound;
-      color: #fff;
-    }
+}
+.de-flash {
+  &:before {
+    content: $de-flash;
+    color: #fff;
+  }
+}
+.de-melt {
+  &:before {
+    content: $de-melt;
+    color: #fff;
+  }
+}
+.de-sound {
+  &:before {
+    content: $de-sound;
+    color: #fff;
   }
 }

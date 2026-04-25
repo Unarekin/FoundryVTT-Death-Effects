@@ -3,8 +3,10 @@
 $icomoon-font-family: "icons" !default;
 $icomoon-font-path: "../assets/fonts" !default;
 
-$de-fade: string.unquote('"\\e900"');
-$de-fire: string.unquote('"\\e901"');
-$de-flash: string.unquote('"\\e902"');
-$de-melt: string.unquote('"\\e903"');
-$de-sound: string.unquote('"\\e904"');
+$de-dust: "\e900";
+$de-dissolve: "\e901";
+$de-fade: "\e902";
+$de-fire: "\e903";
+$de-flash: "\e904";
+$de-melt: "\e905";
+$de-sound: "\e906";

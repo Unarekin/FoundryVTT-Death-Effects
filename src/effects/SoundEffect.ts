@@ -9,7 +9,7 @@ export class SoundEffect extends BaseDeathEffect<SoundDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.SOUND.DESCRIPTION";
   public readonly Description = SoundEffect.Description;
 
-  public static readonly Icon = "de-icon sound";
+  public static readonly Icon = "de-icon de-sound";
   public readonly Icon = SoundEffect.Icon;
 
   public static async getDuration(config: SoundDeathEffect): Promise<number> {

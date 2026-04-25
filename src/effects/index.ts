@@ -1,4 +1,5 @@
 export * from './BaseEffect';
+export * from './DissolveEffect';
 export * from './FadeEffect';
 export * from './FlashEffect';
 export * from './MacroEffect';

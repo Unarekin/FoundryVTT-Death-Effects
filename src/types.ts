@@ -26,6 +26,7 @@ export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 
 export const EffectTypes = [
+  "dissolve",
   "fade",
   "flash",
   "macro",
@@ -137,6 +138,11 @@ export type SlideDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDea
 
 export type MeltDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
   type: "melt"
+})
+
+export type DissolveDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "dissolve",
+  blockSize: number;
 })
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect;

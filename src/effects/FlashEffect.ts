@@ -10,7 +10,7 @@ export class FlashEffect extends BaseDeathEffect<FlashDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.FLASH.DESCRIPTION";
   public readonly Description = FlashEffect.Description;
 
-  public static readonly Icon = "de-icon flash";
+  public static readonly Icon = "de-icon de-flash";
   public readonly Icon = FlashEffect.Icon;
 
   public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Flash Preview.webm`;

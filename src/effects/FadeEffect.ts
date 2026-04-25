@@ -9,7 +9,7 @@ export class FadeEffect extends BaseDeathEffect<FadeDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.FADE.DESCRIPTION";
   public readonly Description = FadeEffect.Description;
 
-  public static readonly Icon = "de-icon fade";
+  public static readonly Icon = "de-icon de-fade";
   public readonly Icon = FadeEffect.Icon;
 
   public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Fade Preview.webm`;

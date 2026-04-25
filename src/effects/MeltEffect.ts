@@ -10,7 +10,7 @@ export class MeltEffect extends BaseDeathEffect<MeltDeathEffect> {
   public static readonly Description = "DEATH-EFFECTS.EFFECTS.MELT.DESCRIPTION";
   public readonly Description = MeltEffect.Description;
 
-  public static readonly Icon = "de-icon melt";
+  public static readonly Icon = "de-icon de-melt";
   public readonly Icon = MeltEffect.Icon;
 
   public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Melt Preview.webm`;

@@ -13,9 +13,9 @@ function createButton(option: SimpleSelectOption): string {
       ${option.tooltip ? ` data-tooltip="${option.tooltip}"` : ``}
       data-action="selectItem"
       data-key="${option.key}"
-      style="width:100%"
+      style="width:100%;position:relative;padding-left:20px;"
       >
-        ${option.icon ? `<i class="${option.icon}"></i>` : ``}
+        ${option.icon ? `<i class="${option.icon}" style="position:absolute;left:4px"></i>` : ``}
         ${game.i18n?.localize(option.label) ?? option.label}
     </button>
   `;
@@ -32,7 +32,7 @@ export async function simpleSelect<t = string>(options: SimpleSelectOption[], ti
       },
       content: [
         ...(text ? [game.i18n?.localize(text) ?? text] : []),
-        `<div style="column-count:2">`,
+        `<div style="column-count:3">`,
         ...options.map(createButton),
         `</div>`
       ].join("\n"),
