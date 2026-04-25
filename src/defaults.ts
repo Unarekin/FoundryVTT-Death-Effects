@@ -17,7 +17,9 @@ export const DefaultFadeEffect: FadeDeathEffect = Object.freeze({
   label: "",
   type: "fade",
   start: 0,
-  duration: 500
+  duration: 500,
+  easing: "none",
+  easingParams: ""
 });
 
 export const DefaultTintEffect: TintDeathEffect = Object.freeze({

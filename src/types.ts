@@ -61,7 +61,7 @@ export interface EasingDeathEffect {
   easingParams: string;
 }
 
-export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
+export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
   type: "fade";
 })
 
