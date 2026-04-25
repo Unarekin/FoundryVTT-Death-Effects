@@ -1,26 +1,27 @@
 <section>
-  <div class="form-group slim">
-    <label for="{{@root.rootId}}-easing">{{localize
-        "DEATH-EFFECTS.EFFECTS.COMMON.EASING.LABEL"
-      }}</label>
-    <div class="form-fields">
+  {{#with effect}}
+    <div class="form-group slim">
       <label for="{{@root.rootId}}-easing">{{localize
-          "DEATH-EFFECTS.EFFECTS.COMMON.EASING.FUNCTION"
+          "DEATH-EFFECTS.EFFECTS.COMMON.EASING.LABEL"
         }}</label>
-      <select id="{{@root.rootId}}-easing" name="easing">
-        {{selectOptions easingSelect selected=easing}}
-      </select>
-      <label for="{{@root.rootId}}-easingParams">{{localize
-          "DEATH-EFFECTS.EFFECTS.COMMON.EASING.PARAMETERS"
-        }}</label>
-      <input
-        type="text"
-        id="{{@root.rootId}}"
-        name="easingParams"
-        value="{{easingParams}}"
-      />
+      <div class="form-fields">
+        <label for="{{@root.rootId}}-easing">{{localize
+            "DEATH-EFFECTS.EFFECTS.COMMON.EASING.FUNCTION"
+          }}</label>
+        <select id="{{@root.rootId}}-easing" name="easing">
+          {{selectOptions ../easingSelect selected=easing}}
+        </select>
+        <label for="{{@root.rootId}}-easingParams">{{localize
+            "DEATH-EFFECTS.EFFECTS.COMMON.EASING.PARAMETERS"
+          }}</label>
+        <input
+          type="text"
+          id="{{@root.rootId}}"
+          name="easingParams"
+          value="{{easingParams}}"
+        />
+      </div>
     </div>
-  </div>
-  <p class="hint">{{{localize "DEATH-EFFECTS.EFFECTS.COMMON.EASING.HINT"}}}</p>
-
+    <p class="hint">{{{localize "DEATH-EFFECTS.EFFECTS.COMMON.EASING.HINT"}}}</p>
+  {{/with}}
 </section>
