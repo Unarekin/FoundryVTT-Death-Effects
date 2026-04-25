@@ -25,6 +25,7 @@ export class ScreenShakeEffectApplication extends BaseEffectApplication<ScreenSh
       templates: [
         templatePath("effects/partials/label"),
         templatePath("effects/partials/start"),
+        templatePath("effects/partials/duration"),
         templatePath("effects/partials/duration")
       ]
     },

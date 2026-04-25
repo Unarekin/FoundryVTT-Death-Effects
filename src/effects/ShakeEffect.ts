@@ -27,16 +27,18 @@ export class ShakeEffect extends BaseDeathEffect<ShakeDeathEffect> {
 
     const tweens: gsap.core.Tween[] = [];
 
+    const ease = `${config.easing}${config.easingParams ? `(${config.easingParams})` : ``}`
+
     if (config.horizontal) {
       tweens.push(
-        gsap.to(mesh, { x: `+=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease: config.easing ?? "none" }),
-        gsap.to(mesh, { x: `-=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease: config.easing ?? "none" })
+        gsap.to(mesh, { x: `+=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease }),
+        gsap.to(mesh, { x: `-=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease })
       );
     }
     if (config.vertical) {
       tweens.push(
-        gsap.to(mesh, { y: `+=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease: config.easing ?? "none" }),
-        gsap.to(mesh, { y: `-=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease: config.easing ?? "none" })
+        gsap.to(mesh, { y: `+=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease }),
+        gsap.to(mesh, { y: `-=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease })
       );
     }
 

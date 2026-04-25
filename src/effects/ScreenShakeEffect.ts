@@ -35,8 +35,9 @@ export class ScreenShakeEffect extends BaseDeathEffect<ScreenShakeDeathEffect> {
       meshes.push(mesh);
     }
 
+    const ease = `${config.easing}${config.easingParams ? `(${config.easingParams})` : ``}`
 
-    const tweens = meshes.map(mesh => gsap.to(mesh, { x: `+=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease: config.easing ?? "none" }));
+    const tweens = meshes.map(mesh => gsap.to(mesh, { x: `+=${config.strength}`, duration: .01, yoyo: true, repeat: -1, ease }));
 
     await wait(config.duration);
     tweens.forEach(tween => { tween.kill(); });
