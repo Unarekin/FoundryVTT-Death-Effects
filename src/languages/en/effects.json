@@ -63,6 +63,10 @@
         },
         "NAME": "Macro"
       },
+      "MELT": {
+        "DESCRIPTION": "Melt the placeable",
+        "NAME": "Melt"
+      },
       "SCREENFLASH": {
         "BACKGROUNDONLY": {
           "HINT": "When enabled, will only flash the background behind tokens/tiles/etc",

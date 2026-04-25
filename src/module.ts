@@ -4,8 +4,8 @@ import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
-import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication } from "applications";
-import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect } from "effects";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect } from "effects";
 
 CONFIG.DeathEffects = {
   effects: {
@@ -52,6 +52,10 @@ CONFIG.DeathEffects = {
     slide: {
       cls: SlideEffect as typeof BaseDeathEffect,
       app: SlideEffectApplication as typeof BaseEffectApplication
+    },
+    melt: {
+      cls: MeltEffect as typeof BaseDeathEffect,
+      app: MeltEffectApplication as typeof BaseEffectApplication
     }
   }
 }

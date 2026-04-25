@@ -29,6 +29,7 @@ export const EffectTypes = [
   "fade",
   "flash",
   "macro",
+  "melt",
   "screenFlash",
   "screenShake",
   "shake",
@@ -97,6 +98,7 @@ export interface StartPlaylistDeathEffect extends BaseDeathEffect {
 }
 
 export type ScreenFlashDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
+  type: "screenFlash";
   color: string;
   backgroundOnly: boolean;
 });
@@ -108,16 +110,19 @@ export interface MacroDeathEffect extends BaseDeathEffect {
 }
 
 export type ScreenShakeDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "screenShake";
   strength: number;
   backgroundOnly: boolean;
 });
 
 export type FlashDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
+  type: "flash";
   color: PIXI.ColorSource;
   replace: boolean;
 })
 
 export interface TokenMagicDeathEffect extends BaseDeathEffect {
+  type: "tokenMagic";
   tmfxParams: Record<string, unknown>[];
 }
 
@@ -125,11 +130,16 @@ export const SlideDirections = ["up", "down", "left", "right"] as const;
 export type SlideDirection = typeof SlideDirections[number];
 
 export type SlideDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "slide";
   direction: SlideDirection;
   distance: number;
 })
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect;
+export type MeltDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "melt"
+})
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];
