@@ -26,7 +26,8 @@ export const DefaultTintEffect: TintDeathEffect = Object.freeze({
   label: "",
   type: "tint",
   start: 0,
-  tint: 0xFFFFFF
+  tint: 0xFFFFFF,
+  replace: false
 });
 
 export const DefaultShakeEffect: ShakeDeathEffect = Object.freeze({

@@ -126,6 +126,10 @@
       "TINT": {
         "DESCRIPTION": "A simple efect to tint the placeable",
         "NAME": "Tint",
+        "REPLACE": {
+          "HINT": "If enabled, will fully replace the colors of the placeable with this color",
+          "LABEL": "Replace Color"
+        },
         "TINT": {
           "HINT": "The color to use to tint this placeable.  Use white to return it to its usual colors.",
           "LABEL": "Tint"

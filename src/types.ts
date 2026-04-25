@@ -67,6 +67,7 @@ export interface TintDeathEffect extends BaseDeathEffect {
   type: "tint";
   start: number;
   tint: PIXI.ColorSource;
+  replace: boolean;
 }
 
 export type ShakeDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
