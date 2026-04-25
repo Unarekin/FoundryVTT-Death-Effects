@@ -25,6 +25,17 @@
     min-height: 36px;
   }
 
+  .timeline-editor__outline-footer {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    justify-content: space-between;
+
+    & button {
+      flex-grow: 1;
+    }
+  }
+
   .timeline-editor__outline-items {
     overflow: auto;
     flex-grow: 1;

@@ -1,11 +1,16 @@
 {
   "DEATH-EFFECTS": {
     "TIMELINE": {
-      "TITLE": "Timeline Editor",
       "ADDEFFECT": {
         "LABEL": "Add Effect",
         "TOOLTIP": "Add an effect to the timeline"
-      }
+      },
+      "CLEAR": {
+        "LABEL": "Clear",
+        "TOOLTIP": "Clear all effects from timeline",
+        "CONFIRM": "Are you sure you want to clear all effects from this timeline?"
+      },
+      "TITLE": "Timeline Editor"
     }
   }
 }

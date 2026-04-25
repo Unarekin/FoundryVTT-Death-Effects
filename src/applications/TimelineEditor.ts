@@ -26,7 +26,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       cancel: TimelineEditor.Cancel,
       addEffect: TimelineEditor.AddEffect,
       editEffect: TimelineEditor.EditEffect,
-      removeEffect: TimelineEditor.RemoveEffect
+      removeEffect: TimelineEditor.RemoveEffect,
+      clear: TimelineEditor.Clear
     }
   }
 
@@ -51,6 +52,20 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
   static async Cancel(this: TimelineEditor) {
     await this.close();
+  }
+
+  static async Clear(this: TimelineEditor) {
+    try {
+      const confirmed = await foundry.applications.api.DialogV2.confirm({
+        content: game.i18n?.localize("DEATH-EFFECTS.TIMELINE.CLEAR.CONFIRM")
+      }) as boolean;
+      if (!confirmed) return;
+      this.effects = [];
+      await this.render();
+    } catch (err) {
+      console.error(err);
+      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+    }
   }
 
   static async RemoveEffect(this: TimelineEditor, e: Event, elem: HTMLElement) {
