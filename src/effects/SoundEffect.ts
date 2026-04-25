@@ -37,7 +37,6 @@ export class SoundEffect extends BaseDeathEffect<SoundDeathEffect> {
 
     if (config.playAtLocation) {
       const sound = new foundry.audio.Sound(config.sound);
-      // TODO: Implement radius
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       (sound as any).playAtPosition({ x: placeable.x, y: placeable.y }, 3, { volume: config.volume })
     } else {

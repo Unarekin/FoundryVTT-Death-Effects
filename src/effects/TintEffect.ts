@@ -1,7 +1,6 @@
-import { DefaultFadeEffect } from "defaults";
+import { DefaultTintEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, TintDeathEffect } from "types";
-import { wait } from "functions";
 
 export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
   public static readonly Name = "DEATH-EFFECTS.EFFECTS.TINT.NAME";
@@ -16,28 +15,26 @@ export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
   public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Tint Preview.webm`;
   public readonly Preview = TintEffect.Preview;
 
-  public async execute(placeable: DeathPlaceable): Promise<void> {
+  protected _filters: PIXI.Filter[] = [];
+
+  public execute(placeable: DeathPlaceable) {
     const config = foundry.utils.mergeObject(
-      foundry.utils.deepClone(DefaultFadeEffect),
+      foundry.utils.deepClone(DefaultTintEffect),
       this.config
     );
+
 
     const mesh = placeable.getDeathSpriteObject();
     if (!(mesh instanceof foundry.canvas.primary.PrimarySpriteMesh)) throw new Error(`No display object found for ${config.id}`);
 
     if (!config.replace) {
-      mesh.tint = new PIXI.Color(config.tint).toNumber();
-      await wait(config.duration);
-      mesh.tint = new PIXI.Color("white").toNumber();
+      mesh.tint = new PIXI.Color(config.tint as PIXI.ColorSource).toNumber();
     } else {
-
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       const tintFilter = new (PIXI.filters as any).ColorOverlayFilter() as PIXI.Filter;
-      (tintFilter as unknown as Record<string, unknown>).color = new PIXI.Color(config.tint).toRgbArray();
-
+      (tintFilter as unknown as Record<string, unknown>).color = new PIXI.Color(config.tint as PIXI.ColorSource).toRgbArray();
+      this._filters.push(tintFilter);
       this.addFilter(mesh, tintFilter);
-      await wait(config.duration);
-      this.removeFilter(mesh, tintFilter);
     }
   }
 
@@ -45,6 +42,8 @@ export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
     const mesh = placeable.getDeathSpriteObject();
     if (!(mesh instanceof foundry.canvas.primary.PrimarySpriteMesh)) throw new Error(`No display object found`);
     mesh.tint = new PIXI.Color("white").toNumber();
+    this._filters.forEach(filter => { this.removeFilter(mesh, filter); })
+    this._filters = [];
   }
 
 }

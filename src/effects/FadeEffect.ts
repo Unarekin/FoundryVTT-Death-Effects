@@ -25,7 +25,6 @@ export class FadeEffect extends BaseDeathEffect<FadeDeathEffect> {
     if (!mesh) throw new Error(`No display object found for ${config.id}`);
 
     const ease = `${config.easing}${config.easingParams ? `(${config.easingParams})` : ``}`
-
     await gsap.to(mesh, { alpha: 0, duration: config.duration / 1000, ease })
   }
 
