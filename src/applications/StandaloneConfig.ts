@@ -172,7 +172,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
   protected async _exportEffectToBrowse() {
     const path = (await new Promise(resolve => { void new foundry.applications.apps.FilePicker.implementation({ type: "folder", callback: resolve }).browse() }));
     if (typeof path !== "string") return;
-    const file = new File([JSON.stringify(this.configCache)], `${this._exportFileName()}.json`, { type: "application/json" });
+    const file = new File([JSON.stringify(this.configCache)], `${this._exportFileName()}`, { type: "application/json" });
     await foundry.applications.apps.FilePicker.implementation.upload("data", path, file);
   }
 
