@@ -27,6 +27,7 @@ export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export const EffectTypes = [
   "dissolve",
+  "dust",
   "fade",
   "flash",
   "macro",
@@ -145,7 +146,11 @@ export type DissolveDeathEffect = BaseDeathEffect & DurationDeathEffect & Easing
   blockSize: number;
 })
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect;
+export type DustDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  direction: [number, number];
+});
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];

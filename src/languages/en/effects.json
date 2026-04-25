@@ -43,6 +43,16 @@
         "DESCRIPTION": "Dissolve the placeable",
         "NAME": "Dissolve"
       },
+      "DUST": {
+        "DESCRIPTION": "Dissolves the placeable to dust",
+        "DIRECTION": {
+          "HINT": "The direction to animate the placeable collapsing",
+          "LABEL": "Direction",
+          "X": "X",
+          "Y": "Y"
+        },
+        "NAME": "Dust"
+      },
       "FADE": {
         "DESCRIPTION": "A simple fade-out effect",
         "NAME": "Fade"

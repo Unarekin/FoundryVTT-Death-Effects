@@ -13,12 +13,6 @@ export class DissolveFilter extends CustomFilter<DissolveUniforms> {
   constructor(blockSize: number, texture: PIXI.Texture) {
     const pixel_size: [number, number] = [1 / texture.width, 1 / texture.height];
 
-    console.log("Uniforms:", {
-      progress: 0,
-      block_size: blockSize,
-      pixel_size
-    });
-
     super(undefined, frag, {
       progress: 0,
       block_size: blockSize,

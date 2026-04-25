@@ -1,4 +1,4 @@
-import { DeathEffectsConfig, DissolveDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+import { DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
   version: __MODULE_VERSION__,
@@ -165,3 +165,15 @@ export const DefaultDissolveEffect: DissolveDeathEffect = Object.freeze({
   easingParams: "",
   blockSize: 1
 });
+
+export const DefaultDustEffect: DustDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "dust",
+  start: 0,
+  duration: 1000,
+  easing: "none",
+  easingParams: "",
+  direction: [-0.5, 0] as [number, number]
+})

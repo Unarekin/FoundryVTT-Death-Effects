@@ -4,8 +4,8 @@ import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
-import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication } from "applications";
-import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect } from "effects";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect } from "effects";
 
 CONFIG.DeathEffects = {
   effects: {
@@ -60,6 +60,10 @@ CONFIG.DeathEffects = {
     dissolve: {
       cls: DissolveEffect as typeof BaseDeathEffect,
       app: DissolveEffectApplication as typeof BaseEffectApplication
+    },
+    dust: {
+      cls: DustEffect as typeof BaseDeathEffect,
+      app: DustEffectApplication as typeof BaseEffectApplication
     }
   }
 }
