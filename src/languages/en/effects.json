@@ -35,6 +35,18 @@
           "LABEL": "Start"
         }
       },
+      "CRUMBLE": {
+        "DESCRIPTION": "Cause the placeable to crumble into individual pixels",
+        "DIRECTION": {
+          "HINT": "The direction the placeable will crumble",
+          "LABEL": "Direction"
+        },
+        "FLOATDISTANCE": {
+          "HINT": "How far pixels will float away before dissolving",
+          "LABEL": "Float Distance"
+        },
+        "NAME": "Crumble"
+      },
       "DISSOLVE": {
         "BLOCKSIZE": {
           "HINT": "The size of blocks to dissolve",

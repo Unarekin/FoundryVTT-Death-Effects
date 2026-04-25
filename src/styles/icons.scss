@@ -27,47 +27,53 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-.de-dust {
-  &:before {
-    content: $de-dust;
-    color: #fff;
+  &.de-crumble {
+    &:before {
+      content: $de-crumble;
+      color: #fff;
+    }
   }
-}
-.de-dissolve {
-  &:before {
-    content: $de-dissolve;
-    color: #fff;
+  &.de-dust {
+    &:before {
+      content: $de-dust;
+      color: #fff;
+    }
   }
-}
-.de-fade {
-  &:before {
-    content: $de-fade;
-    color: #fff;
+  &.de-dissolve {
+    &:before {
+      content: $de-dissolve;
+      color: #fff;
+    }
   }
-}
-.de-fire {
-  &:before {
-    content: $de-fire;
-    color: #fff;
+  &.de-fade {
+    &:before {
+      content: $de-fade;
+      color: #fff;
+    }
   }
-}
-.de-flash {
-  &:before {
-    content: $de-flash;
-    color: #fff;
+  &.de-fire {
+    &:before {
+      content: $de-fire;
+      color: #fff;
+    }
   }
-}
-.de-melt {
-  &:before {
-    content: $de-melt;
-    color: #fff;
+  &.de-flash {
+    &:before {
+      content: $de-flash;
+      color: #fff;
+    }
   }
-}
-.de-sound {
-  &:before {
-    content: $de-sound;
-    color: #fff;
+  &.de-melt {
+    &:before {
+      content: $de-melt;
+      color: #fff;
+    }
+  }
+  &.de-sound {
+    &:before {
+      content: $de-sound;
+      color: #fff;
+    }
   }
 }

@@ -1,4 +1,5 @@
 export * from './BaseEffectApplication';
+export * from './CrumbleEffectApplication';
 export * from './DissolveEffectApplication';
 export * from './DustEffectApplication';
 export * from './FadeEffectApplication';
