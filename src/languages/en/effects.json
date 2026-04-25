@@ -47,6 +47,18 @@
         "DESCRIPTION": "Flash the screen a given color",
         "NAME": "Screen Flash"
       },
+      "SCREENSHAKE": {
+        "BACKGROUNDONLY": {
+          "HINT": "Only shake the background",
+          "LABEL": "Background Only"
+        },
+        "DESCRIPTION": "Shake the screen",
+        "NAME": "Screen Shake",
+        "STRENGTH": {
+          "HINT": "The strength of shake",
+          "LABEL": "Strength"
+        }
+      },
       "SHAKE": {
         "DESCRIPTION": "What it says on the tin. Shake the placeable.",
         "HORIZONTAL": {

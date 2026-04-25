@@ -9,6 +9,9 @@ export abstract class BaseDeathEffect<t extends DeathEffect> {
   public abstract get Description(): string;
   public abstract get Icon(): string;
 
+  public static readonly Preview: string = "";
+  public readonly Preview = BaseDeathEffect.Preview;
+
   public static canEditDuration(config: DeathEffect): boolean {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return typeof (config as any)?.duration === "number";
@@ -26,3 +29,5 @@ export abstract class BaseDeathEffect<t extends DeathEffect> {
 
   constructor(public config?: t) { }
 }
+
+

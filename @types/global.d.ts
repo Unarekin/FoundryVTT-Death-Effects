@@ -1,5 +1,6 @@
 import { ConfigSource, DeathEffectsConfig, EffectType } from "types";
-import { BaseDeathEffect, BaseEffectApplication } from "effects"
+import { BaseDeathEffect } from "effects"
+import { BaseEffectApplication } from "applications";
 import * as gsapType from "gsap";
 import * as timelineModuleType from "animation-timeline-js"
 

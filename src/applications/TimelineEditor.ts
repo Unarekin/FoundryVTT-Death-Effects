@@ -96,12 +96,50 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     }
   }
 
+  protected _generateTooltipFromFile(name: string, description: string, icon: string, file?: string): string {
+    const tooltip = document.createElement("div");
+    tooltip.classList.add("toolclip", "themed", "theme-dark");
+
+    if (file) {
+      const isVideo = foundry.helpers.media.VideoHelper.hasVideoExtension(file);
+      if (isVideo) {
+        const vid = document.createElement("video");
+        vid.style.height = "auto";
+        vid.autoplay = true;
+        vid.loop = true;
+        vid.muted = true;
+        const src = document.createElement("source");
+        src.src = file;
+        vid.appendChild(src);
+        tooltip.appendChild(vid);
+      } else {
+        const img = document.createElement("img");
+        img.src = file;
+        tooltip.appendChild(img);
+      }
+    }
+
+    const title = document.createElement("h4");
+    const iconElem = document.createElement("i");
+    iconElem.classList.add(...icon.split(" "));
+    iconElem.style.float = "left";
+    title.appendChild(iconElem);
+    title.innerHTML += game.i18n?.localize(name) ?? name;
+    tooltip.appendChild(title);
+
+    const desc = document.createElement("p");
+    desc.innerText = game.i18n?.localize(description) ?? description;
+    tooltip.appendChild(desc);
+
+    return tooltip.outerHTML.replaceAll("\"", "'");
+  }
+
   static async AddEffect(this: TimelineEditor) {
     try {
       const selectOptions = Object.entries(CONFIG.DeathEffects.effects).map(([key, val]) => ({
         key,
         label: val.cls.Name,
-        tooltip: val.cls.Description,
+        tooltip: this._generateTooltipFromFile(val.cls.Name, val.cls.Description, val.cls.Icon, val.cls.Preview),
         icon: val.cls.Icon
       })).sort((a, b) => a.label.localeCompare(b.label));
       const key = await simpleSelect<EffectType>(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");

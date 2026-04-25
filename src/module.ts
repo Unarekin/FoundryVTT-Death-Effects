@@ -4,8 +4,8 @@ import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
-import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication } from "applications";
-import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect } from "effects";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect } from "effects";
 
 CONFIG.DeathEffects = {
   effects: {
@@ -40,6 +40,10 @@ CONFIG.DeathEffects = {
     macro: {
       cls: MacroEffect as typeof BaseDeathEffect,
       app: MacroEffectApplication as typeof BaseEffectApplication
+    },
+    screenShake: {
+      cls: ScreenShakeEffect as typeof BaseDeathEffect,
+      app: ScreenShakeEffectApplication as typeof BaseEffectApplication
     }
   }
 }
