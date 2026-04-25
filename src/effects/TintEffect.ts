@@ -12,6 +12,9 @@ export class TintEffect extends BaseDeathEffect<TintDeathEffect> {
   public static readonly Icon = "fa-solid fa-brush";
   public readonly Icon = TintEffect.Icon;
 
+  public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Tint Preview.webm`;
+  public readonly Preview = TintEffect.Preview;
+
   public execute(placeable: DeathPlaceable): void {
     const config = foundry.utils.mergeObject(
       foundry.utils.deepClone(DefaultFadeEffect),

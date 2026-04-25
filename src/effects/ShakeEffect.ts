@@ -13,6 +13,9 @@ export class ShakeEffect extends BaseDeathEffect<ShakeDeathEffect> {
   public static readonly Icon = "fa-solid fa-arrow-right-arrow-left";
   public readonly Icon = ShakeEffect.Icon;
 
+  public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Shake Preview.webm`;
+  public readonly Preview = ShakeEffect.Preview;
+
   public async execute(placeable: DeathPlaceable) {
     const config = foundry.utils.mergeObject(
       foundry.utils.deepClone(DefaultShakeEffect),

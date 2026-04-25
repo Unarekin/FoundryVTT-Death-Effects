@@ -12,6 +12,9 @@ export class FadeEffect extends BaseDeathEffect<FadeDeathEffect> {
   public static readonly Icon = "de-icon fade";
   public readonly Icon = FadeEffect.Icon;
 
+  public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Fade Preview.webm`;
+  public readonly Preview = FadeEffect.Preview;
+
   public async execute(placeable: DeathPlaceable): Promise<void> {
     const config = foundry.utils.mergeObject(
       foundry.utils.deepClone(DefaultFadeEffect),

@@ -13,6 +13,9 @@ export class ScreenFlashEffect extends BaseDeathEffect<ScreenFlashDeathEffect> {
   public static readonly Icon = "de-icon flash";
   public readonly Icon = ScreenFlashEffect.Icon;
 
+  public static readonly Preview: string = `modules/${__MODULE_ID__}/assets/previews/Screen Flash Preview.webm`;
+  public readonly Preview = ScreenFlashEffect.Preview;
+
   public async execute(placeable: DeathPlaceable): Promise<void> {
     if (!canvas?.stage || !canvas?.scene || !canvas?.primary) return;
 
