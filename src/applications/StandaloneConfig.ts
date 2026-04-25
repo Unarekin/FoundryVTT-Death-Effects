@@ -4,6 +4,7 @@ import { DeathEffectsConfig, DeepPartial } from "types";
 import { StandaloneConfigContext } from "./types";
 import { DefaultDeathEffectsConfig } from "defaults";
 import { TimelineEditor } from "./TimelineEditor";
+import { simpleSelect, SimpleSelectOption } from "./SimpleSelect";
 
 
 
@@ -176,6 +177,28 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     await foundry.applications.apps.FilePicker.implementation.upload("data", path, file);
   }
 
+  protected async _importPreset() {
+    try {
+      const presets: SimpleSelectOption[] = Object.entries(CONFIG.DeathEffects.presets).map(([key, value]) => ({
+        key,
+        label: value.name,
+        tooltip: `<div class='toolclip themed theme-dark'>${value.preview ? `<video style='height:auto' autoplay loop muted><source src='${value.preview}'>` : ``}</video><h4>${game.i18n?.localize(value.name) ?? value.name}</h4><p>${game.i18n?.localize(value.description) ?? value.description}</p></div>`.replaceAll("\"", "'")
+      }));
+      const selection = await simpleSelect(presets, "DEATH-EFFECTS.PRESETS.TITLE", "DEATH-EFFECTS.PRESETS.DESCRIPTION");
+      if (!selection) return;
+
+      const config = CONFIG.DeathEffects.presets[selection]?.config;
+
+      if (!config) return;
+      this.configCache = foundry.utils.deepClone(DefaultDeathEffectsConfig);
+      foundry.utils.mergeObject(this.configCache, foundry.utils.deepClone(config));
+      await this.render();
+    } catch (err) {
+      console.error(err);
+      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
+    }
+  }
+
   // #endregion
 
   protected _getDeathEffectImportContextItems(): foundry.applications.ux.ContextMenu.Entry<HTMLElement>[] {
@@ -197,6 +220,11 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
         icon: `<i class="fa-solid fa-folder-tree"></i>`,
         callback: () => { void this._handleEffectImport(this._importEffectFromBrowse); },
         condition: () => game.user?.hasPermission("FILES_BROWSE") ?? false
+      },
+      {
+        name: "DEATH-EFFECTS.CONFIG.IMPORT.PRESET",
+        icon: `<i class="fa-solid fa-skull"></i>`,
+        callback: () => { void this._importPreset(); }
       }
     ]
   }

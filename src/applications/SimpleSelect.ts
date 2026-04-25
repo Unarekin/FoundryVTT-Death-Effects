@@ -1,4 +1,4 @@
-interface SimpleSelectOption {
+export interface SimpleSelectOption {
   key: string;
   label: string;
   icon?: string;
@@ -13,7 +13,7 @@ function createButton(option: SimpleSelectOption): string {
       ${option.tooltip ? ` data-tooltip="${option.tooltip}"` : ``}
       data-action="selectItem"
       data-key="${option.key}"
-      style="width:100%;position:relative;padding-left:20px;"
+      style="width:100%;position:relative;${option.icon ? `padding-left:20px` : ``};"
       >
         ${option.icon ? `<i class="${option.icon}" style="position:absolute;left:4px"></i>` : ``}
         ${game.i18n?.localize(option.label) ?? option.label}

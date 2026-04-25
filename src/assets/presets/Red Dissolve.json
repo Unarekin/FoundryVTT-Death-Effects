@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "autoHide": false,
+  "effects": [
+    {
+      "id": "99oNXruajauAGwaQ",
+      "version": "1.0.0",
+      "label": "",
+      "type": "tint",
+      "start": 0,
+      "tint": "red",
+      "replace": false
+    },
+    {
+      "id": "lRF6iaOb8020WRR0",
+      "version": "1.0.0",
+      "label": "",
+      "type": "dissolve",
+      "start": 500,
+      "duration": 1000,
+      "easing": "none",
+      "easingParams": "",
+      "blockSize": 1
+    }
+  ]
+}

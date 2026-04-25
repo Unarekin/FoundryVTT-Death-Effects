@@ -6,8 +6,32 @@ import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
 import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication } from "applications";
 import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect } from "effects";
+import { DeathEffectsConfig } from "types";
+import finalBoss from "./assets/presets/Final Boss.json";
+import purpleDust from "./assets/presets/Purple Dust.json";
+import redDissolve from "./assets/presets/Red Dissolve.json"
 
 CONFIG.DeathEffects = {
+  presets: {
+    finalBoss: {
+      name: "DEATH-EFFECTS.PRESETS.FINALBOSS.NAME",
+      description: "DEATH-EFFECTS.PRESETS.FINALBOSS.DESCRIPTION",
+      preview: `modules/${__MODULE_ID__}/assets/previews/Final Boss Preset Preview.webm`,
+      config: finalBoss as DeathEffectsConfig
+    },
+    purpleDust: {
+      name: "DEATH-EFFECTS.PRESETS.PURPLEDUST.NAME",
+      description: "DEATH-EFFECTS.PRESETS.PURPLEDUST.DESCRIPTION",
+      preview: `modules/${__MODULE_ID__}/assets/previews/Purple Dust Preset Preview.webm`,
+      config: purpleDust as DeathEffectsConfig
+    },
+    redDissolve: {
+      name: "DEATH-EFFECTS.PRESETS.REDDISSOLVE.NAME",
+      description: "DEATH-EFFECTS.PRESETS.REDDISSOLVE.DESCRIPTION",
+      preview: `modules/${__MODULE_ID__}/assets/previews/Red Dissolve Preset Preview.webm`,
+      config: redDissolve as DeathEffectsConfig
+    }
+  },
   effects: {
     fade: {
       cls: FadeEffect as typeof BaseDeathEffect,

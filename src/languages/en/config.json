@@ -2,27 +2,12 @@
   "DEATH-EFFECTS": {
     "CONFIG": {
       "ACTORTYPE": {
-        "TITLE": "Actor Type",
-        "DESCRIPTION": "Configure death effect settings for type:"
+        "DESCRIPTION": "Configure death effect settings for type:",
+        "TITLE": "Actor Type"
       },
-      "TITLE": "Death Effects",
       "AUTOHIDE": {
         "HINT": "Automatically hide the token after the death effects finish.",
         "LABEL": "Auto-Hide"
-      },
-      "IMPORT": {
-        "LABEL": "Import Effects",
-        "CLIPBOARD": "Paste From Clipboard",
-        "UPLOAD": "Upload JSON",
-        "BROWSE": "File Browser",
-        "PASTED": "Configuration read from clipboard"
-      },
-      "EXPORT": {
-        "LABEL": "Export Effects",
-        "CLIPBOARD": "Copy To Clipboard",
-        "DOWNLOAD": "Download JSON",
-        "BROWSE": "Save To Server",
-        "COPIED": "Configuration copied to clipboard"
       },
       "AUTOTRANSPARENT": {
         "HINT": "Automatically set the token's opacity to 0 after the death effects finish.",
@@ -36,6 +21,21 @@
         "HINT": "Toggle on to automatically run death effects when actor is taken out.",
         "LABEL": "Enable Death Effects"
       },
+      "EXPORT": {
+        "BROWSE": "Save To Server",
+        "CLIPBOARD": "Copy To Clipboard",
+        "COPIED": "Configuration copied to clipboard",
+        "DOWNLOAD": "Download JSON",
+        "LABEL": "Export Effects"
+      },
+      "IMPORT": {
+        "BROWSE": "File Browser",
+        "CLIPBOARD": "Paste From Clipboard",
+        "LABEL": "Import Effects",
+        "PASTED": "Configuration read from clipboard",
+        "PRESET": "Import Preset",
+        "UPLOAD": "Upload JSON"
+      },
       "REMOVEEFFECT": {
         "MESSAGE": "Are you sure you wish to remove this effect?",
         "TITLE": "Remove Effect"
@@ -48,6 +48,7 @@
         "TOKEN": "Token",
         "TYPE": "Actor Type ({type})"
       },
+      "TITLE": "Death Effects",
       "TOOLTIPS": {
         "EDITEFFECT": "Edit Effect",
         "REMOVEEFFECT": "Remove Effect"

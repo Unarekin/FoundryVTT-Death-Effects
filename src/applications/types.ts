@@ -1,4 +1,4 @@
-import { AutoTriggerCondition, ConfigSource, DeathEffect, DeathEffectsConfig } from "types";
+import { AutoTriggerCondition, ConfigSource, DeathEffect, DeathEffectsConfig, PresetDefinition } from "types";
 
 export type DeathEffectContext = DeathEffect & ({
   actualLabel: string;
@@ -34,4 +34,8 @@ export interface PlaceableConfigContext<t extends foundry.abstract.Document.Any>
 export interface ActorTypeSelectionContext extends foundry.applications.api.ApplicationV2.RenderContext {
   types: { value: string, label: string }[];
   buttons: foundry.applications.api.ApplicationV2.FormFooterButton[];
+}
+
+export interface PresetSelectionContext extends foundry.applications.api.ApplicationV2.RenderContext {
+  presets: Record<string, PresetDefinition>;
 }

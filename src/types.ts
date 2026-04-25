@@ -194,7 +194,7 @@ interface ActiveEffectTriggerConfig extends BaseDeathEffectsConfig {
   activeEffect: string;
 }
 
-export type DeathEffectsConfig = StatusTriggerConfig | ResourceTriggerConfig | ActiveEffectTriggerConfig;
+export type DeathEffectsConfig = BaseDeathEffectsConfig | StatusTriggerConfig | ResourceTriggerConfig | ActiveEffectTriggerConfig;
 
 export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObject {
   getDeathSpriteObject(): PIXI.DisplayObject | undefined;
@@ -205,6 +205,13 @@ export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObjec
   checkAutoTriggerActiveEffect(effect: ActiveEffect): void;
   // checkAutoTriggerStatus
   // checkAutoTriggerActiveEffect
+}
+
+export interface PresetDefinition {
+  name: string;
+  description: string;
+  preview?: string;
+  config: DeathEffectsConfig;
 }
 
 

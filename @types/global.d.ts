@@ -1,4 +1,4 @@
-import { ConfigSource, DeathEffectsConfig, EffectType, PartialBy } from "types";
+import { ConfigSource, DeathEffectsConfig, EffectType, PartialBy, PresetDefinition } from "types";
 import { BaseDeathEffect } from "effects"
 import { BaseEffectApplication } from "applications";
 import * as gsapType from "gsap";
@@ -30,6 +30,7 @@ declare global {
 
   interface CONFIG {
     DeathEffects: {
+      presets: Record<string, PresetDefinition>;
       effects: PartialBy<Record<EffectType, {
         app: typeof BaseEffectApplication,
         cls: typeof BaseDeathEffect
