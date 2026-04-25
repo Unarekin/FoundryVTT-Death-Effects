@@ -32,6 +32,7 @@ export const EffectTypes = [
   "screenFlash",
   "screenShake",
   "shake",
+  "slide",
   "sound",
   "startPlaylist",
   "stopPlaylist",
@@ -57,6 +58,7 @@ export interface DurationDeathEffect {
 
 export interface EasingDeathEffect {
   easing: gsap.EaseString;
+  easingParams: string;
 }
 
 export type FadeDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
@@ -119,7 +121,15 @@ export interface TokenMagicDeathEffect extends BaseDeathEffect {
   tmfxParams: Record<string, unknown>[];
 }
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect;
+export const SlideDirections = ["up", "down", "left", "right"] as const;
+export type SlideDirection = typeof SlideDirections[number];
+
+export type SlideDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  direction: SlideDirection;
+  distance: number;
+})
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];

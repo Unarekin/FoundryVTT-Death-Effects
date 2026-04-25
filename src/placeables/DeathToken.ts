@@ -54,7 +54,6 @@ export function TokenMixin(base: Constructor) {
 
       //public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
       const config = this.deathEffectsConfig;
-      console.log("Config:", config);
       if (config.enabled && config.autoTriggerCondition === "resource" && config.resource) {
         let actualPath = "";
         if (this.actor && CONFIG.Actor.trackableAttributes[this.actor.type]?.bar.includes(config.resource)) {
@@ -66,8 +65,6 @@ export function TokenMixin(base: Constructor) {
         } else {
           actualPath = `system.${config.resource}`;
         }
-
-        console.log("Actual resource path:", actualPath);
 
         if (actualPath) {
           // const actualPath = config.resource.startsWith("system.") ? config.resource : `system.${config.resource}.value`;

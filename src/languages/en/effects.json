@@ -6,9 +6,25 @@
           "TEXT": "Select an effect type below.",
           "TITLE": "Add Effect"
         },
+        "DIRECTION": {
+          "DOWN": "Down",
+          "LEFT": "Left",
+          "RIGHT": "Right",
+          "UP": "Up"
+        },
         "DURATION": {
           "HINT": "How long this effect should last, in milliseconds",
           "LABEL": "Duration"
+        },
+        "EASING": {
+          "FUNCTION": "Function",
+          "HINT": "An easing function to use when animating this effect.<br>See: <a href='https://gsap.com/docs/v3/Eases/'>GSAP documentation</a>",
+          "LABEL": "Easing",
+          "PARAMETERS": "Params"
+        },
+        "EASINGPARAMS": {
+          "HINT": "A set of parameters to pass to the easing function.",
+          "LABEL": "Easing Parameters"
         },
         "LABEL": {
           "HINT": "A friendly name by which to list this effect",
@@ -86,6 +102,18 @@
           "HINT": "Shake the placeable vertically",
           "LABEL": "Vertical"
         }
+      },
+      "SLIDE": {
+        "DESCRIPTION": "Slides the placeable's sprite in some direction",
+        "DIRECTION": {
+          "HINT": "The direction to slide the placeable",
+          "LABEL": "Direction"
+        },
+        "DISTANCE": {
+          "HINT": "Distance in pixels to slide the placeable",
+          "LABEL": "Distance"
+        },
+        "NAME": "Slide"
       },
       "SOUND": {
         "DESCRIPTION": "Play a sound",

@@ -5,6 +5,7 @@ export * from './MacroEffect';
 export * from './ScreenFlashEffect';
 export * from './ScreenShakeEffect';
 export * from './ShakeEffect';
+export * from './SlideEffect';
 export * from './SoundEffect';
 export * from './StartPlaylistEffect';
 export * from './StopPlaylistEffect';

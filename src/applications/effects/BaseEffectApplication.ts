@@ -85,10 +85,29 @@ export abstract class BaseEffectApplication<t extends DeathEffect> extends found
     context.effect = foundry.utils.deepClone(this.config);
     context.rootId = context.effect.id;
 
+    context.easingSelect = Object.fromEntries(
+      [
+        "none",
+        ...[
+          "power1",
+          "power2",
+          "power3",
+          "power4",
+          "back",
+          "bounce",
+          "circ",
+          "elastic",
+          "expo",
+          "sine"
+        ].flatMap(ease => [`${ease}.in`, `${ease}.out`, `${ease}.inOut`])
+      ].map(ease => [ease, ease])
+    );
+
     context.buttons = [
       { type: "button", action: "cancel", label: "Cancel", icon: "fa-solid fa-times" },
       { type: "submit", label: "Save", icon: "fa-solid fa-save" }
     ]
+
 
     return context;
   }

@@ -53,7 +53,6 @@ export class SoundEffectApplication extends BaseEffectApplication<SoundDeathEffe
     if (preview instanceof HTMLAudioElement) {
       const url = new URL(data.sound as string ?? "", window.location.href);
       if (preview.src !== url.href) preview.src = data.sound as string ?? "";
-      console.log("Volume:", data.volume);
       if (typeof data.volume === "number" && preview.volume !== data.volume / 100)
         preview.volume = data.volume / 100
     }

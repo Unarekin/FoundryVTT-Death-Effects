@@ -1,4 +1,4 @@
-import { DeathEffectsConfig, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+import { DeathEffectsConfig, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
   version: __MODULE_VERSION__,
@@ -39,6 +39,7 @@ export const DefaultShakeEffect: ShakeDeathEffect = Object.freeze({
   duration: 500,
   strength: 5,
   easing: "none",
+  easingParams: "",
   horizontal: true,
   vertical: false
 });
@@ -103,7 +104,8 @@ export const DefaultScreenShakeEffect: ScreenShakeDeathEffect = Object.freeze({
   duration: 500,
   strength: 5,
   backgroundOnly: false,
-  easing: "none"
+  easing: "none",
+  easingParams: "",
 });
 
 export const DefaultFlashEffect: FlashDeathEffect = Object.freeze({
@@ -124,4 +126,17 @@ export const DefaultTokenMagicEffect: TokenMagicDeathEffect = Object.freeze({
   type: "tokenMagic",
   start: 0,
   tmfxParams: []
+})
+
+export const DefaultSlideEffect: SlideDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "slide",
+  start: 0,
+  duration: 1000,
+  direction: "down",
+  distance: 100,
+  easing: "none",
+  easingParams: ""
 })
