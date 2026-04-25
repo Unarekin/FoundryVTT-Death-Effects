@@ -1,4 +1,4 @@
-import { ConfigSource, DeathEffectsConfig, EffectType } from "types";
+import { ConfigSource, DeathEffectsConfig, EffectType, PartialBy } from "types";
 import { BaseDeathEffect } from "effects"
 import { BaseEffectApplication } from "applications";
 import * as gsapType from "gsap";
@@ -14,6 +14,8 @@ declare global {
   declare const gsap: gsapType;
   const timelineModule = timelineModuleType;
 
+  declare const TokenMagic: any;
+
   declare module '*.scss';
 
   declare module '*.frag' {
@@ -28,10 +30,10 @@ declare global {
 
   interface CONFIG {
     DeathEffects: {
-      effects: Record<EffectType, {
+      effects: PartialBy<Record<EffectType, {
         app: typeof BaseEffectApplication,
         cls: typeof BaseDeathEffect
-      }>;
+      }>, "tokenMagic">;
     }
   }
 }

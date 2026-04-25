@@ -57,13 +57,6 @@ export class SoundEffectApplication extends BaseEffectApplication<SoundDeathEffe
       if (typeof data.volume === "number" && preview.volume !== data.volume / 100)
         preview.volume = data.volume / 100
     }
-    //   const url = new URL(data.file as string ?? "", window.location.href);
-
-    //   if (preview.src !== url.href) preview.src = data.file as string ?? "";
-    //   const volume = typeof data.volume === "number" ? data.volume / 100 : 1
-    //   if (preview.volume !== volume) preview.volume = volume;
-    // }
-
   }
 
   async _prepareContext(options: RenderOptions): Promise<RenderContext> {

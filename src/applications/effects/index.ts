@@ -9,3 +9,4 @@ export * from './SoundEffectApplication';
 export * from './StartPlaylistEffectApplication';
 export * from './StopPlaylistEffectApplication';
 export * from './TintEffectApplication';
+export * from './TokenMagicEffectApplication';

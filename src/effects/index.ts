@@ -9,4 +9,5 @@ export * from './SoundEffect';
 export * from './StartPlaylistEffect';
 export * from './StopPlaylistEffect';
 export * from './TintEffect';
+export * from './TokenMagicEffect';
 export * from './types';

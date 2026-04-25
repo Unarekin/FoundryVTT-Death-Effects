@@ -195,6 +195,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       const def = CONFIG.DeathEffects.effects[effect.type];
       if (!def) {
         ui.notifications?.error(`Unknown effect type: ${effect.type}`);
+        const index = this.effects.indexOf(effect);
+        if (index !== -1) this.effects.splice(index, 1);
         continue;
       }
 

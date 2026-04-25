@@ -130,6 +130,18 @@
           "HINT": "The color to use to tint this placeable.  Use white to return it to its usual colors.",
           "LABEL": "Tint"
         }
+      },
+      "TOKENMAGIC": {
+        "DESCRIPTION": "Apply a Token Magic FX preset to this placeable",
+        "NAME": "Token Magic FX",
+        "PARAMS": {
+          "HINT": "The parameters to pass to Token Magic FX",
+          "LABEL": "Parameters"
+        },
+        "PRESET": {
+          "HINT": "Load one of the presets that Token Magic FX provides",
+          "LABEL": "Preset"
+        }
       }
     }
   }

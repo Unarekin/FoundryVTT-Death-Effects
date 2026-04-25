@@ -21,6 +21,10 @@ export type AnyFunction = (arg0: never, ...args: never[]) => unknown;
 
 export type Constructor<t> = new (...args: any[]) => t;
 
+// type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
+
 export const EffectTypes = [
   "fade",
   "flash",
@@ -32,6 +36,7 @@ export const EffectTypes = [
   "startPlaylist",
   "stopPlaylist",
   "tint",
+  "tokenMagic"
 ] as const;
 export type EffectType = typeof EffectTypes[number];
 
@@ -108,6 +113,10 @@ export type FlashDeathEffect = BaseDeathEffect & DurationDeathEffect & ({
   color: PIXI.ColorSource;
   replace: boolean;
 })
+
+export interface TokenMagicDeathEffect extends BaseDeathEffect {
+  tmfxParams: Record<string, unknown>[];
+}
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect;
 

@@ -1,0 +1,23 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    
+    <label for="{{@root.rootId}}-tmfxParams">{{localize "DEATH-EFFECTS.EFFECTS.TOKENMAGIC.PARAMS.LABEL"}}</label>
+    <textarea id="{{@root.rootId}}-tmfxParams" name="tmfxParams" lines="10" style="width:100%">
+      {{tmfxParams}}
+    </textarea>
+    <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.TOKENMAGIC.PARAMS.HINT"}}</p>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-preset">{{localize "DEATH-EFFECTS.EFFECTS.TOKENMAGIC.PRESET.LABEL"}}</label>
+      <input type="text" data-role="tmfx-preset" list="tmfxPresets">
+      <datalist id="tmfxPresets">
+        {{#each ../tmfxPresets}}
+          <option value="{{this}}">
+        {{/each}}
+      </datalist>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.TOKENMAGIC.PRESET.HINT"}}</p>
+    </div>
+  {{/with}}
+</div>
