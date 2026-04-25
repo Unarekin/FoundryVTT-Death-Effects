@@ -23,6 +23,7 @@
   },
   "esmodules": ["module.js"],
   "scripts": [
+    "vendor/pixi-filters.js",
     "greensock/dist/gsap.min.js",
     "greensock/dist/PixiPlugin.min.js",
     "vendor/animation-timeline.min.js"
