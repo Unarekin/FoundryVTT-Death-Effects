@@ -33,7 +33,7 @@ declare global {
       effects: PartialBy<Record<EffectType, {
         app: typeof BaseEffectApplication,
         cls: typeof BaseDeathEffect
-      }>, "tokenMagic">;
+      }>, "tokenMagic" | "spriteAnimation">;
     }
   }
 }

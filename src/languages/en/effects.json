@@ -169,6 +169,22 @@
           "LABEL": "Volume"
         }
       },
+      "SPRITEANIMATION": {
+        "ANIMATION": {
+          "HINT": "The animation to trigger",
+          "LABEL": "Animation"
+        },
+        "DESCRIPTION": "Trigger an animation with the <a href='https://foundryvtt.com/packages/sprite-animations'>Sprite Animations</a> module",
+        "IMMEDIATE": {
+          "HINT": "If unchecked, will wait until the current animation is finished before triggering this one.",
+          "LABEL": "Play Immediately"
+        },
+        "LOOP": {
+          "HINT": "If enabled, will loop this animation indefinitely.",
+          "LABEL": "Loop"
+        },
+        "NAME": "Sprite Animation"
+      },
       "STARTPLAYLIST": {
         "DESCRIPTION": "Start a given playlist",
         "NAME": "Start Playlist",

@@ -11,6 +11,7 @@ export * from './ScreenShakeEffectApplication';
 export * from './ShakeEffectApplication';
 export * from './SlideEffectApplication';
 export * from './SoundEffectApplication';
+export * from './SpriteAnimationEffectApplication';
 export * from './StartPlaylistEffectApplication';
 export * from './StopPlaylistEffectApplication';
 export * from './TintEffectApplication';

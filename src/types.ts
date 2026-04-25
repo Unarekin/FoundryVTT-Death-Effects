@@ -38,6 +38,7 @@ export const EffectTypes = [
   "shake",
   "slide",
   "sound",
+  "spriteAnimation",
   "startPlaylist",
   "stopPlaylist",
   "tint",
@@ -156,7 +157,13 @@ export type CrumbleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingD
   type: "crumble",
   floatDistance: number;
   direction: SlideDirection;
-})
+});
+
+export interface SpriteAnimationDeathEffect extends BaseDeathEffect {
+  animation: string;
+  loop: boolean;
+  immediate: boolean;
+};
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect;
 
