@@ -313,7 +313,7 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
   protected async addEffect(key: keyof typeof CONFIG.DeathEffects.effects) {
     try {
-      const effect = await CONFIG.DeathEffects.effects[key].app.Edit()
+      const effect = await CONFIG.DeathEffects.effects[key]?.app.Edit()
       if (!effect) return;
       this.effects.push(effect);
       await this.render();

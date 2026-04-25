@@ -290,10 +290,11 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
 
       context.deathEffects = {
         source: this.overrideDeathEffectConfigSource ?? this.getDeathEffectSource(),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         config: foundry.utils.mergeObject(
           foundry.utils.deepClone(DefaultDeathEffectsConfig),
           config ?? {}
-        ),
+        ) as any,
         hasConfigSource: true,
         configSourceSelect: {
           global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
