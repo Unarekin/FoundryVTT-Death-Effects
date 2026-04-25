@@ -42,6 +42,9 @@ const start = Date.now();
 let spinner = null;
 
 if (!process.argv.slice(2).includes("--no-lint")) {
+  if (process.argv.slice(2).includes("--no-cache"))
+    await fs.unlink("./.eslintcache");
+
   const lintStart = Date.now();
   if (!process.env.GITHUB_ACTIONS)
     spinner = yoctoSpinner({ text: "Linting..." }).start();
