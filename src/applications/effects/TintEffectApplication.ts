@@ -2,7 +2,8 @@ import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, TintDeathEffect } from "types";
 import { DefaultTintEffect } from "defaults";
 import { templatePath } from "functions";
-import { EffectRenderContext } from "../../effects/types";
+import { EffectRenderContext } from "./types";
+
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
 type RenderContext = EffectRenderContext<TintDeathEffect>;

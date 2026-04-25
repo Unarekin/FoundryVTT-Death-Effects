@@ -101,7 +101,8 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
 
 
     protected async _importEffectFromClipboard(): Promise<FlagConfig | undefined> {
-      if ((await navigator.permissions.query({ name: "clipboard-read" })).state === "granted") {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      if ((await navigator.permissions.query({ name: "clipboard-read" } as any)).state === "granted") {
         const text = await navigator.clipboard.readText();
         if (text) {
           const data = JSON.parse(text) as FlagConfig;
@@ -110,11 +111,11 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
         }
       } else {
         const content = await foundry.applications.handlebars.renderTemplate(templatePath(`pasteJSON`), {});
-        const { json } = await foundry.applications.api.DialogV2.input({
+        const { json } = (await foundry.applications.api.DialogV2.input({
           window: { title: "DEATH-EFFECTS.CONFIG.IMPORT.LABEL" },
           position: { width: 600 },
           content
-        });
+        })) as { json?: string };
 
         if (typeof json === "string") {
           const data = JSON.parse(json) as FlagConfig;
@@ -124,7 +125,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
     }
 
     protected async _importEffectFromUpload(): Promise<FlagConfig | undefined> {
-      const data = await uploadJSON<DeathEffectsConfig>();
+      const data = await uploadJSON<FlagConfig>();
       if (!data) return;
       return data;
     }
@@ -133,7 +134,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       return new Promise((resolve, reject) => {
         void new foundry.applications.apps.FilePicker.implementation({
           extensions: [".json"],
-          callback(path) {
+          callback(path: string) {
             if (path) {
               try {
                 foundry.utils.fetchJsonWithTimeout(path, undefined, { onTimeout: reject })
@@ -144,7 +145,7 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
               }
             }
           }
-        }).browse()
+        } as any).browse()
       })
     }
 
@@ -170,7 +171,8 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
           ...this.deathConfigOverrides,
           effects: this.deathEffects
         })
-        if ((await navigator.permissions.query({ name: "clipboard-write" })).state === "granted") {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        if ((await navigator.permissions.query({ name: "clipboard-write" } as any)).state === "granted") {
           await navigator.clipboard.writeText(stringConfig);
           ui.notifications?.info("DEATH-EFFECTS.CONFIG.EXPORT.COPIED", { localize: true });
         } else {

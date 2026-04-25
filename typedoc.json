@@ -2,6 +2,15 @@
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["src/**/*.ts"],
   "out": "docs",
+  "name": "Death Effects",
+
   "cleanOutputDir": true,
-  "plugin": ["typedoc-plugin-rename-defaults"]
+  "plugin": [
+    "typedoc-plugin-rename-defaults",
+    "typedoc-plugin-version-header",
+    "typedoc-plugin-extras",
+    "typedoc-plugin-mdn-links"
+  ],
+  "useTsLinkResolution": true,
+  "readme": "./README.md"
 }

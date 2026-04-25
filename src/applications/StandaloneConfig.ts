@@ -88,7 +88,8 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
   protected _exportFileName(): string { return "death-effects.json"; }
 
   protected async _importEffectFromClipboard(): Promise<DeathEffectsConfig | undefined> {
-    if ((await navigator.permissions.query({ name: "clipboard-read" })).state === "granted") {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    if ((await navigator.permissions.query({ name: "clipboard-read" } as any)).state === "granted") {
       const text = await navigator.clipboard.readText();
       if (text) {
         const data = JSON.parse(text) as DeathEffectsConfig;
@@ -97,11 +98,11 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
       }
     } else {
       const content = await foundry.applications.handlebars.renderTemplate(templatePath(`pasteJSON`), {});
-      const { json } = await foundry.applications.api.DialogV2.input({
+      const { json } = (await foundry.applications.api.DialogV2.input({
         window: { title: "DEATH-EFFECTS.CONFIG.IMPORT.LABEL" },
         position: { width: 600 },
         content
-      });
+      })) as { json: string };
 
       if (typeof json === "string") {
         const data = JSON.parse(json) as DeathEffectsConfig;
@@ -120,7 +121,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     return new Promise((resolve, reject) => {
       void new foundry.applications.apps.FilePicker.implementation({
         extensions: [".json"],
-        callback(path) {
+        callback(path: string) {
           if (path) {
             try {
               foundry.utils.fetchJsonWithTimeout(path, undefined, { onTimeout: reject })
@@ -131,7 +132,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
             }
           }
         }
-      }).browse()
+      } as any).browse()
     })
   }
 
@@ -151,7 +152,8 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
   protected async _exportEffectToClipboard() {
     try {
       const stringConfig = JSON.stringify(this.configCache)
-      if ((await navigator.permissions.query({ name: "clipboard-write" })).state === "granted") {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      if ((await navigator.permissions.query({ name: "clipboard-write" } as any)).state === "granted") {
         await navigator.clipboard.writeText(stringConfig);
         ui.notifications?.info("DEATH-EFFECTS.CONFIG.EXPORT.COPIED", { localize: true });
       } else {

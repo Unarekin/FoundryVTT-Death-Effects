@@ -25,7 +25,8 @@ Hooks.once("ready", () => {
     config: false,
     scope: "world",
     requiresReload: false,
-    type: Object,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    type: Object as any, // Hacky work-around to suppress tsc errors
     default: foundry.utils.deepClone(DefaultDeathEffectsConfig)
   });
 
@@ -60,7 +61,8 @@ Hooks.once("ready", () => {
     name: "DEATH-EFFECTS.SETTINGS.INJECTTOKENCONFIG.LABEL",
     hint: "DEATH-EFFECTS.SETTINGS.INJECTTOKENCONFIG.HINT",
     config: true,
-    scope: "user",
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    scope: "user" as any,
     requiresReload: true,
     type: Boolean,
     default: true

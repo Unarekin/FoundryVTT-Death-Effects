@@ -8,7 +8,7 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
   // const DEFAULT_OPTIONS = ((base as Record<string, unknown>).DEFAULT_OPTIONS as foundry.applications.api.DocumentSheetV2.Configuration<TokenDocument>);
 
 
-  class DeathPrototypeTokenConfig extends ConfigMixin(base) {
+  class DeathPrototypeTokenConfig extends ConfigMixin(base as unknown as Constructor<foundry.applications.api.DocumentSheetV2.Any>) {
     protected getDeathEffectFlags(source?: ConfigSource): DeathEffectsConfig | undefined {
       const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
 
