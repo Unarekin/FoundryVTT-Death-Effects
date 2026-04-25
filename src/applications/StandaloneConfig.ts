@@ -195,7 +195,8 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
       {
         name: "DEATH-EFFECTS.CONFIG.IMPORT.BROWSE",
         icon: `<i class="fa-solid fa-folder-tree"></i>`,
-        callback: () => { void this._handleEffectImport(this._importEffectFromBrowse); }
+        callback: () => { void this._handleEffectImport(this._importEffectFromBrowse); },
+        condition: () => game.user?.hasPermission("FILES_BROWSE") ?? false
       }
     ]
   }
@@ -217,7 +218,8 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
       {
         name: "DEATH-EFFECTS.CONFIG.EXPORT.BROWSE",
         icon: `<i class="fa-solid fa-save"></i>`,
-        callback: () => { this._exportEffectToBrowse().catch(console.error); }
+        callback: () => { this._exportEffectToBrowse().catch(console.error); },
+        condition: () => game.user?.hasPermission("FILES_UPLOAD") ?? false
       }
     ]
   }
