@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, SoundDeathEffect } from "types";
-import { DefaultSoundEffect } from "settings";
+import { DefaultSoundEffect } from "defaults";
 import { templatePath } from "functions";
 import { EffectRenderContext } from "../../effects/types";
 

@@ -1,4 +1,4 @@
-import { DefaultShakeEffect } from "settings";
+import { DefaultShakeEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, ShakeDeathEffect } from "types";
 import { wait } from "functions";

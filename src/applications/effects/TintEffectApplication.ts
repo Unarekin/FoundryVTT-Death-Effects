@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, TintDeathEffect } from "types";
-import { DefaultTintEffect } from "settings";
+import { DefaultTintEffect } from "defaults";
 import { templatePath } from "functions";
 import { EffectRenderContext } from "../../effects/types";
 

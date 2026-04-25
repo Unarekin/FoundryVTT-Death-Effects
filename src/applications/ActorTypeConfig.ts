@@ -1,6 +1,6 @@
 import { DeathEffectsConfig } from "types";
 import { DeathEffectsConfiguration } from "./StandaloneConfig"
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 export class ActorTypeConfig extends DeathEffectsConfiguration {
 
   protected async _onSave(data: DeathEffectsConfig): Promise<void> {

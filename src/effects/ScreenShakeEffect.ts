@@ -1,4 +1,4 @@
-import { DefaultScreenShakeEffect } from "settings";
+import { DefaultScreenShakeEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, ScreenShakeDeathEffect } from "types";
 import { wait } from "functions";

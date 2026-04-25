@@ -1,4 +1,4 @@
-import { DefaultSoundEffect } from "settings";
+import { DefaultSoundEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, SoundDeathEffect } from "types";
 

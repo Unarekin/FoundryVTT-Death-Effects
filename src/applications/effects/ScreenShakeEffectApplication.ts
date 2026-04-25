@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, ScreenShakeDeathEffect } from "types";
-import { DefaultScreenShakeEffect } from "settings";
+import { DefaultScreenShakeEffect } from "defaults";
 import { templatePath } from "functions";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;

@@ -1,4 +1,4 @@
-import { DefaultStartPlaylistEffect } from "settings";
+import { DefaultStartPlaylistEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, StopPlaylistDeathEffect } from "types";
 

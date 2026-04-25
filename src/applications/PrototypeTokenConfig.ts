@@ -1,6 +1,6 @@
 import { ConfigSource, Constructor, DeathEffectsConfig } from "types";
 import { ConfigMixin } from "./ConfigMixin";
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 
 type RenderOptions = foundry.applications.api.DocumentSheetV2.RenderOptions;
 

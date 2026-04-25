@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, StartPlaylistDeathEffect } from "types";
-import { DefaultStartPlaylistEffect } from "settings";
+import { DefaultStartPlaylistEffect } from "defaults";
 import { templatePath } from "functions";
 import { EffectRenderContext, StartPlaylistRenderContext } from "./types";
 

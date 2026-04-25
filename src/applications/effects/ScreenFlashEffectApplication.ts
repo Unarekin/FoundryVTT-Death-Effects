@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, ScreenFlashDeathEffect } from "types";
-import { DefaultScreenFlashEffect } from "settings";
+import { DefaultScreenFlashEffect } from "defaults";
 import { templatePath } from "functions";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;

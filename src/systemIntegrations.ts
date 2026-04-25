@@ -1,4 +1,4 @@
-import { DefaultDeathEffectsConfig } from "settings"
+import { DefaultDeathEffectsConfig } from "defaults"
 
 function setTriggerResource(resource: string) {
   DefaultDeathEffectsConfig.autoTriggerCondition = "resource";

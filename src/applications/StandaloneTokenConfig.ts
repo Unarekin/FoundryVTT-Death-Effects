@@ -1,6 +1,6 @@
 import { ConfigSource, DeathEffectsConfig } from "types";
 import { DeathEffectsConfiguration } from "./StandaloneConfig";
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 import { StandaloneConfigContext } from "./types";
 
 export class StandaloneTokenConfig extends DeathEffectsConfiguration {

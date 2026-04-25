@@ -2,7 +2,7 @@
 import { downloadJSON, templatePath, uploadJSON } from "functions";
 import { DeathEffectsConfig, DeepPartial } from "types";
 import { StandaloneConfigContext } from "./types";
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 import { TimelineEditor } from "./TimelineEditor";
 
 

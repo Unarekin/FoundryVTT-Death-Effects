@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, MacroDeathEffect } from "types";
-import { DefaultMacroEffect } from "settings";
+import { DefaultMacroEffect } from "defaults";
 import { templatePath } from "functions";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;

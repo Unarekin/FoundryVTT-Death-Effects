@@ -1,4 +1,4 @@
-import { DefaultScreenFlashEffect } from "settings";
+import { DefaultScreenFlashEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, ScreenFlashDeathEffect } from "types";
 import { wait } from "functions";

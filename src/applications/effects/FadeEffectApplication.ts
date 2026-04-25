@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, FadeDeathEffect } from "types";
-import { DefaultFadeEffect } from "settings";
+import { DefaultFadeEffect } from "defaults";
 import { templatePath } from "functions";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;

@@ -1,4 +1,4 @@
-import { DefaultMacroEffect } from "settings";
+import { DefaultMacroEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, MacroDeathEffect } from "types";
 

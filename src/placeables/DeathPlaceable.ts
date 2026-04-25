@@ -1,4 +1,4 @@
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 import { DeathEffect, DeathEffectsConfig, DeathPlaceable as DeathPlaceableInterface, DeepPartial } from "../types";
 import { BaseDeathEffect } from "effects";
 import { wait } from "functions";

@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, ShakeDeathEffect } from "types";
-import { DefaultShakeEffect } from "settings";
+import { DefaultShakeEffect } from "defaults";
 import { templatePath } from "functions";
 import { EffectRenderContext } from "./types";
 

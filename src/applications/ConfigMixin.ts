@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { ConfigSource, Constructor, DeathEffect, DeepPartial, DeathEffectsConfig as FlagConfig } from "types";
 import { PlaceableConfigContext } from "./types"
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 import { downloadJSON, templatePath, uploadJSON } from "functions";
 import { TimelineEditor } from "./TimelineEditor";
 

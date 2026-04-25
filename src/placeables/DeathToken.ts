@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DeathEffectsConfig, DeepPartial } from "types";
 import { PlaceableMixin } from "./DeathPlaceable";
-import { DefaultDeathEffectsConfig } from "settings";
+import { DefaultDeathEffectsConfig } from "defaults";
 
 
 type Constructor = new (...args: any[]) => foundry.canvas.placeables.Token;

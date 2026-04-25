@@ -1,6 +1,6 @@
 import { BaseEffectApplication } from "./BaseEffectApplication";
 import { DeepPartial, StopPlaylistDeathEffect } from "types";
-import { DefaultStopPlaylistEffect } from "settings";
+import { DefaultStopPlaylistEffect } from "defaults";
 import { templatePath } from "functions";
 
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;

@@ -1,4 +1,4 @@
-import { DefaultFadeEffect } from "settings";
+import { DefaultFadeEffect } from "defaults";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, FadeDeathEffect } from "types";
 

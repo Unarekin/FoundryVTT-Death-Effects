@@ -1,4 +1,3 @@
-// import { DefaulStopPlaylistEffect } from "settings";
 import { BaseDeathEffect } from "./BaseEffect";
 import { DeathPlaceable, StopPlaylistDeathEffect } from "types";
 
