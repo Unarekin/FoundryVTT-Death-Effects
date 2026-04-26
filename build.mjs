@@ -159,18 +159,13 @@ const buildResults = await build({
     ".svg": "file",
   },
   plugins: [
-    nodeExternalsPlugin(),
+    nodeExternalsPlugin({
+      allowList: ["animation-timeline-js"],
+    }),
     cleanPlugin({ patterns: "./dist/**" }),
     sassPlugin(),
     ...copyPlugins,
     ...jsonMergers,
-    externalizeAllPackagesExcept([
-      "semver",
-      "handlebars-group-by",
-      "lunr",
-      "timeliner",
-    ]),
-    // externalizeAllPackagesExcept(["rxjs", "mini-rx-store", "tslib", "mime", "@pixi/gif"])
   ],
 });
 

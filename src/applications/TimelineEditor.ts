@@ -262,12 +262,23 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
   async _onRender(context: TimelineContext, options: Options) {
     await super._onRender(context, options);
 
-    const timeline = new timelineModule.Timeline({
+    const timeline = new Timeline({
       id: `${context.rootId}-timeline`,
       stepSmallPx: 10,
       snapStep: 10,
       stepPx: 250,
       timelineDraggable: false,
+      timelineStyle: {
+        width: 0
+      }
+    });
+
+    timeline.onScroll(e => {
+      console.log("Scrolled:", e, timeline);
+      const container = this.element.querySelector(`.timeline-editor__outline-items`);
+      if (container instanceof HTMLElement) {
+        container.scrollTop = e.scrollTop;
+      }
     });
 
 
@@ -307,8 +318,16 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
           durationEff.duration = Math.max(elem.row.keyframes[1].val - effect.start, 0);
       });
       this.render().catch(console.error);
-    })
+    });
+  }
 
+  _onPosition(options: foundry.applications.api.ApplicationV2.RenderOptions) {
+    super._onPosition(options);
+    // console.log("onPosition:", this.position)
+    if (this.timeline) {
+      this.timeline.rescale();
+      this.timeline.redraw();
+    }
   }
 
   protected async addEffect(key: keyof typeof CONFIG.DeathEffects.effects) {

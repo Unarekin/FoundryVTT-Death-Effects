@@ -2,7 +2,7 @@ import { ConfigSource, DeathEffectsConfig, EffectType, PartialBy, PresetDefiniti
 import { BaseDeathEffect } from "effects"
 import { BaseEffectApplication } from "applications";
 import * as gsapType from "gsap";
-import * as timelineModuleType from "animation-timeline-js"
+// import * as timelineModuleType from "animation-timeline-js"
 
 declare global {
 
@@ -12,7 +12,7 @@ declare global {
   declare const __MODULE_VERSION__: string;
 
   declare const gsap: gsapType;
-  const timelineModule = timelineModuleType;
+  // const timelineModule = timelineModuleType;
 
   declare const TokenMagic: any;
 
