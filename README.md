@@ -13,6 +13,8 @@ Death Effects is a module to add fancy animations to tokens when they are defeat
 
 It has a number of effects that can be applied to a token, and uses a timeline view to configure when these effects occur and how long they last, for maximum control over the final product.
 
+[Final Boss Preset Preview.webm](https://github.com/user-attachments/assets/b84df5c6-32c2-4941-ad8a-bab555b7e8ce)
+
 # Installation
 
 You can install this module by copying and pasting the following manifest URL in the text field at the bottom of the Foundry module installer:
