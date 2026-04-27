@@ -51,11 +51,17 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       }
     }
 
+    protected _timelineEditor: TimelineEditor | undefined = undefined;
+
 
     static async EditTimeline(this: DeathEffectsConfig) {
       try {
-        // await (new TimelineEditor()).render({ force: true });
-        const timeline = await new TimelineEditor().Edit(this.deathEffects ? foundry.utils.deepClone(this.deathEffects) : []);
+
+        this._timelineEditor ??= new TimelineEditor();
+
+        await this._timelineEditor.render({ force: true });
+        const timeline = await this._timelineEditor.Edit(this.deathEffects ? foundry.utils.deepClone(this.deathEffects) : []);
+
         if (timeline)
           this.deathEffects = foundry.utils.deepClone(timeline);
       } catch (err) {
@@ -91,10 +97,13 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
     }
 
     _onClose(options: RenderOptions) {
+      if (this._timelineEditor) this._timelineEditor.close().catch(console.error);
+
       super._onClose(options);
       this.overrideDeathEffectConfigSource = undefined;
       this.deathEffects = undefined;
       this.deathConfigOverrides = undefined;
+      this._timelineEditor = undefined;
     }
 
     // #region Import/Export

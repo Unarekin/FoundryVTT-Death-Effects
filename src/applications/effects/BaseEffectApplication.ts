@@ -83,7 +83,7 @@ export abstract class BaseEffectApplication<t extends DeathEffect> extends found
   async _prepareContext(options: foundry.applications.api.ApplicationV2.RenderOptions) {
     const context = await super._prepareContext(options) as EffectRenderContext<t>;
     context.effect = foundry.utils.deepClone(this.config);
-    context.rootId = context.effect.id;
+    context.rootId = this.id;
 
     context.easingSelect = Object.fromEntries(
       [
@@ -114,5 +114,15 @@ export abstract class BaseEffectApplication<t extends DeathEffect> extends found
 
   constructor(public config: t, options?: foundry.applications.api.ApplicationV2.Configuration) {
     super(options);
+    console.log("Constructing:", this);
+    if (!config) {
+      const defaultSettings = this.getDefaultSettings();
+      console.log("Default config:", defaultSettings);
+      if (!this.getDefaultSettings) {
+        throw new Error("No default configuration configured for this application");
+      } else {
+        this.config = foundry.utils.deepClone(this.getDefaultSettings());
+      }
+    }
   }
 }

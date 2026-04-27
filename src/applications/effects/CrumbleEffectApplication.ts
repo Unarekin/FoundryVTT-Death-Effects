@@ -7,7 +7,7 @@ import { CrumbleConfigContext } from "./types";
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type RenderContext = foundry.applications.api.ApplicationV2.RenderContext;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 type RenderOptions = foundry.applications.api.ApplicationV2.RenderOptions;
 
 export class CrumbleEffectApplication extends BaseEffectApplication<CrumbleDeathEffect> {

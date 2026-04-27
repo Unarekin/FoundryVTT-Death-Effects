@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { downloadJSON, templatePath, uploadJSON } from "functions";
-import { DeathEffectsConfig, DeepPartial } from "types";
+import { DeathEffect, DeathEffectsConfig, DeepPartial } from "types";
 import { StandaloneConfigContext } from "./types";
 import { DefaultDeathEffectsConfig } from "defaults";
 import { TimelineEditor } from "./TimelineEditor";
@@ -39,6 +39,8 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     }
   }
 
+  protected _timelineEditor: TimelineEditor | undefined = undefined;
+
   // #region Abstract Methods
   protected _onCancel(): void | Promise<void> { /* empty */ };
   protected abstract _onSave(data: DeathEffectsConfig): void | Promise<void>;
@@ -64,7 +66,16 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
 
   static async EditTimeline(this: DeathEffectsConfiguration) {
     try {
-      const timeline = await new TimelineEditor().Edit(this.configCache?.effects ? foundry.utils.deepClone(this.configCache.effects) : []);
+      let timeline: DeathEffect[] | undefined = undefined;
+      if (this._timelineEditor) {
+        await this._timelineEditor.render({ force: true });
+        timeline = await this._timelineEditor.Edit(this.configCache?.effects ? foundry.utils.deepClone(this.configCache.effects) : []);
+      } else {
+        this._timelineEditor = new TimelineEditor();
+        timeline = await this._timelineEditor.Edit(this.configCache?.effects ? foundry.utils.deepClone(this.configCache.effects) : []);
+      }
+
+      this._timelineEditor = undefined;
       if (timeline) {
         this.configCache ??= {} as DeathEffectsConfig;
         this.configCache.effects = foundry.utils.deepClone(timeline);
@@ -256,6 +267,12 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
 
 
   // #region Render Functions
+
+  _onClose(options: foundry.applications.api.ApplicationV2.RenderOptions) {
+    if (this._timelineEditor) this._timelineEditor.close().catch(console.error);
+    super._onClose(options);
+    this._timelineEditor = undefined;
+  }
 
   _onChangeForm(formConfig: foundry.applications.api.ApplicationV2.FormConfiguration, e: Event) {
     super._onChangeForm(formConfig, e);

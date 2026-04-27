@@ -77,13 +77,27 @@ Hooks.on("createActiveEffect", (effect: ActiveEffect) => {
   }
 })
 
+const standaloneConfigs: Record<string, StandaloneTokenConfig> = {};
+
+Hooks.on("closeTokenConfig", (app: foundry.applications.sheets.TokenConfig) => {
+  console.log("Closing token config:", app.document);
+  if (!app.document?.id) return;
+
+  if (standaloneConfigs[app.document.id])
+    standaloneConfigs[app.document.id].close().catch(console.error);
+
+  delete standaloneConfigs[app.document.id];
+})
+
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 Hooks.on("getHeaderControlsTokenConfig", ((app: foundry.applications.sheets.TokenConfig, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
   controls.push({
     icon: 'fa-solid fa-skull',
     label: "DEATH-EFFECTS.CONFIG.TITLE",
     onClick: () => {
-      new StandaloneTokenConfig(app.document).render({ force: true }).catch(console.error);
+      if (!app.document?.id) return;
+      standaloneConfigs[app.document.id] ??= new StandaloneTokenConfig(app.document);
+      standaloneConfigs[app.document.id].render({ force: true }).catch(console.error);
     }
   } as unknown as foundry.applications.api.ApplicationV2.HeaderControlsEntry);
   // We cast this to suppress linter errors about onClick which

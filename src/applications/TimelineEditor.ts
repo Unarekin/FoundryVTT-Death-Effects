@@ -4,6 +4,7 @@ import { DeathEffectContext, TimelineContext } from "./types";
 import { DeathEffect, DeepPartial, DurationDeathEffect, EffectType } from "types";
 import { simpleSelect } from "./SimpleSelect";
 import { Timeline } from "animation-timeline-js";
+import { BaseEffectApplication } from "./effects";
 
 type Options = foundry.applications.api.ApplicationV2.RenderOptions;
 type Configuration = foundry.applications.api.ApplicationV2.Configuration;
@@ -41,6 +42,9 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       template: `templates/generic/form-footer.hbs`
     }
   }
+
+  protected _editApplications: Record<string, BaseEffectApplication<DeathEffect>> = {};
+  protected _newApplication: BaseEffectApplication<DeathEffect> | undefined = undefined;
 
   static async Submit(this: TimelineEditor) {
     if (this.#resolve) {
@@ -100,7 +104,19 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       const def = CONFIG.DeathEffects.effects[effect.type];
       if (!def) throw new Error(`Unknown effect type: ${effect.type}`);
 
-      const edited = await def.app.Edit(foundry.utils.deepClone(effect));
+      let edited: DeathEffect | undefined = undefined;
+
+      if (this._editApplications[id]) {
+        await this._editApplications[id].render({ force: true });
+        edited = await this._editApplications[id].Edit(effect);
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        const app = new (def.app as any)(foundry.utils.deepClone(effect)) as BaseEffectApplication<DeathEffect>;
+        this._editApplications[id] = app;
+        edited = await app.Edit(foundry.utils.deepClone(effect));
+      }
+      delete this._editApplications[id];
+
       if (!edited) return;
 
       const index = this.effects.findIndex(effect => effect.id === id);
@@ -152,20 +168,32 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
   static async AddEffect(this: TimelineEditor) {
     try {
-      const selectOptions = Object.entries(CONFIG.DeathEffects.effects).map(([key, val]) => ({
-        key,
-        label: val.cls.Name,
-        tooltip: this._generateTooltipFromFile(val.cls.Name, val.cls.Description, val.cls.Icon, val.cls.Preview),
-        icon: val.cls.Icon
-      })).sort((a, b) => a.label.localeCompare(b.label));
-      const key = await simpleSelect<EffectType>(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");
+      let effect: DeathEffect | undefined = undefined;
+      if (this._newApplication) {
+        await this._newApplication.render({ force: true });
+        effect = await this._newApplication.Edit();
+      } else {
+        const selectOptions = Object.entries(CONFIG.DeathEffects.effects).map(([key, val]) => ({
+          key,
+          label: val.cls.Name,
+          tooltip: this._generateTooltipFromFile(val.cls.Name, val.cls.Description, val.cls.Icon, val.cls.Preview),
+          icon: val.cls.Icon
+        })).sort((a, b) => a.label.localeCompare(b.label));
+        const key = await simpleSelect<EffectType>(selectOptions, "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TITLE", "DEATH-EFFECTS.EFFECTS.COMMON.ADD.TEXT");
 
-      if (!key) return;
+        if (!key) return;
 
-      const def = CONFIG.DeathEffects.effects[key];
-      if (!def) return;
+        const def = CONFIG.DeathEffects.effects[key];
+        if (!def) return;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        const app = new (def.app as any)() as BaseEffectApplication<DeathEffect>;
+        this._newApplication = app;
 
-      const effect = await def.app.Edit();
+        effect = await app.Edit();
+      }
+
+      this._newApplication = undefined;
+
       if (!effect) return;
 
       this.effects.push(effect);
@@ -191,6 +219,14 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
   }
 
   _onClose(options: Options) {
+
+    Promise.all(
+      Object.values(this._editApplications).map(app => app.close())
+    ).catch(console.error);
+    this._editApplications = {};
+
+    if (this._newApplication) this._newApplication.close().catch(console.error);
+
     super._onClose(options);
     if (this.#resolve) this.#resolve();
     this.#resolve = undefined;
@@ -334,22 +370,9 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
 
       const outlineItems = this.element.querySelector(`.timeline-editor__outline-items`);
       const timelineCanvas = this.element.querySelector(`#${this.id}-timeline`);
-      console.log("Setting padding:", outlineItems, timelineCanvas, timelineCanvas?.clientHeight)
       if (outlineItems instanceof HTMLElement && timelineCanvas instanceof HTMLElement) {
         outlineItems.style.paddingBottom = `${(timelineCanvas.clientHeight * .2) + 35}px`;
       }
-    }
-  }
-
-  protected async addEffect(key: keyof typeof CONFIG.DeathEffects.effects) {
-    try {
-      const effect = await CONFIG.DeathEffects.effects[key]?.app.Edit()
-      if (!effect) return;
-      this.effects.push(effect);
-      await this.render();
-    } catch (err) {
-      console.error(err);
-      if (err instanceof Error) ui.notifications?.error(err.message, { console: false });
     }
   }
 
