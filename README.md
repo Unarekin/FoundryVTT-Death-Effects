@@ -15,6 +15,8 @@ It has a number of effects that can be applied to a token, and uses a timeline v
 
 [Final Boss Preset Preview.webm](https://github.com/user-attachments/assets/b84df5c6-32c2-4941-ad8a-bab555b7e8ce)
 
+*Sprite assets by [chierit](https://chierit.itch.io/) and [Balmer](https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria); background by [Ironthunder](https://opengameart.org/content/temple-background)*
+
 # Installation
 
 You can install this module by copying and pasting the following manifest URL in the text field at the bottom of the Foundry module installer:
