@@ -1,0 +1,74 @@
+{
+  "DEATH-EFFECTS": {
+    "CONFIG": {
+      "ACTORTYPE": {
+        "DESCRIPTION": "Configure death effect settings for type:",
+        "TITLE": "Actor Type"
+      },
+      "AUTOHIDE": {
+        "HINT": "Automatically hide the token after the death effects finish.",
+        "LABEL": "Auto-Hide"
+      },
+      "AUTOTRANSPARENT": {
+        "HINT": "Automatically set the token's opacity to 0 after the death effects finish.",
+        "LABEL": "Auto-Transparent"
+      },
+      "EDITTIMELINE": {
+        "HINT": "Edit the death effect animation timeline.<br>See the <a href='https://github.com/Unarekin/FoundryVTT-Death-Effects/wiki/Timeline-Editor'>wiki</a> for more information.",
+        "LABEL": "Edit Timeline"
+      },
+      "ENABLE": {
+        "HINT": "Toggle on to automatically run death effects when actor is taken out.",
+        "LABEL": "Enable Death Effects"
+      },
+      "EXPORT": {
+        "BROWSE": "Save To Server",
+        "CLIPBOARD": "Copy To Clipboard",
+        "COPIED": "Configuration copied to clipboard",
+        "DOWNLOAD": "Download JSON",
+        "LABEL": "Export Effects"
+      },
+      "IMPORT": {
+        "BROWSE": "File Browser",
+        "CLIPBOARD": "Paste From Clipboard",
+        "LABEL": "Import Effects",
+        "PASTED": "Configuration read from clipboard",
+        "PRESET": "Import Preset",
+        "UPLOAD": "Upload JSON"
+      },
+      "REMOVEEFFECT": {
+        "MESSAGE": "Are you sure you wish to remove this effect?",
+        "TITLE": "Remove Effect"
+      },
+      "SOURCE": {
+        "ACTOR": "Actor",
+        "GLOBAL": "Global",
+        "HINT": "Select where to store the effect configuration for this token",
+        "LABEL": "Configuration Source",
+        "TOKEN": "Token",
+        "TYPE": "Actor Type ({type})"
+      },
+      "TITLE": "Death Effects",
+      "TOOLTIPS": {
+        "EDITEFFECT": "Edit Effect",
+        "REMOVEEFFECT": "Remove Effect"
+      },
+      "TRIGGERCONDITION": {
+        "ACTIVEEFFECT": {
+          "HINT": "Trigger condition when gaining a particular ActiveEffect",
+          "LABEL": "Active Effect"
+        },
+        "HINT": "The condition whereby to automatically trigger death effects",
+        "LABEL": "Trigger Condition",
+        "RESOURCE": {
+          "HINT": "Trigger when a given resource (such as health) is equal to or less than 0",
+          "LABEL": "Actor Resource"
+        },
+        "STATUS": {
+          "HINT": "Trigger the actor's death effects when gaining a given status effect",
+          "LABEL": "Status Effect"
+        }
+      }
+    }
+  }
+}

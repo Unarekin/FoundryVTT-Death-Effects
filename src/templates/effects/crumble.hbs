@@ -1,0 +1,22 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/duration.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-floatDistance">{{localize "DEATH-EFFECTS.EFFECTS.CRUMBLE.FLOATDISTANCE.LABEL"}}</label>
+      <input type="number" min="0" step="any" required id="{{@root.rootId}}-floatDistance" name="floatDistance" value="{{floatDistance}}">
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.CRUMBLE.FLOATDISTANCE.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-direction">{{localize "DEATH-EFFECTS.EFFECTS.CRUMBLE.DIRECTION.LABEL"}}</label>
+      <select id="{{@root.rootId}}-direction" name="direction">
+        {{selectOptions ../directionSelect selected=direction localize=true}}
+      </select>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.CRUMBLE.DIRECTION.HINT"}}</p>
+    </div>
+  {{/with}}
+  {{> "modules/death-effects/templates/effects/partials/easing.hbs" }} 
+</div>

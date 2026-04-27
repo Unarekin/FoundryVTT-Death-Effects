@@ -1,0 +1,230 @@
+{
+  "DEATH-EFFECTS": {
+    "EFFECTS": {
+      "COMMON": {
+        "ADD": {
+          "TEXT": "Select an effect type below.",
+          "TITLE": "Add Effect"
+        },
+        "DIRECTION": {
+          "DOWN": "Down",
+          "LEFT": "Left",
+          "RIGHT": "Right",
+          "UP": "Up"
+        },
+        "DURATION": {
+          "HINT": "How long this effect should last, in milliseconds",
+          "LABEL": "Duration"
+        },
+        "EASING": {
+          "FUNCTION": "Function",
+          "HINT": "An easing function to use when animating this effect.<br>See: <a href='https://gsap.com/docs/v3/Eases/'>GSAP documentation</a>",
+          "LABEL": "Easing",
+          "PARAMETERS": "Params"
+        },
+        "EASINGPARAMS": {
+          "HINT": "A set of parameters to pass to the easing function.",
+          "LABEL": "Easing Parameters"
+        },
+        "LABEL": {
+          "HINT": "A friendly name by which to list this effect",
+          "LABEL": "Label"
+        },
+        "START": {
+          "HINT": "At which point during this animation should this effect start",
+          "LABEL": "Start"
+        }
+      },
+      "CRUMBLE": {
+        "DESCRIPTION": "Cause the placeable to crumble into individual pixels",
+        "DIRECTION": {
+          "HINT": "The direction the placeable will crumble",
+          "LABEL": "Direction"
+        },
+        "FLOATDISTANCE": {
+          "HINT": "How far pixels will float away before dissolving",
+          "LABEL": "Float Distance"
+        },
+        "NAME": "Crumble"
+      },
+      "DISSOLVE": {
+        "BLOCKSIZE": {
+          "HINT": "The size of blocks to dissolve",
+          "LABEL": "Block Size"
+        },
+        "DESCRIPTION": "Dissolve the placeable",
+        "NAME": "Dissolve"
+      },
+      "DUST": {
+        "DESCRIPTION": "Dissolves the placeable to dust",
+        "DIRECTION": {
+          "HINT": "The direction to animate the placeable collapsing",
+          "LABEL": "Direction",
+          "X": "X",
+          "Y": "Y"
+        },
+        "NAME": "Dust"
+      },
+      "FADE": {
+        "DESCRIPTION": "A simple fade-out effect",
+        "NAME": "Fade"
+      },
+      "FLASH": {
+        "COLOR": {
+          "HINT": "The color to flash the placeable",
+          "LABEL": "Color"
+        },
+        "DESCRIPTION": "Flashes the placeable a given color",
+        "NAME": "Flash",
+        "REPLACE": {
+          "HINT": "If enabled, will fully replace the colors of the placeable with this color",
+          "LABEL": "Replace Color"
+        }
+      },
+      "MACRO": {
+        "DESCRIPTION": "Execute a macro",
+        "GMONLY": {
+          "HINT": "If enabled, then only the GM will execute this macro.  Otherwise, ALL connected users will.",
+          "LABEL": "GM Only"
+        },
+        "MACRO": {
+          "HINT": "The macro to execute",
+          "LABEL": "Macro"
+        },
+        "NAME": "Macro"
+      },
+      "MELT": {
+        "DESCRIPTION": "Melt the placeable",
+        "NAME": "Melt"
+      },
+      "SCREENFLASH": {
+        "BACKGROUNDONLY": {
+          "HINT": "When enabled, will only flash the background behind tokens/tiles/etc",
+          "LABEL": "Background Only"
+        },
+        "COLOR": {
+          "HINT": "The color to flash the screen",
+          "LABEL": "Color"
+        },
+        "DESCRIPTION": "Flash the screen a given color",
+        "NAME": "Screen Flash"
+      },
+      "SCREENSHAKE": {
+        "BACKGROUNDONLY": {
+          "HINT": "Only shake the background",
+          "LABEL": "Background Only"
+        },
+        "DESCRIPTION": "Shake the screen",
+        "NAME": "Screen Shake",
+        "STRENGTH": {
+          "HINT": "The strength of shake",
+          "LABEL": "Strength"
+        }
+      },
+      "SHAKE": {
+        "DESCRIPTION": "What it says on the tin. Shake the placeable.",
+        "HORIZONTAL": {
+          "HINT": "Shake the placeable horizontally",
+          "LABEL": "Horizontal"
+        },
+        "NAME": "Shake",
+        "STRENGTH": {
+          "HINT": "How much to shake",
+          "LABEL": "Strength"
+        },
+        "VERTICAL": {
+          "HINT": "Shake the placeable vertically",
+          "LABEL": "Vertical"
+        }
+      },
+      "SLIDE": {
+        "DESCRIPTION": "Slides the placeable's sprite in some direction",
+        "DIRECTION": {
+          "HINT": "The direction to slide the placeable",
+          "LABEL": "Direction"
+        },
+        "DISTANCE": {
+          "HINT": "Distance in pixels to slide the placeable",
+          "LABEL": "Distance"
+        },
+        "NAME": "Slide"
+      },
+      "SOUND": {
+        "DESCRIPTION": "Play a sound",
+        "NAME": "Sound",
+        "POSITION": {
+          "HINT": "If enabled, will cause sound to be played at this placeable's location",
+          "LABEL": "Play at Placeable"
+        },
+        "RADIUS": {
+          "HINT": "The radius at which the sound can be heard when playing at this placeable's locaiton",
+          "LABEL": "Radius"
+        },
+        "SOUND": {
+          "HINT": "The sound file to play",
+          "LABEL": "Sound"
+        },
+        "VOLUME": {
+          "HINT": "The volume at which to play this sound",
+          "LABEL": "Volume"
+        }
+      },
+      "SPRITEANIMATION": {
+        "ANIMATION": {
+          "HINT": "The animation to trigger",
+          "LABEL": "Animation"
+        },
+        "DESCRIPTION": "Trigger an animation with the <a href='https://foundryvtt.com/packages/sprite-animations'>Sprite Animations</a> module",
+        "IMMEDIATE": {
+          "HINT": "If unchecked, will wait until the current animation is finished before triggering this one.",
+          "LABEL": "Play Immediately"
+        },
+        "LOOP": {
+          "HINT": "If enabled, will loop this animation indefinitely.",
+          "LABEL": "Loop"
+        },
+        "NAME": "Sprite Animation"
+      },
+      "STARTPLAYLIST": {
+        "DESCRIPTION": "Start a given playlist",
+        "NAME": "Start Playlist",
+        "PLAYLIST": {
+          "HINT": "The playlist to start",
+          "LABEL": "Playlist"
+        },
+        "SOUND": {
+          "HINT": "(Optional) Sound on the above playlist to play",
+          "LABEL": "Sound"
+        }
+      },
+      "STOPPLAYLIST": {
+        "DESCRIPTION": "Stop the current playlist",
+        "NAME": "Stop Playlist"
+      },
+      "TINT": {
+        "DESCRIPTION": "A simple efect to tint the placeable",
+        "NAME": "Tint",
+        "REPLACE": {
+          "HINT": "If enabled, will fully replace the colors of the placeable with this color",
+          "LABEL": "Replace Color"
+        },
+        "TINT": {
+          "HINT": "The color to use to tint this placeable.  Use white to return it to its usual colors.",
+          "LABEL": "Tint"
+        }
+      },
+      "TOKENMAGIC": {
+        "DESCRIPTION": "Apply a Token Magic FX preset to this placeable",
+        "NAME": "Token Magic FX",
+        "PARAMS": {
+          "HINT": "The parameters to pass to Token Magic FX",
+          "LABEL": "Parameters"
+        },
+        "PRESET": {
+          "HINT": "Load one of the presets that Token Magic FX provides",
+          "LABEL": "Preset"
+        }
+      }
+    }
+  }
+}

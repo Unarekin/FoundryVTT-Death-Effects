@@ -1,0 +1,23 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/duration.hbs" }}
+
+    <div class="form-group slim">
+      <label for="{{@root.rootId}}-direction">{{localize "DEATH-EFFECTS.EFFECTS.DUST.DIRECTION.LABEL"}}</label>
+
+      <div class="form-fields">
+        <label for="{{@root.rootId}}-directionX">{{localize "DEATH-EFFECTS.EFFECTS.DUST.DIRECTION.X"}}</label>
+        <input type="number" id="{{@root.rootId}}-directionX" name="direction" min="-1" max="1" step="any" required value="{{lookup direction 0}}">
+
+        <label for="{{@root.rootId}}-directionY">{{localize "DEATH-EFFECTS.EFFECTS.DUST.DIRECTION.Y"}}</label>
+        <input type="number" id="{{@root.rootId}}-directionY" name="direction" min="-1" max="1" step="any" required value="{{lookup direction 1}}">
+      </div>
+
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.DUST.DIRECTION.HINT"}}</p>
+    </div>
+
+  {{/with}}
+  {{> "modules/death-effects/templates/effects/partials/easing.hbs" }} 
+</div>

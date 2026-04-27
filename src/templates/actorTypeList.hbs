@@ -1,0 +1,11 @@
+<div class="flexcol">
+  <div>{{localize "DEATH-EFFECTS.CONFIG.ACTORTYPE.DESCRIPTION"}}</div>
+  <p></p>
+  {{#each types as |type|}}
+    <button
+      type="button"
+      data-action="select"
+      data-type="{{type.value}}"
+    >{{localize type.label}}</button>
+  {{/each}}
+</div>

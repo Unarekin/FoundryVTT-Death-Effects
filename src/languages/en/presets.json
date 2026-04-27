@@ -1,0 +1,20 @@
+{
+  "DEATH-EFFECTS": {
+    "PRESETS": {
+      "DESCRIPTION": "Select a preset below",
+      "FINALBOSS": {
+        "DESCRIPTION": "An animation sequence styled after Kefka's from Final Fantasy 6.",
+        "NAME": "Final Boss"
+      },
+      "PURPLEDUST": {
+        "DESCRIPTION": "Turns the placeable purple, then they blow away like dust in the wind.",
+        "NAME": "Purple Dust"
+      },
+      "REDDISSOLVE": {
+        "DESCRIPTION": "Turns the placeable red, then dissolves it.",
+        "NAME": "Red Dissolve"
+      },
+      "TITLE": "Preset"
+    }
+  }
+}

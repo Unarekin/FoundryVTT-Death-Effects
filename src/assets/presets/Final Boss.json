@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "autoHide": true,
+  "autoTransparent": false,
+  "effects": [
+    {
+      "id": "CFIrRMeIo4rnWXMJ",
+      "version": "1.0.0",
+      "label": "",
+      "type": "screenFlash",
+      "start": 0,
+      "duration": 150,
+      "color": "#FFFFFF",
+      "backgroundOnly": true
+    },
+    {
+      "id": "ZoQ5EgUBe9CHoa0h",
+      "version": "1.0.0",
+      "label": "",
+      "type": "screenFlash",
+      "start": 500,
+      "duration": 150,
+      "color": "#FFFFFF",
+      "backgroundOnly": true
+    },
+    {
+      "id": "5g9ZOWBIujxsV1a8",
+      "version": "1.0.0",
+      "label": "",
+      "type": "screenShake",
+      "start": 3500,
+      "duration": 7500,
+      "strength": 5,
+      "backgroundOnly": true,
+      "easing": "none",
+      "easingParams": ""
+    },
+    {
+      "id": "AKhHaS9aButcLe6i",
+      "version": "1.0.0",
+      "label": "",
+      "type": "slide",
+      "start": 2500,
+      "duration": 7000,
+      "direction": "down",
+      "distance": 300,
+      "easing": "none",
+      "easingParams": ""
+    },
+    {
+      "id": "8yJzwgvCVD6n8qZX",
+      "version": "1.0.0",
+      "label": "",
+      "type": "crumble",
+      "start": 0,
+      "duration": 8000,
+      "easing": "none",
+      "easingParams": "",
+      "floatDistance": 6,
+      "direction": "down"
+    }
+  ]
+}

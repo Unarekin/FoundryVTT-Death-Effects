@@ -1,0 +1,24 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-animation">{{localize "DEATH-EFFECTS.EFFECTS.SPRITEANIMATION.ANIMATION.LABEL"}}</label>
+      <input type="text" required id="{{@root.rootId}}-animation" name="animation" value="{{animation}}">
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SPRITEANIMATION.ANIMATION.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-loop">{{localize "DEATH-EFFECTS.EFFECTS.SPRITEANIMATION.LOOP.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-loop" name="loop" {{checked loop}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SPRITEANIMATION.LOOP.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-immediate">{{localize "DEATH-EFFECTS.EFFECTS.SPRITEANIMATION.IMMEDIATE.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-immediate" name="immediate" {{checked immediate}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SPRITEANIMATION.IMMEDIATE.HINT"}}</p>
+    </div>
+  {{/with}}
+</div>

@@ -1,0 +1,20 @@
+{
+  "DEATH-EFFECTS": {
+    "SETTINGS": {
+      "INJECTTOKENCONFIG": {
+        "LABEL": "Add tab to token configuration",
+        "HINT": "When enabled, will add a tab to the token configuration application."
+      },
+      "MENUS": {
+        "GLOBAL": {
+          "LABEL": "Global Configuration",
+          "HINT": "Configure global death effect animation"
+        },
+        "ACTORTYPE": {
+          "LABEL": "Actor Type Configuration",
+          "HINT": "Configure death effect configuration by actor type"
+        }
+      }
+    }
+  }
+}

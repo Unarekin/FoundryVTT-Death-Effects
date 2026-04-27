@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "autoHide": true,
+  "autoTransparent": false,
+  "effects": [
+    {
+      "id": "8vp5nnk8tiNAcsOr",
+      "version": "1.0.0",
+      "label": "",
+      "type": "tint",
+      "start": 0,
+      "tint": "#5b015b",
+      "replace": false
+    },
+    {
+      "id": "xQHt0uO44r7CusFg",
+      "version": "1.0.0",
+      "label": "",
+      "type": "dust",
+      "start": 250,
+      "duration": 3000,
+      "easing": "none",
+      "easingParams": "",
+      "direction": [0, 1]
+    }
+  ]
+}

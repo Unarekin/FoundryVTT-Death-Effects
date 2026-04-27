@@ -1,0 +1,79 @@
+@use "variables" as *;
+
+@font-face {
+  font-family: "#{$icomoon-font-family}";
+  src:
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?o0lgbc")
+      format("truetype"),
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.woff?o0lgbc")
+      format("woff"),
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.svg?o0lgbc##{$icomoon-font-family}")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.de-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "#{$icomoon-font-family}" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.de-crumble {
+    &:before {
+      content: $de-crumble;
+      color: #fff;
+    }
+  }
+  &.de-dust {
+    &:before {
+      content: $de-dust;
+      color: #fff;
+    }
+  }
+  &.de-dissolve {
+    &:before {
+      content: $de-dissolve;
+      color: #fff;
+    }
+  }
+  &.de-fade {
+    &:before {
+      content: $de-fade;
+      color: #fff;
+    }
+  }
+  &.de-fire {
+    &:before {
+      content: $de-fire;
+      color: #fff;
+    }
+  }
+  &.de-flash {
+    &:before {
+      content: $de-flash;
+      color: #fff;
+    }
+  }
+  &.de-melt {
+    &:before {
+      content: $de-melt;
+      color: #fff;
+    }
+  }
+  &.de-sound {
+    &:before {
+      content: $de-sound;
+      color: #fff;
+    }
+  }
+}

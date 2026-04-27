@@ -1,7 +1,7 @@
 {
-  "name": "foundryvtt-module-template",
+  "name": "foundryvtt-death-effects",
   "version": "1.0.0",
-  "description": "",
+  "description": "A module for FoundryVTT to add JRPG-like death effects for your tokens!",
   "main": "dist/module.js",
   "scripts": {
     "build": "node build.mjs",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Unarekin/FoundryVTT-Module-Template.git"
+    "url": "git+https://github.com/Unarekin/FoundryVTT-Death-Effects.git"
   },
   "keywords": [],
   "author": "",
@@ -19,12 +19,13 @@
   "type": "commonjs",
   "types": "./types/module.d.ts",
   "bugs": {
-    "url": "https://github.com/Unarekin/FoundryVTT-Module-Template/issues"
+    "url": "https://github.com/Unarekin/FoundryVTT-Death-Effects/issues"
   },
-  "homepage": "https://github.com/Unarekin/FoundryVTT-Module-Template#readme",
+  "homepage": "https://github.com/Unarekin/FoundryVTT-Death-Effects#readme",
   "devDependencies": {
     "@eslint/js": "^9.11.0",
     "@foundryvtt/foundryvtt-cli": "^1.1.0",
+    "animation-timeline-js": "^2.3.5",
     "deepmerge-ts": "^7.1.5",
     "esbuild": "^0.25.5",
     "esbuild-copy-static-files": "^0.1.0",
@@ -35,8 +36,21 @@
     "esbuild-sass-plugin": "^3.3.1",
     "eslint": "^9.11.0",
     "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main",
+    "gsap": "^3.15.0",
+    "sprite-animations": "github:Unarekin/FoundryVTT-Sprite-Animations",
     "typedoc": "^0.26.10",
-    "typedoc-plugin-rename-defaults": "^0.7.1",
+    "typedoc-github-theme": "^0.4.0",
+    "typedoc-github-wiki-theme": "^2.1.0",
+    "typedoc-plugin-dt-links": "^2.0.51",
+    "typedoc-plugin-extras": "^4.0.1",
+    "typedoc-plugin-include-example": "^3.0.2",
+    "typedoc-plugin-inline-sources": "^1.3.0",
+    "typedoc-plugin-markdown": "^4.11.0",
+    "typedoc-plugin-md": "^0.7.1",
+    "typedoc-plugin-mdn-links": "^5.1.1",
+    "typedoc-plugin-merge-modules": "^7.0.0",
+    "typedoc-plugin-rename-defaults": "^0.7.3",
+    "typedoc-plugin-version-header": "^1.0.0",
     "typescript": "<5.6.0",
     "typescript-eslint": "^8.6.0",
     "yocto-spinner": "^0.2.3"

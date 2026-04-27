@@ -1,0 +1,15 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/duration.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-blockSize">{{localize "DEATH-EFFECTS.EFFECTS.DISSOLVE.BLOCKSIZE.LABEL"}}</label>
+      <input type="number" min="1" step="1" required value="{{blockSize}}" id="{{@root.rootId}}-blockSize" name="blockSize">
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.DISSOLVE.BLOCKSIZE.HINT"}}</p>
+    </div>
+
+  {{/with}}
+  {{> "modules/death-effects/templates/effects/partials/easing.hbs" }}
+</div>

@@ -1,0 +1,55 @@
+<div class="scrollable timeline-editor">
+  <div class="timeline-editor__container">
+    <div class="timeline-editor__outline">
+      <div class="timeline-editor__outline-header">
+        <button type="button" data-action="addEffect" data-tooltip="{{{localize 'DEATH-EFFECTS.TIMELINE.ADDEFFECT.TOOLTIP'}}}">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <button type="button" data-action="clear" data-tooltip="{{{localize "DEATH-EFFECTS.TIMELINE.CLEAR.TOOLTIP"}}}">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+      <div class="timeline-editor__outline-items">
+        {{#each effects as |effect i|}}
+          <div class="timeline-editor__outline-item{{#if (isOdd i)}} timeline-editor__outline-item--alt{{/if}}">
+            <div class="timeline-editor__outline-item-label">
+              <a
+                data-action="editEffect"
+                data-effect="{{effect.id}}"
+                data-tooltip="{{localize
+                  'DEATH-EFFECTS.CONFIG.TOOLTIPS.EDITEFFECT'
+                }}"
+              >
+                {{localize
+                effect.actualLabel
+              }}
+              </a>
+            </div>
+            <div class="timeline-editor__outline-item-controls">
+              <a
+                data-action="editEffect"
+                data-effect="{{effect.id}}"
+                data-tooltip="{{localize
+                  'DEATH-EFFECTS.CONFIG.TOOLTIPS.EDITEFFECT'
+                }}"
+              >
+                <i class="fa-solid fa-cogs"></i>
+              </a>
+              <a
+                data-action="removeEffect"
+                data-effect="{{effect.id}}"
+                data-tooltip="{{localize
+                  'DEATH-EFFECTS.CONFIG.TOOLTIPS.REMOVEEFFECT'
+                }}"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <div class="timeline-editor__outline-footer"></div>
+    </div>
+    <div id="{{@root.rootId}}-timeline" class="timeline-editor__timeline"></div>
+  </div>
+</div>

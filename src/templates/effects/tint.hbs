@@ -1,0 +1,24 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{root.rootId}}-tint">{{localize
+          "DEATH-EFFECTS.EFFECTS.TINT.TINT.LABEL"
+        }}</label>
+      <color-picker
+        id="{{root.rootId}}-tint"
+        name="tint"
+        value="{{tint}}"
+      ></color-picker>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.TINT.TINT.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-replace">{{localize "DEATH-EFFECTS.EFFECTS.TINT.REPLACE.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-replace" name="replace" {{checked replace}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.TINT.REPLACE.LABEL"}}</p>
+    </div>
+  {{/with}}
+</div>
