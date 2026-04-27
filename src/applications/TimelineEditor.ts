@@ -19,7 +19,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       resizable: true
     },
     position: {
-      width: 600
+      width: 600,
+      height: 500
     },
     actions: {
       submit: TimelineEditor.Submit,
@@ -203,7 +204,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
   async _prepareContext(options: Options): Promise<TimelineContext> {
     const context = await super._prepareContext(options) as TimelineContext;
 
-    context.rootId = foundry.utils.randomID();
+    // context.rootId = foundry.utils.randomID();
+    context.rootId = this.id
 
     context.effects = [];
     for (const effect of this.effects) {
@@ -273,13 +275,15 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       }
     });
 
+    timeline._renderTimeline = () => { /* empty */ };
+
     timeline.onScroll(e => {
-      console.log("Scrolled:", e, timeline);
       const container = this.element.querySelector(`.timeline-editor__outline-items`);
       if (container instanceof HTMLElement) {
         container.scrollTop = e.scrollTop;
       }
     });
+
 
 
     if (this.timeline)
@@ -327,6 +331,13 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
     if (this.timeline) {
       this.timeline.rescale();
       this.timeline.redraw();
+
+      const outlineItems = this.element.querySelector(`.timeline-editor__outline-items`);
+      const timelineCanvas = this.element.querySelector(`#${this.id}-timeline`);
+      console.log("Setting padding:", outlineItems, timelineCanvas, timelineCanvas?.clientHeight)
+      if (outlineItems instanceof HTMLElement && timelineCanvas instanceof HTMLElement) {
+        outlineItems.style.paddingBottom = `${(timelineCanvas.clientHeight * .2) + 35}px`;
+      }
     }
   }
 
