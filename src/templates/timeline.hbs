@@ -1,7 +1,14 @@
 <div class="scrollable timeline-editor">
   <div class="timeline-editor__container">
     <div class="timeline-editor__outline">
-      <div class="timeline-editor__outline-header"></div>
+      <div class="timeline-editor__outline-header">
+        <button type="button" data-action="addEffect" data-tooltip="{{{localize 'DEATH-EFFECTS.TIMELINE.ADDEFFECT.TOOLTIP'}}}">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <button type="button" data-action="clear" data-tooltip="{{{localize "DEATH-EFFECTS.TIMELINE.CLEAR.TOOLTIP"}}}">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
       <div class="timeline-editor__outline-items">
         {{#each effects as |effect i|}}
           <div class="timeline-editor__outline-item{{#if (isOdd i)}} timeline-editor__outline-item--alt{{/if}}">
@@ -41,28 +48,7 @@
           </div>
         {{/each}}
       </div>
-      <div class="timeline-editor__outline-footer">
-        <button type="button" data-action="addEffect" data-tooltip="{{{localize 'DEATH-EFFECTS.TIMELINE.ADDEFFECT.TOOLTIP'}}}">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-        <button type="button" data-action="clear" data-tooltip="{{{localize "DEATH-EFFECTS.TIMELINE.CLEAR.TOOLTIP"}}}">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-        {{!-- <button
-          type="button"
-          data-action="addEffect"
-          data-tooltip="{{{localize
-            'DEATH-EFFECTS.TIMELINE.ADDEFFECT.TOOLTIP'
-          }}}"
-        >
-          <i class="fa-solid fa-plus"></i>
-          {{localize "DEATH-EFFECTS.TIMELINE.ADDEFFECT.LABEL"}}
-        </button>
-        <button type="button" data-action="clear" data-tooltip="{{{localize "DEATH-EFFECTS.TIMELINE.CLEAR.TOOLTIP"}}}">
-          <i class="fa-solid fa-trash"></i>
-          {{localize "DEATH-EFFECTS.TIMELINE.CLEAR.LABEL"}}
-        </button> --}}
-      </div>
+      <div class="timeline-editor__outline-footer"></div>
     </div>
     <div id="{{@root.rootId}}-timeline" class="timeline-editor__timeline"></div>
   </div>

@@ -19,7 +19,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
       resizable: true
     },
     position: {
-      width: 600
+      width: 600,
+      height: 500
     },
     actions: {
       submit: TimelineEditor.Submit,
@@ -203,7 +204,8 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
   async _prepareContext(options: Options): Promise<TimelineContext> {
     const context = await super._prepareContext(options) as TimelineContext;
 
-    context.rootId = foundry.utils.randomID();
+    // context.rootId = foundry.utils.randomID();
+    context.rootId = this.id
 
     context.effects = [];
     for (const effect of this.effects) {
@@ -262,13 +264,26 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
   async _onRender(context: TimelineContext, options: Options) {
     await super._onRender(context, options);
 
-    const timeline = new timelineModule.Timeline({
+    const timeline = new Timeline({
       id: `${context.rootId}-timeline`,
       stepSmallPx: 10,
       snapStep: 10,
       stepPx: 250,
       timelineDraggable: false,
+      timelineStyle: {
+        width: 0
+      }
     });
+
+    timeline._renderTimeline = () => { /* empty */ };
+
+    timeline.onScroll(e => {
+      const container = this.element.querySelector(`.timeline-editor__outline-items`);
+      if (container instanceof HTMLElement) {
+        container.scrollTop = e.scrollTop;
+      }
+    });
+
 
 
     if (this.timeline)
@@ -307,8 +322,23 @@ export class TimelineEditor extends foundry.applications.api.HandlebarsApplicati
           durationEff.duration = Math.max(elem.row.keyframes[1].val - effect.start, 0);
       });
       this.render().catch(console.error);
-    })
+    });
+  }
 
+  _onPosition(options: foundry.applications.api.ApplicationV2.RenderOptions) {
+    super._onPosition(options);
+    // console.log("onPosition:", this.position)
+    if (this.timeline) {
+      this.timeline.rescale();
+      this.timeline.redraw();
+
+      const outlineItems = this.element.querySelector(`.timeline-editor__outline-items`);
+      const timelineCanvas = this.element.querySelector(`#${this.id}-timeline`);
+      console.log("Setting padding:", outlineItems, timelineCanvas, timelineCanvas?.clientHeight)
+      if (outlineItems instanceof HTMLElement && timelineCanvas instanceof HTMLElement) {
+        outlineItems.style.paddingBottom = `${(timelineCanvas.clientHeight * .2) + 35}px`;
+      }
+    }
   }
 
   protected async addEffect(key: keyof typeof CONFIG.DeathEffects.effects) {
