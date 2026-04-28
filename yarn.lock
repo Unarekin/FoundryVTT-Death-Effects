@@ -3590,11 +3590,6 @@ type-check@^0.4.0, type-check@~0.4.0:
   dependencies:
     prelude-ls "^1.2.1"
 
-typedoc-plugin-dt-links@^2.0.51:
-  version "2.0.51"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-dt-links/-/typedoc-plugin-dt-links-2.0.51.tgz#4124bbe2a687be9596c4a16fdb258d40de8638a0"
-  integrity sha512-IDOU/Zf3E0aCNcdP1m84tDwphu+BLNeZXHEeUhGChrA0ZH+qewc7gSvZ8TLvElBiANwC6h0EZbHX+VR/7Dv+sg==
-
 typedoc-plugin-extras@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-extras/-/typedoc-plugin-extras-4.0.1.tgz#963855696918e7fd2ff33707dc3c68b865b53787"
