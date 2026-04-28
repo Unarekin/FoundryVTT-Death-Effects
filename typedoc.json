@@ -5,11 +5,7 @@
   "name": "Death Effects",
 
   "cleanOutputDir": true,
-  "plugin": [
-    "typedoc-plugin-rename-defaults",
-    "typedoc-plugin-version-header",
-    "typedoc-plugin-mdn-links"
-  ],
+  "plugin": ["typedoc-plugin-rename-defaults", "typedoc-plugin-version-header"],
   "useTsLinkResolution": true,
   "readme": "./README.md"
 }
