@@ -1,6 +1,6 @@
 {
   "name": "foundryvtt-death-effects",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A module for FoundryVTT to add JRPG-like death effects for your tokens!",
   "main": "dist/module.js",
   "scripts": {
@@ -39,6 +39,7 @@
     "gsap": "^3.15.0",
     "sprite-animations": "github:Unarekin/FoundryVTT-Sprite-Animations",
     "typedoc": "^0.26.10",
+    "typedoc-plugin-rename-defaults": "^0.7.3",
     "typedoc-plugin-version-header": "^1.0.0",
     "typescript": "<5.6.0",
     "typescript-eslint": "^8.6.0",
