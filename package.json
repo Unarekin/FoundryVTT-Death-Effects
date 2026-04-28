@@ -1,6 +1,6 @@
 {
   "name": "foundryvtt-death-effects",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A module for FoundryVTT to add JRPG-like death effects for your tokens!",
   "main": "dist/module.js",
   "scripts": {
