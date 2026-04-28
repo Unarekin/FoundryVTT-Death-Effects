@@ -44,4 +44,5 @@ This module contains exactly 0% AI-generated content, whether that be code gener
 
 # Acknowledgements and Attributions
 
-This module makes use of the [animation-timeline-control](https://github.com/ievgennaida/animation-timeline-control) library to render its timeline editor
+- This module makes use of the [animation-timeline-control](https://github.com/ievgennaida/animation-timeline-control) library to render its timeline editor
+- This module includes a font created from icons from [Game-Icons.net](https://game-icons.net/).
