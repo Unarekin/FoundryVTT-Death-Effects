@@ -1275,11 +1275,6 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-camelcase@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-8.0.0.tgz#c0d36d418753fb6ad9c5e0437579745c1c14a534"
-  integrity sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==
-
 catering@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/catering/-/catering-2.1.1.tgz#66acba06ed5ee28d5286133982a927de9a04b510"
@@ -3590,49 +3585,10 @@ type-check@^0.4.0, type-check@~0.4.0:
   dependencies:
     prelude-ls "^1.2.1"
 
-typedoc-plugin-extras@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-extras/-/typedoc-plugin-extras-4.0.1.tgz#963855696918e7fd2ff33707dc3c68b865b53787"
-  integrity sha512-ab3T37ukHCwBjwBJpAcWdxy/XAaLdUyy5pwbgF9WDqCRN0DTJmJPLew9Kv6qrx5qnxiyfe6F4Og+PUp15kJWLw==
-
-typedoc-plugin-include-example@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-include-example/-/typedoc-plugin-include-example-3.0.2.tgz#fc1b8bd32be4e69f6e53c618a69c485177bf4c67"
-  integrity sha512-A9yknAVTnWBAEl+EJgjssGYkpPdWegItYoZqddWgg39dHwlkh24zkeLZgTKucugF1BG3nm4eE+OJrDtpp1G0ww==
-
-typedoc-plugin-inline-sources@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-inline-sources/-/typedoc-plugin-inline-sources-1.3.0.tgz#484c0950b5f3a3d3d3cfa37846b177ba6d603b29"
-  integrity sha512-WUv9+u6KzGNwfdxBo8ATgU5ZkbfreAoup+kmd8JMcDQtS0A8kDqosb+XGypFgiq/BcrnJJJS/oC/StDb4vx0IQ==
-
-typedoc-plugin-markdown@^4.8.1:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-4.11.0.tgz#57c29b0aeec2eba41e995670591de63bcf645b80"
-  integrity sha512-2iunh2ALyfyh204OF7h2u0kuQ84xB3jFZtFyUr01nThJkLvR8oGGSSDlyt2gyO4kXhvUxDcVbO0y43+qX+wFbw==
-
-typedoc-plugin-md@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-md/-/typedoc-plugin-md-0.7.1.tgz#1e6e10eebf6ccaa0df4e357732567951b8dda84f"
-  integrity sha512-cWwtkG8fda9pj7R69aEuJ3RCFLLvGIN1OYJ3s4tL5zpq6cqAaE9lhKVNhhpOvxefRfgY5+RvDurh1UZ5AOElZA==
-  dependencies:
-    typedoc-plugin-markdown "^4.8.1"
-
 typedoc-plugin-mdn-links@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-mdn-links/-/typedoc-plugin-mdn-links-5.1.1.tgz#1ef081b26ac3ab7e4f31d4be23d6e6a10551ede6"
   integrity sha512-fLlYudnlGkE9uspOEm/SBXwr+G0RbxoDZiHAVsCg+5NwKe2aUxjZK1YyQfleNZydImanzkX2oUJF29xbEeOSWw==
-
-typedoc-plugin-merge-modules@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-merge-modules/-/typedoc-plugin-merge-modules-7.0.0.tgz#43b7d2b4020eff552d6e46b7d5cf2e5d306597fc"
-  integrity sha512-DQyfbbPNBElhpdpGrlkS+CrhGD3iooDjp/PHT8O1D/jumLCB+7XAY3jHiqob7d01o25EfwEOJWVwJK+9J6WlBg==
-
-typedoc-plugin-rename-defaults@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-rename-defaults/-/typedoc-plugin-rename-defaults-0.7.3.tgz#3c046730de2c9dcb6003ddb8861ff2b87b9e82ca"
-  integrity sha512-fDtrWZ9NcDfdGdlL865GW7uIGQXlthPscURPOhDkKUe4DBQSRRFUf33fhWw41FLlsz8ZTeSxzvvuNmh54MynFA==
-  dependencies:
-    camelcase "^8.0.0"
 
 typedoc-plugin-version-header@^1.0.0:
   version "1.0.0"

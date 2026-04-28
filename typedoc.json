@@ -8,7 +8,6 @@
   "plugin": [
     "typedoc-plugin-rename-defaults",
     "typedoc-plugin-version-header",
-    "typedoc-plugin-extras",
     "typedoc-plugin-mdn-links"
   ],
   "useTsLinkResolution": true,
