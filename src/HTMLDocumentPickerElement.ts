@@ -424,8 +424,8 @@ export class HTMLDocumentPickerElement<t extends foundry.abstract.Document.Any =
 }
 
 
-
-customElements.define(HTMLDocumentPickerElement.tagName, HTMLDocumentPickerElement);
+if (!customElements.get(HTMLDocumentPickerElement.tagName))
+  customElements.define(HTMLDocumentPickerElement.tagName, HTMLDocumentPickerElement);
 
 Hooks.on("renderCompendium", (app: foundry.applications.api.ApplicationV2, html: HTMLElement | JQuery<HTMLElement>) => {
 
