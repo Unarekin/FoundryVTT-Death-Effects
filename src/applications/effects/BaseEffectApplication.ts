@@ -114,10 +114,8 @@ export abstract class BaseEffectApplication<t extends DeathEffect> extends found
 
   constructor(public config: t, options?: foundry.applications.api.ApplicationV2.Configuration) {
     super(options);
-    console.log("Constructing:", this);
     if (!config) {
       const defaultSettings = this.getDefaultSettings();
-      console.log("Default config:", defaultSettings);
       if (!this.getDefaultSettings) {
         throw new Error("No default configuration configured for this application");
       } else {

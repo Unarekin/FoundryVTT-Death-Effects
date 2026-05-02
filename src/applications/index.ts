@@ -5,6 +5,7 @@ export * from './GlobalConfig';
 export * from './PrototypeTokenConfig';
 export * from './SimpleSelect';
 export * from './StandaloneConfig';
+export * from './StandalonePrototypeTokenConfig';
 export * from './StandaloneTokenConfig';
 export * from './TimelineEditor';
 export * from './TokenConfig';

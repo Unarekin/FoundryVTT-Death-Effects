@@ -13,7 +13,7 @@ export interface TimelineContext extends foundry.applications.api.ApplicationV2.
 
 export interface DeathEffectsConfigContext {
   config: DeathEffectsConfig,
-  source: ConfigSource;
+  source?: ConfigSource;
   hasConfigSource: boolean;
   configSourceSelect: Partial<Record<ConfigSource, string>>;
   hasTriggerConditions: boolean;

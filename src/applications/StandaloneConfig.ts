@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { downloadJSON, templatePath, uploadJSON } from "functions";
-import { DeathEffect, DeathEffectsConfig, DeepPartial } from "types";
+import { ConfigSource, DeathEffect, DeathEffectsConfig, DeepPartial } from "types";
 import { StandaloneConfigContext } from "./types";
 import { DefaultDeathEffectsConfig } from "defaults";
 import { TimelineEditor } from "./TimelineEditor";
@@ -43,8 +43,9 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
 
   // #region Abstract Methods
   protected _onCancel(): void | Promise<void> { /* empty */ };
-  protected abstract _onSave(data: DeathEffectsConfig): void | Promise<void>;
+  protected abstract _onSave(data: DeathEffectsConfig, source?: ConfigSource): void | Promise<void>;
   protected abstract _getConfigData(): DeathEffectsConfig | undefined;
+  protected abstract _getConfigSource(): ConfigSource | undefined;
   // #endregion
 
   // #region Action Handlers
@@ -59,7 +60,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     const data = this._prepareFormData();
     if (!data) return;
 
-    const onSave = this._onSave(data);
+    const onSave = this._onSave(data, this.configSource);
     if (onSave instanceof Promise) await onSave;
     await this.close();
   }
@@ -89,6 +90,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
   // #endregion
 
   protected configCache: DeathEffectsConfig | undefined = undefined;
+  protected configSource: ConfigSource | undefined = undefined;
 
   protected _prepareFormData(): DeathEffectsConfig | undefined {
     return this.configCache;
@@ -277,10 +279,12 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
   _onChangeForm(formConfig: foundry.applications.api.ApplicationV2.FormConfiguration, e: Event) {
     super._onChangeForm(formConfig, e);
 
-    const formData = foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(this.element as HTMLFormElement)).object) as { deathEffects: { config: DeathEffectsConfig } };
+    const formData = foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(this.element as HTMLFormElement)).object) as { deathEffects: { config: DeathEffectsConfig, source: ConfigSource } };
     const effects = this.configCache?.effects ?? [];
     this.configCache = formData.deathEffects.config;
     if (this.configCache) this.configCache.effects = effects;
+
+    this.configSource = formData.deathEffects.source;
   }
 
   async _onRender(context: StandaloneConfigContext, options: foundry.applications.api.ApplicationV2.RenderOptions) {
@@ -312,12 +316,15 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     const context = await super._prepareContext(options);
 
     this.configCache ??= this._getConfigData();
+    this.configSource ??= this._getConfigSource();
 
     context.config = foundry.utils.deepClone(DefaultDeathEffectsConfig);
     foundry.utils.mergeObject(context.config, this.configCache);
 
     context.configSourceSelect = {};
     context.hasConfigSource = false;
+    context.source = this.configSource;
+
     context.triggerConditionSelect = [
       { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: false },
       { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },

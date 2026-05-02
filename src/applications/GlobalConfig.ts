@@ -1,7 +1,9 @@
-import { DeathEffectsConfig, DeepPartial } from "types";
+import { ConfigSource, DeathEffectsConfig, DeepPartial } from "types";
 import { DeathEffectsConfiguration } from "./StandaloneConfig";
 
 export class GlobalConfig extends DeathEffectsConfiguration {
+  protected _getConfigSource(): ConfigSource | undefined { return undefined; }
+
   static DEFAULT_OPTIONS: DeepPartial<foundry.applications.api.ApplicationV2.Configuration> = {
     window: {
       title: "DEATH-EFFECTS.SETTINGS.MENUS.GLOBAL.LABEL",

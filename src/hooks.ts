@@ -1,5 +1,5 @@
 import { TokenMixin } from "./placeables";
-import { PrototypeTokenConfigMixin, StandaloneTokenConfig, TokenConfigMixin } from "./applications";
+import { DeathEffectsConfiguration, PrototypeTokenConfigMixin, StandalonePrototypeTokenConfig, StandaloneTokenConfig, TokenConfigMixin } from "./applications";
 import { DeathPlaceable, DeepPartial } from "types";
 import { SETTINGS } from "settings";
 
@@ -77,30 +77,59 @@ Hooks.on("createActiveEffect", (effect: ActiveEffect) => {
   }
 })
 
-const standaloneConfigs: Record<string, StandaloneTokenConfig> = {};
+const standaloneConfigs: WeakMap<any, DeathEffectsConfiguration> = new WeakMap<any, DeathEffectsConfiguration>();
+
+
+
+function getStandaloneConfig<t extends DeathEffectsConfiguration>(key: any, appType: (new (...args: any[]) => t)): t {
+  if (standaloneConfigs.has(key))
+    return standaloneConfigs.get(key) as unknown as t;
+  const app = new appType(key);
+  standaloneConfigs.set(key, app);
+  return app;
+}
+
+function createHeaderButton(onClick: (() => void), canView?: (() => boolean)): foundry.applications.api.ApplicationV2.HeaderControlsEntry {
+  return {
+    icon: 'fa-solid fa-skull',
+    label: "DEATH-EFFECTS.CONFIG.TITLE",
+    onClick,
+    visible: canView ? true : canView
+  } as unknown as foundry.applications.api.ApplicationV2.HeaderControlsEntry;
+}
+
+function canModifyDocument(doc: foundry.abstract.Document.Any): boolean {
+  return !!(game.user && doc.canUserModify(game.user, "update"));
+}
 
 Hooks.on("closeTokenConfig", (app: foundry.applications.sheets.TokenConfig) => {
-  console.log("Closing token config:", app.document);
   if (!app.document?.id) return;
 
-  if (standaloneConfigs[app.document.id])
-    standaloneConfigs[app.document.id].close().catch(console.error);
+  if (standaloneConfigs.has(app.document)) {
+    standaloneConfigs.get(app.document)?.close().catch(console.error);
+    standaloneConfigs.delete(app.document);
+  }
+});
 
-  delete standaloneConfigs[app.document.id];
-})
+// Hooks.on("closePrototypeTokenConfig", (app: foundry.applications.sheets.PrototypeTokenConfig) => {
+
+// })
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 Hooks.on("getHeaderControlsTokenConfig", ((app: foundry.applications.sheets.TokenConfig, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
-  controls.push({
-    icon: 'fa-solid fa-skull',
-    label: "DEATH-EFFECTS.CONFIG.TITLE",
-    onClick: () => {
-      if (!app.document?.id) return;
-      standaloneConfigs[app.document.id] ??= new StandaloneTokenConfig(app.document);
-      standaloneConfigs[app.document.id].render({ force: true }).catch(console.error);
-    }
-  } as unknown as foundry.applications.api.ApplicationV2.HeaderControlsEntry);
-  // We cast this to suppress linter errors about onClick which
-  // does not exist in the typings but definitely does on the actual
-  // object
+  controls.unshift(createHeaderButton(() => {
+    if (!app.document) return;
+    const configApp = getStandaloneConfig<StandaloneTokenConfig>(app.document, StandaloneTokenConfig);
+    configApp.render({ force: true }).catch(console.error);
+  }, () => canModifyDocument(app.document)));
+}) as any);
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+Hooks.on("getHeaderControlsPrototypeTokenConfig", ((app: foundry.applications.sheets.PrototypeTokenConfig, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const token = (app as any).token as foundry.data.PrototypeToken;
+  controls.unshift(createHeaderButton(() => {
+    const configApp = getStandaloneConfig<StandalonePrototypeTokenConfig>(token, StandalonePrototypeTokenConfig);
+    configApp.render({ force: true }).catch(console.error);
+  }, () => canModifyDocument(token.actor)));
 }) as any);

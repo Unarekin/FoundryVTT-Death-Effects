@@ -27,7 +27,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
     }
   }
   protected _getConfigData(): DeathEffectsConfig | undefined {
-    const source = this.token.getFlag(__MODULE_ID__, "source");
+    const source = this.configSource ?? this._getConfigSource();
     const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
     switch (source) {
       case "token":
