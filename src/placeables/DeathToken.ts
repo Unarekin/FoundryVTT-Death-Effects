@@ -18,7 +18,6 @@ export function TokenMixin(base: Constructor) {
       const globalConfig = game.settings?.settings?.get(`${__MODULE_ID__}.globalConfig`) ? game.settings.get(__MODULE_ID__, "globalConfig") : undefined;
       const actorTypeConfigs = game.settings?.settings?.get(`${__MODULE_ID__}.actorTypeConfigs`) ? game.settings.get(__MODULE_ID__, "actorTypeConfigs") : undefined;
 
-
       let flags: DeepPartial<DeathEffectsConfig> | undefined = undefined;
       switch (configSource) {
         case "actor":

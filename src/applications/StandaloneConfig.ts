@@ -43,7 +43,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
 
   // #region Abstract Methods
   protected _onCancel(): void | Promise<void> { /* empty */ };
-  protected abstract _onSave(data: DeathEffectsConfig, source?: ConfigSource): void | Promise<void>;
+  protected abstract _onSave(data?: DeathEffectsConfig): void | Promise<void>;
   protected abstract _getConfigData(): DeathEffectsConfig | undefined;
   protected abstract _getConfigSource(): ConfigSource | undefined;
   // #endregion
@@ -58,7 +58,6 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
 
   static async Save(this: DeathEffectsConfiguration) {
     const data = this._prepareFormData();
-    if (!data) return;
 
     const onSave = this._onSave(data, this.configSource);
     if (onSave instanceof Promise) await onSave;

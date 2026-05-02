@@ -11,19 +11,21 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
     return this.token.getFlag(__MODULE_ID__, "source");
   }
 
-  protected async _onSave(data: DeathEffectsConfig): Promise<void> {
+  protected async _onSave(data?: DeathEffectsConfig): Promise<void> {
     const source = this.overrideConfigSource ?? this._getConfigSource();
 
     if (!source) throw new Error("No configuration source specified");
     await this.token.setFlag(__MODULE_ID__, "source", source);
-    switch (source) {
-      case "token":
-        await this.token.setFlag(__MODULE_ID__, "config", data);
-        break;
-      case "actor":
-        if (this.token.actor)
-          await this.token.actor.setFlag(__MODULE_ID__, "config", data);
-        break;
+    if (data) {
+      switch (source) {
+        case "token":
+          await this.token.setFlag(__MODULE_ID__, "config", data);
+          break;
+        case "actor":
+          if (this.token.actor)
+            await this.token.actor.setFlag(__MODULE_ID__, "config", data);
+          break;
+      }
     }
   }
   protected _getConfigData(): DeathEffectsConfig | undefined {

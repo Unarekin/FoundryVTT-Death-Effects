@@ -19,7 +19,8 @@ interface ActorUpdate {
 
 export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
 
-  protected async _onSave(data: DeathEffectsConfig, source?: ConfigSource) {
+  protected async _onSave(data: DeathEffectsConfig) {
+    const source = this.configSource ?? this._getConfigSource();
 
     const update: ActorUpdate = {
       prototypeToken: {
@@ -31,13 +32,15 @@ export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
       }
     };
 
-    switch (source) {
-      case "actor":
-        foundry.utils.setProperty(update, `flags.${__MODULE_ID__}.config`, foundry.utils.deepClone(data));
-        break;
-      case "token":
-        update.prototypeToken.flags[__MODULE_ID__].config = foundry.utils.deepClone(data);
-        break;
+    if (data) {
+      switch (source) {
+        case "actor":
+          foundry.utils.setProperty(update, `flags.${__MODULE_ID__}.config`, foundry.utils.deepClone(data));
+          break;
+        case "token":
+          update.prototypeToken.flags[__MODULE_ID__].config = foundry.utils.deepClone(data);
+          break;
+      }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
