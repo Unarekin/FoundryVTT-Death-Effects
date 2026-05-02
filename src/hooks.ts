@@ -85,6 +85,7 @@ function getStandaloneConfig<t extends DeathEffectsConfiguration>(key: any, appT
   if (standaloneConfigs.has(key))
     return standaloneConfigs.get(key) as unknown as t;
   const app = new appType(key);
+
   standaloneConfigs.set(key, app);
   return app;
 }
@@ -111,9 +112,14 @@ Hooks.on("closeTokenConfig", (app: foundry.applications.sheets.TokenConfig) => {
   }
 });
 
-// Hooks.on("closePrototypeTokenConfig", (app: foundry.applications.sheets.PrototypeTokenConfig) => {
-
-// })
+Hooks.on("closePrototypeTokenConfig", (app: foundry.applications.sheets.PrototypeTokenConfig) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const token = (app as any).token as foundry.data.PrototypeToken;
+  if (standaloneConfigs.has(token)) {
+    standaloneConfigs.get(token)?.close().catch(console.error);
+    standaloneConfigs.delete(token);
+  }
+});
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 Hooks.on("getHeaderControlsTokenConfig", ((app: foundry.applications.sheets.TokenConfig, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
@@ -133,3 +139,28 @@ Hooks.on("getHeaderControlsPrototypeTokenConfig", ((app: foundry.applications.sh
     configApp.render({ force: true }).catch(console.error);
   }, () => canModifyDocument(token.actor)));
 }) as any);
+
+Hooks.on("ready", () => {
+  const actorSheetHooks = ["getHeaderControlsActorSheetV2"];
+
+  // Only add header button for AppV1 if not injecting into token config, to prevent clutter
+  if (!game.settings?.get(__MODULE_ID__, "injectTokenConfig"))
+    actorSheetHooks.push("getActorSheetHeaderButtons");
+
+  actorSheetHooks.forEach(hook => {
+    Hooks.on(hook as Hooks.HookName, (app: foundry.applications.sheets.ActorSheetV2, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
+      controls.unshift(createHeaderButton(() => {
+        let configApp: DeathEffectsConfiguration | undefined = undefined;
+
+        if (app.actor.isToken) {
+          configApp = getStandaloneConfig(app.token, StandaloneTokenConfig);
+        } else {
+          configApp = getStandaloneConfig(app.actor.prototypeToken, StandalonePrototypeTokenConfig);
+        }
+
+        if (configApp)
+          configApp.render({ force: true }).catch(console.error);
+      }, () => canModifyDocument(app.actor)));
+    });
+  });
+})

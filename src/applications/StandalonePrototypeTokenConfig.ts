@@ -40,7 +40,6 @@ export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
         break;
     }
 
-    console.log("Updating:", update);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     await this.actor.update(update as any);
   }
@@ -71,7 +70,6 @@ export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
         foundry.utils.mergeObject(flags, this.actor.prototypeToken.getFlag(__MODULE_ID__, "config") ?? {});
     }
 
-    console.log("_getConfigData:", this._getConfigSource(), flags);
     return flags;
   }
 
