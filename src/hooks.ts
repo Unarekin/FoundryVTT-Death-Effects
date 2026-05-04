@@ -148,7 +148,7 @@ Hooks.on("ready", () => {
     actorSheetHooks.push("getActorSheetHeaderButtons");
 
   actorSheetHooks.forEach(hook => {
-    Hooks.on(hook as Hooks.HookName, (app: foundry.applications.sheets.ActorSheetV2, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
+    Hooks.on(hook as any, (app: foundry.applications.sheets.ActorSheetV2, controls: foundry.applications.api.ApplicationV2.HeaderControlsEntry[]) => {
       controls.unshift(createHeaderButton(() => {
         let configApp: DeathEffectsConfiguration | undefined = undefined;
 

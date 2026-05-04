@@ -59,7 +59,7 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
   static async Save(this: DeathEffectsConfiguration) {
     const data = this._prepareFormData();
 
-    const onSave = this._onSave(data, this.configSource);
+    const onSave = this._onSave(data);
     if (onSave instanceof Promise) await onSave;
     await this.close();
   }
