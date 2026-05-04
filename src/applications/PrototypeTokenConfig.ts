@@ -91,7 +91,10 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
       return context;
     }
 
+
     async _onSubmitForm(formConfig: foundry.applications.api.ApplicationV2.FormConfiguration, e: Event | SubmitEvent) {
+      await super._onSubmitForm(formConfig, e);
+
       if (!(e.target instanceof HTMLFormElement)) return console.warn("No form element to submit");
       const formData = foundry.utils.expandObject(new foundry.applications.ux.FormDataExtended(e.target).object);
 
@@ -125,7 +128,7 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
 
 
 
-      await super._onSubmitForm(formConfig, e);
+
       await token.actor.update(update);
     }
   }
