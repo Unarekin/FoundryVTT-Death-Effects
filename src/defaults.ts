@@ -1,4 +1,4 @@
-import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, NullDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
 
 export const DefaultConfigSource: ConfigSource = "actorType";
 
@@ -212,4 +212,13 @@ export const DefaultChangeImageEffect: ChangeImageDeathEffect = Object.freeze({
   start: 0,
   image: "",
   revertAfterAnimation: true
+});
+
+export const DefaultNullEffect: NullDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "null",
+  start: 0,
+  duration: 500
 })

@@ -34,6 +34,7 @@ export const EffectTypes = [
   "flash",
   "macro",
   "melt",
+  "null",
   "screenFlash",
   "screenShake",
   "shake",
@@ -173,7 +174,9 @@ export interface ChangeImageDeathEffect extends BaseDeathEffect {
   revertAfterAnimation: boolean;
 }
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect | ChangeImageDeathEffect;
+export type NullDeathEffect = BaseDeathEffect & DurationDeathEffect;
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect | ChangeImageDeathEffect | NullDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];
