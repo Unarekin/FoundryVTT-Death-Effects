@@ -1,0 +1,43 @@
+import { BaseEffectApplication } from "./BaseEffectApplication";
+import { DeepPartial, TextureMaskDeathEffect } from "types";
+import { DefaultTextureMaskEffect } from "defaults";
+import { templatePath } from "functions";
+
+type Configuration = foundry.applications.api.ApplicationV2.Configuration;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type RenderContext = foundry.applications.api.ApplicationV2.RenderContext;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type RenderOptions = foundry.applications.api.ApplicationV2.RenderOptions;
+
+export class TextureMaskEffectApplication extends BaseEffectApplication<TextureMaskDeathEffect> {
+
+  static DEFAULT_OPTIONS: DeepPartial<Configuration> = {
+    ...(BaseEffectApplication.DEFAULT_OPTIONS ?? {}),
+    window: {
+      ...(BaseEffectApplication.DEFAULT_OPTIONS.window ?? {}),
+      title: "DEATH-EFFECTS.EFFECTS.TEXTUREMASK.NAME"
+    }
+  }
+
+  static PARTS: Record<string, foundry.applications.api.HandlebarsApplicationMixin.HandlebarsTemplatePart> = {
+    base: {
+      template: templatePath("effects/textureMask"),
+      templates: [
+        templatePath("effects/partials/label"),
+        templatePath("effects/partials/start")
+      ]
+    },
+    footer: {
+      template: `templates/generic/form-footer.hbs`
+    }
+  }
+
+  public static async Edit(config?: TextureMaskDeathEffect): Promise<TextureMaskDeathEffect | undefined> {
+    return new TextureMaskEffectApplication(config ?? foundry.utils.deepClone(DefaultTextureMaskEffect)).Edit();
+  }
+
+  protected getDefaultSettings(): TextureMaskDeathEffect {
+    return foundry.utils.deepClone(DefaultTextureMaskEffect);
+  }
+
+}

@@ -45,6 +45,7 @@ export const EffectTypes = [
   "spriteAnimation",
   "startPlaylist",
   "stopPlaylist",
+  "textureMask",
   "tint",
   "tokenMagic"
 ] as const;
@@ -184,14 +185,20 @@ export type ScaleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDea
   }
 });
 
+
+
 export type NullDeathEffect = BaseDeathEffect & DurationDeathEffect;
 
 export type RotateDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
   type: "rotate";
   angle: number;
-})
+});
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect | ChangeImageDeathEffect | NullDeathEffect | ScaleDeathEffect;
+export interface TextureMaskDeathEffect extends BaseDeathEffect {
+  mask: string;
+}
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect | ChangeImageDeathEffect | NullDeathEffect | ScaleDeathEffect | TextureMaskDeathEffect | RotateDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];

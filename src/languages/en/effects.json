@@ -13,6 +13,14 @@
           "LABEL": "Revert Afterwards"
         }
       },
+      "TEXTUREMASK": {
+        "NAME": "Texture Mask",
+        "DESCRIPTION": "Apply a mask to the placeable's texture",
+        "MASK": {
+          "LABEL": "Mask",
+          "HINT": "Image to use as the mask.<br>See: <a href='https://pixijs.download/v7.4.2/docs/PIXI.DisplayObject.html#mask'>PIXI documentation</a>"
+        }
+      },
       "ROTATE": {
         "NAME": "Rotate",
         "DESCRIPTION": "Rotate the placeable",

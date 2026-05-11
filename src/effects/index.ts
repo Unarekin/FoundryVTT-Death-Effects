@@ -18,6 +18,7 @@ export * from './SoundEffect';
 export * from './SpriteAnimationEffect';
 export * from './StartPlaylistEffect';
 export * from './StopPlaylistEffect';
+export * from './TextureMaskEffect';
 export * from './TintEffect';
 export * from './TokenMagicEffect';
 export * from './types';
