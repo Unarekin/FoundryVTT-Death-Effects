@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DeathEffectsConfig, DeepPartial } from "types";
 import { PlaceableMixin } from "./DeathPlaceable";
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 
 
 type Constructor = new (...args: any[]) => foundry.canvas.placeables.Token;
@@ -14,7 +14,7 @@ export function TokenMixin(base: Constructor) {
 
     public get deathEffectsConfig(): DeathEffectsConfig {
 
-      const configSource = (this.document.getFlag(__MODULE_ID__, "source") ?? "actor");
+      const configSource = (this.document.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource);
       const globalConfig = game.settings?.settings?.get(`${__MODULE_ID__}.globalConfig`) ? game.settings.get(__MODULE_ID__, "globalConfig") : undefined;
       const actorTypeConfigs = game.settings?.settings?.get(`${__MODULE_ID__}.actorTypeConfigs`) ? game.settings.get(__MODULE_ID__, "actorTypeConfigs") : undefined;
 

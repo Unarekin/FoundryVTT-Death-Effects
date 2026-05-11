@@ -1,6 +1,6 @@
 import { ConfigSource, Constructor, DeathEffectsConfig, DeepPartial } from "types";
 import { ConfigMixin } from "./ConfigMixin";
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 
 type RenderOptions = foundry.applications.api.DocumentSheetV2.RenderOptions;
 
@@ -41,7 +41,7 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
     }
 
     protected getDeathEffectSource(): ConfigSource {
-      return this.document.getFlag(__MODULE_ID__, "source") ?? "actorType";
+      return this.document.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource;
     }
 
     protected getDeathEffectFlags(source?: ConfigSource): DeathEffectsConfig | undefined {

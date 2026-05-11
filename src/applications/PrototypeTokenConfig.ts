@@ -1,6 +1,6 @@
 import { ConfigSource, Constructor, DeathEffectsConfig } from "types";
 import { ConfigMixin } from "./ConfigMixin";
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 
 type RenderOptions = foundry.applications.api.DocumentSheetV2.RenderOptions;
 
@@ -43,7 +43,7 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
     protected getDeathEffectSource(): ConfigSource {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const token = (this as any).token as foundry.data.PrototypeToken;
-      return token.getFlag(__MODULE_ID__, "source") ?? "actorType";
+      return token.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource;
     }
     async _prepareContext(options: RenderOptions) {
       const context = await super._prepareContext(options);

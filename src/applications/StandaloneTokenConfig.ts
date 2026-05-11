@@ -1,6 +1,6 @@
 import { ConfigSource, DeathEffectsConfig } from "types";
 import { DeathEffectsConfiguration } from "./StandaloneConfig";
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 import { StandaloneConfigContext } from "./types";
 
 export class StandaloneTokenConfig extends DeathEffectsConfiguration {
@@ -120,7 +120,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
       { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
       { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
     ]
-    context.source = this.overrideConfigSource ?? this._getConfigSource() ?? "actorType";
+    context.source = this.overrideConfigSource ?? this._getConfigSource() ?? DefaultConfigSource;
 
     return context;
   }
