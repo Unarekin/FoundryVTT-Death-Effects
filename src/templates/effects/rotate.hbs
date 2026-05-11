@@ -1,0 +1,15 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/duration.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-angle">{{localize "DEATH-EFFECTS.EFFECTS.ROTATE.ANGLE.LABEL"}}</label>
+      <input type="number" id="{{@root.rootId}}-angle" name="angle" step="1" value="{{angle}}">
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.ROTATE.ANGLE.HINT"}}</p>
+    </div>
+
+  {{/with}}
+  {{> "modules/death-effects/templates/effects/partials/easing.hbs" }} 
+</div>

@@ -13,9 +13,17 @@
           "LABEL": "Revert Afterwards"
         }
       },
+      "ROTATE": {
+        "NAME": "Rotate",
+        "DESCRIPTION": "Rotate the placeable",
+        "ANGLE": {
+          "LABEL": "Angle",
+          "HINT": "Angle in degrees by which to rotate this placeable"
+        }
+      },
       "SCALE": {
         "NAME": "Scale",
-        "Description": "Scale the placeable",
+        "DESCRIPTION": "Scale the placeable",
         "DIMENSIONS": {
           "X": "X",
           "Y": "Y",
