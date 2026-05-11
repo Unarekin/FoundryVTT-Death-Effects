@@ -26,5 +26,8 @@ If applicable, add screenshots to help explain your problem.
 **Foundry and Module Version**
 The version of FoundryVTT (by number, please, rather than simply "latest") as well as Death Effects that you are using
 
+**Game System**
+The game system and version
+
 **Additional context**
 Add any other context about the problem here.
