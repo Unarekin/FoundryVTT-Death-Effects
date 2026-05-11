@@ -35,6 +35,7 @@ export const EffectTypes = [
   "macro",
   "melt",
   "null",
+  "rotate",
   "scale",
   "screenFlash",
   "screenShake",
@@ -176,6 +177,7 @@ export interface ChangeImageDeathEffect extends BaseDeathEffect {
 }
 
 export type ScaleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "scale";
   scale: {
     x: number;
     y: number;
@@ -183,6 +185,11 @@ export type ScaleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDea
 });
 
 export type NullDeathEffect = BaseDeathEffect & DurationDeathEffect;
+
+export type RotateDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "rotate";
+  angle: number;
+})
 
 export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect | ChangeImageDeathEffect | NullDeathEffect | ScaleDeathEffect;
 

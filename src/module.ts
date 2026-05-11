@@ -4,8 +4,8 @@ import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
-import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication, ChangeImageEffectApplication, NullEffectApplication, ScaleEffectApplication } from "applications";
-import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect, ChangeImageEffect, NullEffect, ScaleEffect } from "effects";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication, ChangeImageEffectApplication, NullEffectApplication, ScaleEffectApplication, RotateEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect, ChangeImageEffect, NullEffect, ScaleEffect, RotateEffect } from "effects";
 import { DeathEffectsConfig } from "types";
 import finalBoss from "./assets/presets/Final Boss.json";
 import purpleDust from "./assets/presets/Purple Dust.json";
@@ -36,6 +36,10 @@ CONFIG.DeathEffects = {
     changeImage: {
       cls: ChangeImageEffect as typeof BaseDeathEffect,
       app: ChangeImageEffectApplication as typeof BaseEffectApplication
+    },
+    rotate: {
+      cls: RotateEffect as typeof BaseDeathEffect,
+      app: RotateEffectApplication as typeof BaseEffectApplication
     },
     fade: {
       cls: FadeEffect as typeof BaseDeathEffect,
