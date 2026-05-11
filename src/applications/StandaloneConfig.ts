@@ -329,7 +329,8 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
       { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
       { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
     ]
-    context.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+    const effects: { id: string, name: string }[] = (Array.isArray(CONFIG.statusEffects) ? CONFIG.statusEffects : typeof CONFIG.statusEffects === "object" ? Object.values(CONFIG.statusEffects) : []);
+    context.statusEffects = Object.fromEntries((effects).map(eff => [eff.id, eff.name]));
     context.activeEffects = [];
 
     context.buttons = [

@@ -76,7 +76,9 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
 
       const actorType = (game.i18n && this.document.actor && CONFIG.Actor.typeLabels[this.document.actor.type]) ? game.i18n.localize(CONFIG.Actor.typeLabels[this.document.actor.type]) : "UNKNOWN";
 
-      context.deathEffects.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+
+      const effects: { id: string, name: string }[] = (Array.isArray(CONFIG.statusEffects) ? CONFIG.statusEffects : typeof CONFIG.statusEffects === "object" ? Object.values(CONFIG.statusEffects) : []);
+      context.deathEffects.statusEffects = Object.fromEntries(effects.map(effect => [effect.id, effect.name]));
 
       context.deathEffects.hasTriggerConditions = true;
 
