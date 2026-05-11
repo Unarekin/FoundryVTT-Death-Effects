@@ -45,7 +45,7 @@ export function TokenConfigMixin<t extends Constructor<foundry.applications.shee
     }
 
     protected getDeathEffectFlags(source?: ConfigSource): DeathEffectsConfig | undefined {
-      const actualSource = source ?? this.document.getFlag(__MODULE_ID__, "source");
+      const actualSource = source ?? this.getDeathEffectSource();
 
       const flags: DeathEffectsConfig = foundry.utils.deepClone(DefaultDeathEffectsConfig);
 
