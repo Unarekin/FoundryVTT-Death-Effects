@@ -60,7 +60,8 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
-      context.deathEffects.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+      const effects: { id: string, name: string }[] = (Array.isArray(CONFIG.statusEffects) ? CONFIG.statusEffects : typeof CONFIG.statusEffects === "object" ? Object.values(CONFIG.statusEffects) : []);
+      context.deathEffects.statusEffects = Object.fromEntries(effects.map(eff => [eff.id, eff.name]));
 
       context.deathEffects.hasTriggerConditions = true;
 
