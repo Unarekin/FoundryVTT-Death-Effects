@@ -1,4 +1,4 @@
-import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, NullDeathEffect, RotateDeathEffect, ScaleDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, NullDeathEffect, RotateDeathEffect, ScaleDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TextureMaskDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
 
 export const DefaultConfigSource: ConfigSource = "actorType";
 
@@ -248,4 +248,13 @@ export const DefaultRotateEffect: RotateDeathEffect = Object.freeze({
   angle: 0,
   easing: "none",
   easingParams: ""
-})
+});
+
+export const DefaultTextureMaskEffect: TextureMaskDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "textureMask",
+  start: 0,
+  mask: ""
+});

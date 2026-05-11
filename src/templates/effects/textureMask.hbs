@@ -1,0 +1,12 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-mask">{{localize "DEATH-EFFECTS.EFFECTS.TEXTUREMASK.MASK.LABEL"}}</label>
+      <file-picker type="imagevideo" id="{{@root.rootId}}-mask" name="mask" value="{{mask}}"></file-picker>
+      <p class="hint">{{{localize "DEATH-EFFECTS.EFFECTS.TEXTUREMASK.MASK.HINT"}}}</p>
+    </div>
+  {{/with}}
+</div>
