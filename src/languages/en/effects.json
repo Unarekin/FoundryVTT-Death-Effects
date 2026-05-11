@@ -1,6 +1,18 @@
 {
   "DEATH-EFFECTS": {
     "EFFECTS": {
+      "CHANGEIMAGE": {
+        "DESCRIPTION": "Change the placeable's texture",
+        "IMAGE": {
+          "HINT": "The image to which to change this placeable's texture",
+          "LABEL": "Image"
+        },
+        "NAME": "Change Image",
+        "REVERT": {
+          "HINT": "If enabled, will revert back to the original texture once the entire timeline of death effects has finished.",
+          "LABEL": "Revert Afterwards"
+        }
+      },
       "COMMON": {
         "ADD": {
           "TEXT": "Select an effect type below.",
