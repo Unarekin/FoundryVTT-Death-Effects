@@ -13,6 +13,16 @@
           "LABEL": "Revert Afterwards"
         }
       },
+      "SCALE": {
+        "NAME": "Scale",
+        "Description": "Scale the placeable",
+        "DIMENSIONS": {
+          "X": "X",
+          "Y": "Y",
+          "LABEL": "Amount",
+          "HINT": "Amount to scale on the X and Y axes.  A value of 1 is the original size."
+        }
+      },
       "COMMON": {
         "ADD": {
           "TEXT": "Select an effect type below.",

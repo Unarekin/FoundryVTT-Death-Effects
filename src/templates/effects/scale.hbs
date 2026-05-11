@@ -1,0 +1,22 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/duration.hbs" }}
+
+    <div class="form-group slim">
+      <label>{{localize "DEATH-EFFECTS.EFFECTS.SCALE.DIMENSIONS.LABEL"}}</label>
+      <div class="form-fields">
+        <label for="{{@root.rootId}}-scaleX">{{localize "DEATH-EFFECTS.EFFECTS.SCALE.DIMENSIONS.X"}}</label>
+        <input type="number" min="0" step="any" value="{{scale.x}}" id="{{@root.rootId}}-scaleX" name="scale.x">
+
+        <label for="{{@root.rootId}}-scaleY">{{localize "DEATH-EFFECTS.EFFECTS.SCALE.DIMENSIONS.Y"}}</label>
+        <input type="number" min="0" step="any" value="{{scale.y}}" id="{{@root.rootId}}-scaleY" name="scale.y">
+      </div>
+
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.SCALE.DIMENSIONS.HINT"}}</p>
+    </div>
+
+  {{/with}}
+  {{> "modules/death-effects/templates/effects/partials/easing.hbs" }} 
+</div>
