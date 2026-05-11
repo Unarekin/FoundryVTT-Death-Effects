@@ -4,8 +4,8 @@ import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
-import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication } from "applications";
-import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect } from "effects";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication, ChangeImageEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect, ChangeImageEffect } from "effects";
 import { DeathEffectsConfig } from "types";
 import finalBoss from "./assets/presets/Final Boss.json";
 import purpleDust from "./assets/presets/Purple Dust.json";
@@ -33,6 +33,10 @@ CONFIG.DeathEffects = {
     }
   },
   effects: {
+    changeImage: {
+      cls: ChangeImageEffect as typeof BaseDeathEffect,
+      app: ChangeImageEffectApplication as typeof BaseEffectApplication
+    },
     fade: {
       cls: FadeEffect as typeof BaseDeathEffect,
       app: FadeEffectApplication as typeof BaseEffectApplication

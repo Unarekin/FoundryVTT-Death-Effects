@@ -1,4 +1,5 @@
 export * from './BaseEffect';
+export * from './ChangeImageEffect';
 export * from './CrumbleEffect';
 export * from './DissolveEffect';
 export * from './DustEffect';
