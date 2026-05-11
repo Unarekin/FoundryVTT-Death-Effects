@@ -55,7 +55,7 @@ export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
 
   protected _getConfigData(): DeathEffectsConfig | undefined {
     const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
-    const source = this.configSource ?? this._getConfigSource();
+    const source = this.configSource ?? this._getConfigSource() ?? DefaultConfigSource;
     switch (source) {
       case "global":
         foundry.utils.mergeObject(flags, game.settings?.get(__MODULE_ID__, "globalConfig") ?? {});

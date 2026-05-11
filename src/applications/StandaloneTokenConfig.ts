@@ -8,7 +8,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
   protected overrideConfigSource: ConfigSource | undefined = undefined;
 
   protected _getConfigSource(): ConfigSource | undefined {
-    return this.token.getFlag(__MODULE_ID__, "source");
+    return this.token.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource;
   }
 
   protected async _onSave(data?: DeathEffectsConfig): Promise<void> {
@@ -29,7 +29,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
     }
   }
   protected _getConfigData(): DeathEffectsConfig | undefined {
-    const source = this.configSource ?? this._getConfigSource();
+    const source = this.configSource ?? this._getConfigSource() ?? DefaultConfigSource;
     const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
     switch (source) {
       case "token":
