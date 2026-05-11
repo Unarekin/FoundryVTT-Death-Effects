@@ -7,6 +7,7 @@ export * from './FadeEffect';
 export * from './FlashEffect';
 export * from './MacroEffect';
 export * from './MeltEffect';
+export * from './NullEffect';
 export * from './ScreenFlashEffect';
 export * from './ScreenShakeEffect';
 export * from './ShakeEffect';

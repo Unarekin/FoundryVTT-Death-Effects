@@ -109,6 +109,10 @@
         "DESCRIPTION": "Melt the placeable",
         "NAME": "Melt"
       },
+      "NULL": {
+        "DESCRIPTION": "Does nothing for a period of time.  Useful to delay the ending of the effect sequence by an arbitrary amount.",
+        "NAME": "Null"
+      },
       "SCREENFLASH": {
         "BACKGROUNDONLY": {
           "HINT": "When enabled, will only flash the background behind tokens/tiles/etc",
