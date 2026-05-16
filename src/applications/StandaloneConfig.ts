@@ -296,17 +296,17 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     if (triggerConditionSelect instanceof HTMLSelectElement) {
       triggerConditionSelect.addEventListener("change", () => {
         const sourceType = triggerConditionSelect.value;
-        this.toggleElements(`[data-trigger-condition]:not([data-trigger-condition="${sourceType}"])`, false);
-        this.toggleElements(`[data-trigger-condition="${sourceType}"]`, true);
+        this.toggleElements(`[data-trigger-condition]:not([data-trigger-condition="${sourceType}"])`, false, false);
+        this.toggleElements(`[data-trigger-condition="${sourceType}"]`, true, false);
       })
     }
   }
 
 
-  protected toggleElements(selector: string, display: boolean) {
+  protected toggleElements(selector: string, display: boolean, flex = true) {
     const elements: HTMLElement[] = Array.from(this.element.querySelectorAll(selector))
     for (const element of elements) {
-      element.style.display = display ? "flex" : "none";
+      element.style.display = display ? (flex ? "flex" : "block") : "none";
     }
   }
 
@@ -323,6 +323,14 @@ export abstract class DeathEffectsConfiguration extends foundry.applications.api
     context.configSourceSelect = {};
     context.hasConfigSource = false;
     context.source = this.configSource;
+
+    context.comparisonOperatorSelect = {
+      "lte": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.LTE",
+      "lt": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.LT",
+      "eq": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.EQ",
+      "gt": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.GT",
+      "gte": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.GTE"
+    };
 
     context.triggerConditionSelect = [
       { value: "resource", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.LABEL", disabled: false },

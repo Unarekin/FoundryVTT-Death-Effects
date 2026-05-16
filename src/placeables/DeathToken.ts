@@ -43,6 +43,7 @@ export function TokenMixin(base: Constructor) {
 
     checkAutoTriggerStatus(status: string) {
       if (!game?.user?.isActiveGM) return;
+      if (this.document.hidden || this.document.alpha === 0) return;
       const config = this.deathEffectsConfig;
       if (config.enabled && config.autoTriggerCondition === "status" && config.statusEffect === status)
         this.playDeathEffects().catch(console.error);
@@ -50,6 +51,7 @@ export function TokenMixin(base: Constructor) {
 
     checkAutoTriggerResource<Actor>(actor: Actor, delta: DeepPartial<Actor>) {
       if (!game?.user?.isActiveGM) return;
+      if (this.document.hidden || this.document.alpha === 0) return;
 
       //public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
       const config = this.deathEffectsConfig;
@@ -68,9 +70,30 @@ export function TokenMixin(base: Constructor) {
         if (actualPath) {
           // const actualPath = config.resource.startsWith("system.") ? config.resource : `system.${config.resource}.value`;
           const val = foundry.utils.getProperty(actor as Record<string, unknown>, actualPath);
-          if (val === 0)
-            this.playDeathEffects().catch(console.error);
+          if (typeof val !== "number") return;
 
+          let match = false;
+
+          switch (config.comparisonOperator) {
+            case "eq":
+              match = val === config.comparisonValue;
+              break;
+            case "gt":
+              match = val > config.comparisonValue;
+              break;
+            case "gte":
+              match = val >= config.comparisonValue;
+              break;
+            case "lt":
+              match = val < config.comparisonValue;
+              break;
+            case "lte":
+              match = val <= config.comparisonValue;
+              break;
+          }
+
+          if (match)
+            this.playDeathEffects().catch(console.error);
         }
 
       }
@@ -78,6 +101,8 @@ export function TokenMixin(base: Constructor) {
 
     checkAutoTriggerActiveEffect(effect: ActiveEffect) {
       if (!game?.user?.isActiveGM) return;
+      if (this.document.hidden || this.document.alpha === 0) return;
+
       const config = this.deathEffectsConfig;
       if (config.enabled && config.autoTriggerCondition === "activeEffect" && config.activeEffect === effect.name)
         this.playDeathEffects().catch(console.error);

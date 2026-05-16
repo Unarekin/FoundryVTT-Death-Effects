@@ -228,6 +228,9 @@ export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect |
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];
 
+export const ComparisonOperators = ["gt", "lt", "eq", "gte", "lte"] as const;
+export type ComparisonOperator = typeof ComparisonOperators[number];
+
 interface BaseDeathEffectsConfig {
   version: string;
   enabled: boolean;
@@ -245,6 +248,8 @@ interface StatusTriggerConfig extends BaseDeathEffectsConfig {
 interface ResourceTriggerConfig extends BaseDeathEffectsConfig {
   autoTriggerCondition: "resource";
   resource: string;
+  comparisonOperator: ComparisonOperator;
+  comparisonValue: number;
 }
 
 interface ActiveEffectTriggerConfig extends BaseDeathEffectsConfig {
