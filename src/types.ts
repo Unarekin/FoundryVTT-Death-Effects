@@ -249,7 +249,7 @@ interface ResourceTriggerConfig extends BaseDeathEffectsConfig {
   autoTriggerCondition: "resource";
   resource: string;
   comparisonOperator: ComparisonOperator;
-  comparisonValue: number;
+  comparisonValue: string;
 }
 
 interface ActiveEffectTriggerConfig extends BaseDeathEffectsConfig {
@@ -263,7 +263,7 @@ export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObjec
   getDeathSpriteObject(): PIXI.DisplayObject | undefined;
   deathEffectsConfig: DeathEffectsConfig;
   playDeathEffects(config?: DeathEffectsConfig, localOnly?: boolean): Promise<void>;
-  checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
+  checkAutoTriggerResource(doc: Actor, delta: Actor.UpdateData): void;
   checkAutoTriggerStatus(status: string): void;
   checkAutoTriggerActiveEffect(effect: ActiveEffect): void;
   // checkAutoTriggerStatus
