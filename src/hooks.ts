@@ -1,6 +1,6 @@
 import { TokenMixin } from "./placeables";
 import { DeathEffectsConfiguration, PrototypeTokenConfigMixin, StandalonePrototypeTokenConfig, StandaloneTokenConfig, TokenConfigMixin } from "./applications";
-import { DeathPlaceable, DeepPartial } from "types";
+import { DeathPlaceable } from "types";
 import { SETTINGS } from "settings";
 
 Hooks.on("canvasReady", () => {
@@ -40,12 +40,12 @@ Hooks.once("ready", () => {
 
 Hooks.on("updateActor", (actor: Actor, delta: Actor.UpdateData) => {
   if (actor.token?.object) {
-    (actor.token.object as unknown as DeathPlaceable).checkAutoTriggerResource(actor, delta as DeepPartial<Actor>);
+    (actor.token.object as unknown as DeathPlaceable).checkAutoTriggerResource(actor, delta);
   } else {
     const tokens = actor.getActiveTokens();
     for (const token of tokens) {
       if (token.actor === actor)
-        (token as unknown as DeathPlaceable).checkAutoTriggerResource(actor, delta as DeepPartial<Actor>);
+        (token as unknown as DeathPlaceable).checkAutoTriggerResource(actor, delta);
     }
   }
 });
