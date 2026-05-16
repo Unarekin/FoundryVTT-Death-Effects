@@ -1,6 +1,6 @@
 import { ConfigSource, DeathEffectsConfig } from "types";
 import { DeathEffectsConfiguration } from "./StandaloneConfig";
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 import { StandaloneConfigContext } from "./types";
 
 export class StandaloneTokenConfig extends DeathEffectsConfiguration {
@@ -8,7 +8,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
   protected overrideConfigSource: ConfigSource | undefined = undefined;
 
   protected _getConfigSource(): ConfigSource | undefined {
-    return this.token.getFlag(__MODULE_ID__, "source");
+    return this.token.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource;
   }
 
   protected async _onSave(data?: DeathEffectsConfig): Promise<void> {
@@ -29,7 +29,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
     }
   }
   protected _getConfigData(): DeathEffectsConfig | undefined {
-    const source = this.configSource ?? this._getConfigSource();
+    const source = this.configSource ?? this._getConfigSource() ?? DefaultConfigSource;
     const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
     switch (source) {
       case "token":
@@ -120,7 +120,7 @@ export class StandaloneTokenConfig extends DeathEffectsConfiguration {
       { value: "status", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.STATUS.LABEL", disabled: false },
       { value: "activeEffect", label: "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.ACTIVEEFFECT.LABEL", disabled: false }
     ]
-    context.source = this.overrideConfigSource ?? this._getConfigSource() ?? "actorType";
+    context.source = this.overrideConfigSource ?? this._getConfigSource() ?? DefaultConfigSource;
 
     return context;
   }

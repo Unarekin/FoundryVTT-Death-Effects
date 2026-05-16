@@ -1,4 +1,4 @@
-import { AutoTriggerCondition, ConfigSource, DeathEffect, DeathEffectsConfig, PresetDefinition } from "types";
+import { AutoTriggerCondition, ComparisonOperator, ConfigSource, DeathEffect, DeathEffectsConfig, PresetDefinition } from "types";
 
 export type DeathEffectContext = DeathEffect & ({
   actualLabel: string;
@@ -18,6 +18,7 @@ export interface DeathEffectsConfigContext {
   configSourceSelect: Partial<Record<ConfigSource, string>>;
   hasTriggerConditions: boolean;
   triggerConditionSelect?: { value: AutoTriggerCondition, label: string, disabled: boolean }[];
+  comparisonOperatorSelect?: Record<ComparisonOperator, string>;
   statusEffects?: Record<string, string>;
   activeEffects: string[];
   trackableAttributes?: string[];

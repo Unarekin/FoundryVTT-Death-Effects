@@ -1,0 +1,18 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-image">{{localize "DEATH-EFFECTS.EFFECTS.CHANGEIMAGE.IMAGE.LABEL"}}</label>
+      <file-picker type="imagevideo" id="{{@root.rootId}}-image" name="image" value="{{image}}"></file-picker>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.CHANGEIMAGE.IMAGE.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-revertAfterAnimation">{{localize "DEATH-EFFECTS.EFFECTS.CHANGEIMAGE.REVERT.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-revertAfterAnimation" name="revertAfterAnimation" {{checked revertAfterAnimation}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.CHANGEIMAGE.REVERT.HINT"}}</p>
+    </div>
+  {{/with}}
+</div>

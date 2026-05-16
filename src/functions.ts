@@ -45,3 +45,7 @@ export function downloadJSON(json: object, name: string) {
   link.click();
   URL.revokeObjectURL(objUrl);
 }
+
+export function expandFormData<t extends Record<string, unknown>>(form: HTMLFormElement): t {
+  return foundry.utils.expandObject((new foundry.applications.ux.FormDataExtended(form)).object) as t;
+}

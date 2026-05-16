@@ -1,6 +1,6 @@
 import { ConfigSource, DeathEffectsConfig } from "types";
 import { DeathEffectsConfiguration } from "./StandaloneConfig"
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 import { StandaloneConfigContext } from "./types";
 
 interface ActorUpdate {
@@ -26,7 +26,7 @@ export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
       prototypeToken: {
         flags: {
           [__MODULE_ID__]: {
-            source: source ?? "actorType",
+            source: source ?? DefaultConfigSource,
           }
         }
       }
@@ -50,12 +50,12 @@ export class StandalonePrototypeTokenConfig extends DeathEffectsConfiguration {
   protected get actor() { return this.token.actor; }
 
   protected _getConfigSource(): ConfigSource | undefined {
-    return this.token.getFlag(__MODULE_ID__, "source") ?? "actorType";
+    return this.token.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource;
   }
 
   protected _getConfigData(): DeathEffectsConfig | undefined {
     const flags = foundry.utils.deepClone(DefaultDeathEffectsConfig);
-    const source = this.configSource ?? this._getConfigSource();
+    const source = this.configSource ?? this._getConfigSource() ?? DefaultConfigSource;
     switch (source) {
       case "global":
         foundry.utils.mergeObject(flags, game.settings?.get(__MODULE_ID__, "globalConfig") ?? {});

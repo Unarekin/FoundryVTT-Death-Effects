@@ -1,4 +1,6 @@
-import { CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, NullDeathEffect, OverlayImageDeathEffect, RotateDeathEffect, ScaleDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TextureMaskDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+
+export const DefaultConfigSource: ConfigSource = "actorType";
 
 export const DefaultDeathEffectsConfig: DeathEffectsConfig = {
   version: __MODULE_VERSION__,
@@ -201,3 +203,83 @@ export const DefaultSpriteAnimationEffect: SpriteAnimationDeathEffect = Object.f
   loop: false,
   immediate: false
 });
+
+export const DefaultChangeImageEffect: ChangeImageDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "changeImage",
+  start: 0,
+  image: "",
+  revertAfterAnimation: true
+});
+
+export const DefaultNullEffect: NullDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "null",
+  start: 0,
+  duration: 500
+});
+
+export const DefaultScaleEffect: ScaleDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "scale",
+  start: 0,
+  duration: 500,
+  scale: {
+    x: 1,
+    y: 1
+  },
+  easing: "none",
+  easingParams: ""
+});
+
+export const DefaultRotateEffect: RotateDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "rotate",
+  start: 0,
+  duration: 500,
+  angle: 0,
+  easing: "none",
+  easingParams: ""
+});
+
+export const DefaultTextureMaskEffect: TextureMaskDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "textureMask",
+  start: 0,
+  mask: ""
+});
+
+export const DefaultOverlayImageEffect: OverlayImageDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "overlayImage",
+  image: "",
+  start: 0,
+  sizeMode: "scale",
+  relativeSize: true,
+  scale: {
+    x: 1,
+    y: 1
+  },
+  size: {
+    width: 0,
+    height: 0
+  },
+  anchor: {
+    x: 0.5,
+    y: 0.5
+  },
+  alpha: 1,
+  angle: 0
+})

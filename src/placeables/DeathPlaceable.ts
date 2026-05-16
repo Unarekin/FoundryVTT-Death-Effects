@@ -1,5 +1,5 @@
 import { DefaultDeathEffectsConfig } from "defaults";
-import { DeathEffect, DeathEffectsConfig, DeathPlaceable as DeathPlaceableInterface, DeepPartial } from "../types";
+import { DeathEffect, DeathEffectsConfig, DeathPlaceable as DeathPlaceableInterface } from "../types";
 import { BaseDeathEffect } from "effects";
 import { wait } from "functions";
 import { SendSocketMessage } from "sockets";
@@ -13,7 +13,7 @@ export function PlaceableMixin<t extends Constructor<foundry.canvas.placeables.P
 
     abstract getDeathSpriteObject(): PIXI.DisplayObject | undefined;
 
-    public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
+    public abstract checkAutoTriggerResource(doc: Actor, delta: Actor.UpdateData): void;
     public abstract checkAutoTriggerStatus(status: string): void;
     public abstract checkAutoTriggerActiveEffect(effect: ActiveEffect): void;
 

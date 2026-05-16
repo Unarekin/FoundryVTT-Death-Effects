@@ -1,10 +1,30 @@
 {
   "DEATH-EFFECTS": {
     "EFFECTS": {
+      "CHANGEIMAGE": {
+        "DESCRIPTION": "Change the placeable's texture",
+        "IMAGE": {
+          "HINT": "The image to which to change this placeable's texture",
+          "LABEL": "Image"
+        },
+        "NAME": "Change Image",
+        "REVERT": {
+          "HINT": "If enabled, will revert back to the original texture once the entire timeline of death effects has finished.",
+          "LABEL": "Revert Afterwards"
+        }
+      },
       "COMMON": {
         "ADD": {
           "TEXT": "Select an effect type below.",
           "TITLE": "Add Effect"
+        },
+        "ALPHA": {
+          "HINT": "The effect's opacity",
+          "LABEL": "Alpha"
+        },
+        "ANGLE": {
+          "HINT": "The angle at which to display this effect",
+          "LABEL": "Angle"
         },
         "DIRECTION": {
           "DOWN": "Down",
@@ -96,6 +116,56 @@
       "MELT": {
         "DESCRIPTION": "Melt the placeable",
         "NAME": "Melt"
+      },
+      "NULL": {
+        "DESCRIPTION": "Does nothing for a period of time.  Useful to delay the ending of the effect sequence by an arbitrary amount.",
+        "NAME": "Null"
+      },
+      "OVERLAYIMAGE": {
+        "DESCRIPTION": "Put an image or video cip overtop the token",
+        "SIZEMODE": {
+          "LABEL": "Sizing Mode",
+          "HINT": "How to size this effect"
+        },
+        "RELATIVESIZE": {
+          "LABEL": "Relative Sizing",
+          "HINT": "If enabled, size or scale will be relative to the size of the placeable"
+        },
+        "SIZE": {
+          "LABEL": "Size",
+          "HINT": "The base width and height of this effect<br>If relative sizing is enabled, these values will be <strong>added</strong> to the base size of the placeable"
+        },
+        "SCALE": {
+          "LABEL": "Scale",
+          "HINT": "Relative size of this effect<br>This value is a normalized percentage with 1 being 100%."
+        },
+        "ANCHOR": {
+          "LABEL": "Anchor",
+          "HINT": "The position on the token where this image will be placed.<br>{0, 0} is the top left corner, {0.5, 0.5} is the center, {1, 1} is the bottom right corner"
+        },
+        "IMAGE": {
+          "HINT": "The image to overlay this placeable",
+          "LABEL": "Image"
+        },
+        "NAME": "Overlay Image"
+      },
+      "ROTATE": {
+        "ANGLE": {
+          "HINT": "Angle in degrees by which to rotate this placeable",
+          "LABEL": "Angle"
+        },
+        "DESCRIPTION": "Rotate the placeable",
+        "NAME": "Rotate"
+      },
+      "SCALE": {
+        "DESCRIPTION": "Scale the placeable",
+        "DIMENSIONS": {
+          "HINT": "Amount to scale on the X and Y axes.  A value of 1 is the original size.",
+          "LABEL": "Amount",
+          "X": "X",
+          "Y": "Y"
+        },
+        "NAME": "Scale"
       },
       "SCREENFLASH": {
         "BACKGROUNDONLY": {
@@ -200,6 +270,14 @@
       "STOPPLAYLIST": {
         "DESCRIPTION": "Stop the current playlist",
         "NAME": "Stop Playlist"
+      },
+      "TEXTUREMASK": {
+        "DESCRIPTION": "Apply a mask to the placeable's texture",
+        "MASK": {
+          "HINT": "Image to use as the mask.<br>See: <a href='https://pixijs.download/v7.4.2/docs/PIXI.DisplayObject.html#mask'>PIXI documentation</a>",
+          "LABEL": "Mask"
+        },
+        "NAME": "Texture Mask"
       },
       "TINT": {
         "DESCRIPTION": "A simple efect to tint the placeable",

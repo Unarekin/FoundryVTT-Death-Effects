@@ -1,6 +1,6 @@
 import { ConfigSource, Constructor, DeathEffectsConfig } from "types";
 import { ConfigMixin } from "./ConfigMixin";
-import { DefaultDeathEffectsConfig } from "defaults";
+import { DefaultConfigSource, DefaultDeathEffectsConfig } from "defaults";
 
 type RenderOptions = foundry.applications.api.DocumentSheetV2.RenderOptions;
 
@@ -43,7 +43,7 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
     protected getDeathEffectSource(): ConfigSource {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const token = (this as any).token as foundry.data.PrototypeToken;
-      return token.getFlag(__MODULE_ID__, "source") ?? "actorType";
+      return token.getFlag(__MODULE_ID__, "source") ?? DefaultConfigSource;
     }
     async _prepareContext(options: RenderOptions) {
       const context = await super._prepareContext(options);
@@ -60,7 +60,8 @@ export function PrototypeTokenConfigMixin<t extends Constructor<foundry.applicat
         global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
       }
 
-      context.deathEffects.statusEffects = Object.fromEntries(CONFIG.statusEffects.map(eff => [eff.id, eff.name]));
+      const effects: { id: string, name: string }[] = (Array.isArray(CONFIG.statusEffects) ? CONFIG.statusEffects : typeof CONFIG.statusEffects === "object" ? Object.values(CONFIG.statusEffects) : []);
+      context.deathEffects.statusEffects = Object.fromEntries(effects.map(eff => [eff.id, eff.name]));
 
       context.deathEffects.hasTriggerConditions = true;
 

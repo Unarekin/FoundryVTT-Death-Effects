@@ -26,6 +26,7 @@ export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 
 export const EffectTypes = [
+  "changeImage",
   "crumble",
   "dissolve",
   "dust",
@@ -33,6 +34,10 @@ export const EffectTypes = [
   "flash",
   "macro",
   "melt",
+  "null",
+  "overlayImage",
+  "rotate",
+  "scale",
   "screenFlash",
   "screenShake",
   "shake",
@@ -41,6 +46,7 @@ export const EffectTypes = [
   "spriteAnimation",
   "startPlaylist",
   "stopPlaylist",
+  "textureMask",
   "tint",
   "tokenMagic"
 ] as const;
@@ -48,6 +54,9 @@ export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
 export type ConfigSource = typeof ConfigSources[number];
+
+export const SizeModes = ["size", "scale"] as const;
+export type SizeMode = typeof SizeModes[number];
 
 interface BaseDeathEffect {
   version: string;
@@ -160,15 +169,67 @@ export type CrumbleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingD
 });
 
 export interface SpriteAnimationDeathEffect extends BaseDeathEffect {
+  type: "spriteAnimation",
   animation: string;
   loop: boolean;
   immediate: boolean;
 };
 
-export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect;
+export interface ChangeImageDeathEffect extends BaseDeathEffect {
+  type: "changeImage",
+  image: string;
+  revertAfterAnimation: boolean;
+}
+
+export interface OverlayImageDeathEffect extends BaseDeathEffect {
+  type: "overlayImage";
+  image: string;
+  alpha: number;
+  anchor: {
+    x: number;
+    y: number;
+  };
+  sizeMode: "size" | "scale";
+  relativeSize: boolean;
+  size: {
+    width: number;
+    height: number;
+  };
+  scale: {
+    x: number;
+    y: number;
+  };
+  angle: number;
+}
+
+export type ScaleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "scale";
+  scale: {
+    x: number;
+    y: number;
+  }
+});
+
+
+
+export type NullDeathEffect = BaseDeathEffect & DurationDeathEffect;
+
+export type RotateDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({
+  type: "rotate";
+  angle: number;
+});
+
+export interface TextureMaskDeathEffect extends BaseDeathEffect {
+  mask: string;
+}
+
+export type DeathEffect = BaseDeathEffect | FadeDeathEffect | ShakeDeathEffect | ScreenShakeDeathEffect | MacroDeathEffect | ScreenFlashDeathEffect | StartPlaylistDeathEffect | SoundDeathEffect | TintDeathEffect | TokenMagicDeathEffect | SlideDeathEffect | MeltDeathEffect | DissolveDeathEffect | DustDeathEffect | CrumbleDeathEffect | ChangeImageDeathEffect | NullDeathEffect | ScaleDeathEffect | TextureMaskDeathEffect | RotateDeathEffect;
 
 export const AutoTriggerConditions = ["status", "resource", "activeEffect"] as const;
 export type AutoTriggerCondition = typeof AutoTriggerConditions[number];
+
+export const ComparisonOperators = ["gt", "lt", "eq", "gte", "lte"] as const;
+export type ComparisonOperator = typeof ComparisonOperators[number];
 
 interface BaseDeathEffectsConfig {
   version: string;
@@ -187,6 +248,8 @@ interface StatusTriggerConfig extends BaseDeathEffectsConfig {
 interface ResourceTriggerConfig extends BaseDeathEffectsConfig {
   autoTriggerCondition: "resource";
   resource: string;
+  comparisonOperator: ComparisonOperator;
+  comparisonValue: string;
 }
 
 interface ActiveEffectTriggerConfig extends BaseDeathEffectsConfig {
@@ -200,7 +263,7 @@ export interface DeathPlaceable extends foundry.canvas.placeables.PlaceableObjec
   getDeathSpriteObject(): PIXI.DisplayObject | undefined;
   deathEffectsConfig: DeathEffectsConfig;
   playDeathEffects(config?: DeathEffectsConfig, localOnly?: boolean): Promise<void>;
-  checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
+  checkAutoTriggerResource(doc: Actor, delta: Actor.UpdateData): void;
   checkAutoTriggerStatus(status: string): void;
   checkAutoTriggerActiveEffect(effect: ActiveEffect): void;
   // checkAutoTriggerStatus
