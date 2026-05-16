@@ -18,4 +18,11 @@ export const SystemIntegrations: Record<string, (() => void)> = {
   exaltedessence() { setTriggerResource("health.value"); },
   exaltedthird() { setTriggerResource("health.value"); },
   projectfu() { setTriggerStatus("ko"); },
+  swade() {
+    (DefaultDeathEffectsConfig).autoTriggerCondition = "resource";
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    (DefaultDeathEffectsConfig as any).resource = "system.wounds";
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    (DefaultDeathEffectsConfig as any).comparisonOperator = "gte";
+  }
 }
