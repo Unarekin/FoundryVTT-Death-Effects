@@ -49,53 +49,85 @@ export function TokenMixin(base: Constructor) {
         this.playDeathEffects().catch(console.error);
     }
 
-    checkAutoTriggerResource<Actor>(actor: Actor, delta: DeepPartial<Actor>) {
+    // protected getResourceValue(actor: Actor, path: string): number | undefined {
+    //   const config = this.deathEffectsConfig;
+    //   if (config.autoTriggerCondition === "resource") {
+    //     let actualPath = "";
+    //     if (this.actor && CONFIG.Actor.trackableAttributes[this.actor.type]?.bar.includes(config.resource)) {
+    //       actualPath = `system.${config.resource}.value`;
+    //     } else if (this.actor && CONFIG.Actor.trackableAttributes[this.actor.type]?.value.includes(config.resource)) {
+    //       actualPath = `system.${config.resource}`;
+    //     } else if (config.resource.startsWith("system.")) {
+    //       actualPath = config.resource;
+    //     } else {
+    //       actualPath = `system.${config.resource}`;
+    //     }
+    //     if (actualPath) return foundry.utils.getProperty(actor, actualPath) as number | undefined;
+    //   }
+    // }
+
+    checkAutoTriggerResource(actor: Actor, delta: Actor.UpdateData) {
       if (!game?.user?.isActiveGM) return;
       if (this.document.hidden || this.document.alpha === 0) return;
 
-      //public abstract checkAutoTriggerResource<t extends foundry.abstract.Document.Any = foundry.abstract.Document.Any>(doc: t, delta: DeepPartial<t>): void;
-      const config = this.deathEffectsConfig;
-      if (config.enabled && config.autoTriggerCondition === "resource" && config.resource) {
-        let actualPath = "";
-        if (this.actor && CONFIG.Actor.trackableAttributes[this.actor.type]?.bar.includes(config.resource)) {
-          actualPath = `system.${config.resource}.value`;
-        } else if (this.actor && CONFIG.Actor.trackableAttributes[this.actor.type]?.value.includes(config.resource)) {
-          actualPath = `system.${config.resource}`;
-        } else if (config.resource.startsWith("system.")) {
-          actualPath = config.resource;
-        } else {
-          actualPath = `system.${config.resource}`;
-        }
 
-        if (actualPath) {
-          // const actualPath = config.resource.startsWith("system.") ? config.resource : `system.${config.resource}.value`;
-          const val = foundry.utils.getProperty(actor as Record<string, unknown>, actualPath);
-          if (typeof val !== "number") return;
 
-          let match = false;
+      if (this.deathEffectsConfig.autoTriggerCondition === "resource") {
+        let value: number | undefined = undefined;
+        let comparison: number | undefined = undefined;
+        const { resource, comparisonValue, comparisonOperator } = this.deathEffectsConfig;
 
-          switch (config.comparisonOperator) {
-            case "eq":
-              match = val === config.comparisonValue;
-              break;
-            case "gt":
-              match = val > config.comparisonValue;
-              break;
-            case "gte":
-              match = val >= config.comparisonValue;
-              break;
-            case "lt":
-              match = val < config.comparisonValue;
-              break;
-            case "lte":
-              match = val <= config.comparisonValue;
-              break;
+        const path = resource.startsWith("system.") ? resource : `system.${resource}`;
+        const resourceData = foundry.utils.getProperty(actor, path);
+
+        if (!resourceData) return;
+
+        if (typeof resourceData === "number")
+          value = resourceData;
+        else if (typeof (resourceData as { value: unknown }).value === "number")
+          value = (resourceData as { value: number }).value;
+
+        if (typeof value !== "number") return;
+
+        // Determine comparison value
+        if (comparisonValue) {
+          if (Number.isNumeric(comparisonValue)) {
+            comparison = Number(comparisonValue);
+          } else if (typeof comparisonValue === "string") {
+            const path = comparisonValue.startsWith("system.") ? comparisonValue : `system.${comparisonValue}`;
+            const comparisonData = foundry.utils.getProperty(actor, path);
+            if (typeof comparisonData === "number") {
+              comparison = comparisonData;
+            } else if ((comparisonOperator === "gt" || comparisonOperator === "gte") && typeof ((comparisonData as { max: unknown }).max === "number")) {
+              comparison = (comparisonData as { max: number }).max;
+            } else if ((comparisonOperator === "lt" || comparisonOperator === "lte") && typeof ((comparisonData as { min: unknown }).min === "number")) {
+              comparison = (comparisonData as { min: number }).min;
+            }
           }
-
-          if (match)
-            this.playDeathEffects().catch(console.error);
         }
 
+        comparison ??= 0;
+
+        let shouldTrigger = false;
+        switch (comparisonOperator) {
+          case "gt":
+            shouldTrigger = value > comparison;
+            break;
+          case "gte":
+            shouldTrigger = value >= comparison;
+            break;
+          case "lt":
+            shouldTrigger = value < comparison;
+            break;
+          case "lte":
+            shouldTrigger = value <= comparison;
+            break;
+          case "eq":
+            shouldTrigger = value == comparison;
+            break;
+        }
+        if (shouldTrigger)
+          this.playDeathEffects().catch(console.error);
       }
     }
 
