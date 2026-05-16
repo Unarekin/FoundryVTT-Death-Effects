@@ -61,6 +61,19 @@
         "HINT": "The condition whereby to automatically trigger death effects",
         "LABEL": "Trigger Condition",
         "RESOURCE": {
+          "COMPARISONOPERATOR": {
+            "EQ": "=",
+            "GT": ">",
+            "GTE": "≥",
+            "HINT": "How should this resource be compared against the given value?",
+            "LABEL": "Comparison Operator",
+            "LT": "<",
+            "LTE": "≤"
+          },
+          "COMPARISONVALUE": {
+            "HINT": "The value to which to compare the actor's resource",
+            "LABEL": "Value"
+          },
           "HINT": "Trigger when a given resource (such as health) is equal to or less than 0",
           "LABEL": "Actor Resource"
         },

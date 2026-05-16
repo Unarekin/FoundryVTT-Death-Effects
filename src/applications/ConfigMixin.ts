@@ -279,16 +279,16 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
       if (triggerConditionSelect instanceof HTMLSelectElement) {
         triggerConditionSelect.addEventListener("change", () => {
           const sourceType = triggerConditionSelect.value;
-          this.toggleElements(`[data-trigger-condition]:not([data-trigger-condition="${sourceType}"])`, false);
-          this.toggleElements(`[data-trigger-condition="${sourceType}"]`, true);
+          this.toggleElements(`[data-trigger-condition]:not([data-trigger-condition="${sourceType}"])`, false, false);
+          this.toggleElements(`[data-trigger-condition="${sourceType}"]`, true, false);
         })
       }
     }
 
-    protected toggleElements(selector: string, display: boolean) {
+    protected toggleElements(selector: string, display: boolean, flex = true) {
       const elements: HTMLElement[] = Array.from(this.element.querySelectorAll(selector))
       for (const element of elements) {
-        element.style.display = display ? "flex" : "none";
+        element.style.display = display ? (flex ? "flex" : "block") : "none";
       }
     }
 
@@ -311,7 +311,14 @@ export function ConfigMixin<t extends Constructor<foundry.applications.api.Docum
           global: "DEATH-EFFECTS.CONFIG.SOURCE.GLOBAL"
         },
         hasTriggerConditions: false,
-        activeEffects: []
+        activeEffects: [],
+        comparisonOperatorSelect: {
+          "lte": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.LTE",
+          "lt": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.LT",
+          "eq": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.EQ",
+          "gt": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.GT",
+          "gte": "DEATH-EFFECTS.CONFIG.TRIGGERCONDITION.RESOURCE.COMPARISONOPERATOR.GTE"
+        }
       }
 
       if (this.deathEffects)
