@@ -8,6 +8,7 @@ export * from './FlashEffect';
 export * from './MacroEffect';
 export * from './MeltEffect';
 export * from './NullEffect';
+export * from './OverlayImageEffect';
 export * from './RotateEffect';
 export * from "./ScaleEffect";
 export * from './ScreenFlashEffect';

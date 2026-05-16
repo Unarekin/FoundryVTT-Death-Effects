@@ -4,8 +4,8 @@ import "./sockets";
 import "./helpers";
 import "./tokenHUD";
 import "./HTMLDocumentPickerElement";
-import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication, ChangeImageEffectApplication, NullEffectApplication, ScaleEffectApplication, RotateEffectApplication, TextureMaskEffectApplication } from "applications";
-import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect, ChangeImageEffect, NullEffect, ScaleEffect, RotateEffect, TextureMaskEffect } from "effects";
+import { FadeEffectApplication, BaseEffectApplication, TintEffectApplication, ShakeEffectApplication, SoundEffectApplication, StopPlaylistEffectApplication, StartPlaylistEffectApplication, ScreenFlashEffectApplication, MacroEffectApplication, ScreenShakeEffectApplication, FlashEffectApplication, TokenMagicEffectApplication, SlideEffectApplication, MeltEffectApplication, DissolveEffectApplication, DustEffectApplication, CrumbleEffectApplication, SpriteAnimationEffectApplication, ChangeImageEffectApplication, NullEffectApplication, ScaleEffectApplication, RotateEffectApplication, TextureMaskEffectApplication, OverlayImageEffectApplication } from "applications";
+import { FadeEffect, BaseDeathEffect, TintEffect, ShakeEffect, SoundEffect, StopPlaylistEffect, StartPlaylistEffect, ScreenFlashEffect, MacroEffect, ScreenShakeEffect, FlashEffect, TokenMagicEffect, SlideEffect, MeltEffect, DissolveEffect, DustEffect, CrumbleEffect, SpriteAnimationEffect, ChangeImageEffect, NullEffect, ScaleEffect, RotateEffect, TextureMaskEffect, OverlayImageEffect } from "effects";
 import { DeathEffectsConfig } from "types";
 import finalBoss from "./assets/presets/Final Boss.json";
 import purpleDust from "./assets/presets/Purple Dust.json";
@@ -112,6 +112,10 @@ CONFIG.DeathEffects = {
     crumble: {
       cls: CrumbleEffect as typeof BaseDeathEffect,
       app: CrumbleEffectApplication as typeof BaseEffectApplication
+    },
+    overlayImage: {
+      cls: OverlayImageEffect as typeof BaseDeathEffect,
+      app: OverlayImageEffectApplication as typeof BaseEffectApplication
     }
   }
 }
