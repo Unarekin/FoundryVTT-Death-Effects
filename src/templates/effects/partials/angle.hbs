@@ -1,0 +1,14 @@
+<div class="form-group">
+  <label for="{{@root.rootId}}-angle">{{localize
+      "DEATH-EFFECTS.EFFECTS.COMMON.ANGLE.LABEL"
+    }}</label>
+  <range-picker
+    id="{{@root.rootId}}-angle"
+    name="angle"
+    min="0"
+    max="360"
+    step="1"
+    value="{{angle}}"
+  ></range-picker>
+  <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.COMMON.ANGLE.HINT"}}</p>
+</div>

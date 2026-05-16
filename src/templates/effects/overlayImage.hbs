@@ -1,0 +1,70 @@
+<div>
+  {{#with effect}}
+    {{> "modules/death-effects/templates/effects/partials/label.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/start.hbs" }}
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-image">{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.IMAGE.LABEL"}}</label>
+      <file-picker type="imagevideo" id="{{@root.rootId}}-image" name="image" value="{{image}}" required></file-picker>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.IMAGE.HINT"}}</p>
+    </div>
+
+    {{> "modules/death-effects/templates/effects/partials/alpha.hbs" }}
+    {{> "modules/death-effects/templates/effects/partials/angle.hbs" }}
+
+
+    <div class="form-group slim">
+      <label>{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.ANCHOR.LABEL"}}</label>
+      <div class="form-fields">
+        <label for="{{@root.rootId}}-anchorX">{{localize "DOCUMENT.FIELDS.x.label"}}</label>
+        <input type="number" min="0" max="1" step="any" id="{{@root.rootId}}-anchorX" name="anchor.x" value="{{anchor.x}}">
+
+        <label for="{{@root.rootId}}-anchorY">{{localize "DOCUMENT.FIELDS.y.label"}}</label>
+        <input type="number" min="0" max="1" step="any" id="{{@root.rootId}}-anchorY" name="anchor.y" value="{{anchor.y}}">
+      </div>
+      <p class="hint">{{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.ANCHOR.HINT"}}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-sizeMode">{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.SIZEMODE.LABEL"}}</label>
+      <select id="{{@root.rootId}}-sizeMode" name="sizeMode">
+        {{selectOptions ../sizeModeOptions selected=sizeMode localize=true}}
+      </select>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.SIZEMODE.HINT"}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="{{@root.rootId}}-relativeSize">{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.RELATIVESIZE.LABEL"}}</label>
+      <input type="checkbox" id="{{@root.rootId}}-relativeSize" name="relativeSize" {{checked relativeSize}}>
+      <p class="hint">{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.RELATIVESIZE.HINT"}}</p>
+    </div>
+
+    <div data-role="sizeMode" data-size-mode="size"{{#if (eq sizeMode "scale")}} style="display:none"{{/if}}>
+      <div class="form-group slim">
+        <label>{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.SIZE.LABEL"}}</label>
+        <div class="form-fields">
+          <label for="{{@root.rootId}}-sizeWidth">{{localize "DOCUMENT.FIELDS.width.label"}}</label>
+          <input type="number" id="{{@root.rootId}}-sizeWidth" name="size.width" min="0" step="any" value="{{size.width}}">
+          
+          <label for="{{@root.rootId}}-sizeHeight">{{localize "DOCUMENT.FIELDS.height.label"}}</label>
+          <input type="number" id="{{@root.rootId}}-sizeHeight" name="size.height" min="0" step="any" value="{{size.height}}">
+        </div>
+        <p class="hint">{{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.SIZE.HINT"}}}</p>
+      </div>
+    </div>
+
+    <div data-role="sizeMode" data-size-mode="scale"{{#if (eq sizeMode "size")}} style="display:none"{{/if}}>
+      <div class="form-group slim">
+        <label>{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.SCALE.LABEL"}}</label>
+        <div class="form-fields">
+          <label for="{{@root.rootId}}-scaleX">{{localize "DOCUMENT.FIELDS.x.label"}}</label>
+          <input type="number" min="0" step="any" id="{{@root.rootId}}-scaleX" name="scale.x" value="{{scale.x}}">
+
+          <label for="{{@root.rootId}}-scaleY">{{localize "DOCUMENT.FIELDS.y.label"}}</label>
+          <input type="number" min="0" step="any" id="{{@root.rootId}}-scaleY" name="scale.y" value="{{scale.y}}">
+        </div>
+        <p class="hint">{{{localize "DEATH-EFFECTS.EFFECTS.OVERLAYIMAGE.SCALE.HINT"}}}</p>
+      </div>
+    </div>
+  {{/with}}
+</div>

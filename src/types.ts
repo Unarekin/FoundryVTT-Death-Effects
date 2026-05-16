@@ -35,6 +35,7 @@ export const EffectTypes = [
   "macro",
   "melt",
   "null",
+  "overlayImage",
   "rotate",
   "scale",
   "screenFlash",
@@ -53,6 +54,9 @@ export type EffectType = typeof EffectTypes[number];
 
 export const ConfigSources = ["token", "actor", "actorType", "global"] as const;
 export type ConfigSource = typeof ConfigSources[number];
+
+export const SizeModes = ["size", "scale"] as const;
+export type SizeMode = typeof SizeModes[number];
 
 interface BaseDeathEffect {
   version: string;
@@ -175,6 +179,27 @@ export interface ChangeImageDeathEffect extends BaseDeathEffect {
   type: "changeImage",
   image: string;
   revertAfterAnimation: boolean;
+}
+
+export interface OverlayImageDeathEffect extends BaseDeathEffect {
+  type: "overlayImage";
+  image: string;
+  alpha: number;
+  anchor: {
+    x: number;
+    y: number;
+  };
+  sizeMode: "size" | "scale";
+  relativeSize: boolean;
+  size: {
+    width: number;
+    height: number;
+  };
+  scale: {
+    x: number;
+    y: number;
+  };
+  angle: number;
 }
 
 export type ScaleDeathEffect = BaseDeathEffect & DurationDeathEffect & EasingDeathEffect & ({

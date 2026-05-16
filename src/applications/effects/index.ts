@@ -8,6 +8,7 @@ export * from './FlashEffectApplication';
 export * from './MacroEffectApplication';
 export * from './MeltEffectApplication';
 export * from './NullEffectApplication';
+export * from './OverlayImageEffectApplication';
 export * from './RotateEffectApplication';
 export * from './ScaleEffectApplication';
 export * from './ScreenFlashEffectApplication';

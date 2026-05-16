@@ -1,4 +1,4 @@
-import { CrumbleDeathEffect, DeathEffect, SlideDeathEffect, SlideDirection, StartPlaylistDeathEffect, TokenMagicDeathEffect } from "types";
+import { CrumbleDeathEffect, DeathEffect, OverlayImageDeathEffect, SizeMode, SlideDeathEffect, SlideDirection, StartPlaylistDeathEffect, TokenMagicDeathEffect } from "types";
 
 export interface EffectRenderContext<t extends DeathEffect> extends foundry.applications.api.ApplicationV2.RenderContext {
   rootId: string;
@@ -24,4 +24,8 @@ export interface SlideConfigContext extends EffectRenderContext<SlideDeathEffect
 
 export interface CrumbleConfigContext extends EffectRenderContext<CrumbleDeathEffect> {
   directionSelect: Partial<Record<SlideDirection, string>>;
+}
+
+export interface OverlayImageConfigContext extends EffectRenderContext<OverlayImageDeathEffect> {
+  sizeModeOptions: Record<SizeMode, string>;
 }

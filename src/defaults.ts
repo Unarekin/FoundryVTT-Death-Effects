@@ -1,4 +1,4 @@
-import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, NullDeathEffect, RotateDeathEffect, ScaleDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TextureMaskDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
+import { ChangeImageDeathEffect, ConfigSource, CrumbleDeathEffect, DeathEffectsConfig, DissolveDeathEffect, DustDeathEffect, FadeDeathEffect, FlashDeathEffect, MacroDeathEffect, MeltDeathEffect, NullDeathEffect, OverlayImageDeathEffect, RotateDeathEffect, ScaleDeathEffect, ScreenFlashDeathEffect, ScreenShakeDeathEffect, ShakeDeathEffect, SlideDeathEffect, SoundDeathEffect, SpriteAnimationDeathEffect, StartPlaylistDeathEffect, StopPlaylistDeathEffect, TextureMaskDeathEffect, TintDeathEffect, TokenMagicDeathEffect } from "./types";
 
 export const DefaultConfigSource: ConfigSource = "actorType";
 
@@ -258,3 +258,28 @@ export const DefaultTextureMaskEffect: TextureMaskDeathEffect = Object.freeze({
   start: 0,
   mask: ""
 });
+
+export const DefaultOverlayImageEffect: OverlayImageDeathEffect = Object.freeze({
+  id: "",
+  version: __MODULE_VERSION__,
+  label: "",
+  type: "overlayImage",
+  image: "",
+  start: 0,
+  sizeMode: "scale",
+  relativeSize: true,
+  scale: {
+    x: 1,
+    y: 1
+  },
+  size: {
+    width: 0,
+    height: 0
+  },
+  anchor: {
+    x: 0.5,
+    y: 0.5
+  },
+  alpha: 1,
+  angle: 0
+})
