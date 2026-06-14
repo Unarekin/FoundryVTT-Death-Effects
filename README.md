@@ -1,3 +1,11 @@
+# We Have Moved
+
+This repository has moved to a new site: https://git.gay/unarekin/FoundryVTT-Death-Effects
+
+Feature requests, bug reports, and other issues should be directed there
+
+---
+
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/Unarekin/FoundryVTT-Death-Effects)
 ![Supported Foundry Version](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FUnarekin%2FFoundryVTT-Death-Effects%2Frefs%2Fheads%2Fmain%2Fmodule.json)
 ![Supported Game Systems](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fsystem%3FnameType%3Dfull%26showVersion%3D1%26style%3Dflat%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2FUnarekin%2FFoundryVTT-Death-Effects%2Frefs%2Fheads%2Fmain%2Fmodule.json)
